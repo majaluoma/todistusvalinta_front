@@ -8,6 +8,6 @@ const makeRequest = async (method : string, body? : object) => {
     return await res.json();
 }
 
-export async function post (body : object) : Promise<unknown> {
-    return makeRequest ("POST", body);
+export async function post<T> (body : object) : Promise<T> {
+    return makeRequest ("POST", body) as Promise<T>;
 }

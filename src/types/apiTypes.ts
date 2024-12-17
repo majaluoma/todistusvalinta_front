@@ -1,24 +1,39 @@
+export type DegreeObject =  {
+  vuosikerrat : VolumeObject [];
+} & Degree
+
+export type VolumeObject =  {
+  laskumallit : CalculationModel
+} & Volume
+
+export type ThemeObject =  {
+  hakukohteet : DegreeObject []; 
+} & Theme
+
 export type Degree = {
-  degreeId: number;
-  name: string;
-  volumes: Volume[];
-};
+  HakukohdeID : number;
+  KorkeakouluID : number;
+  AiheID : number;
+  hakukohde : string;
+  nimiVipusessa : string;
+}
 
-type Volume = {
-  volumeId: number;
-  degreeId: number;
-  calculationModel: CalculationModel;
-  year: number;
-  percentAccepted: number;
-  selectionType: 0 | 1 | 2 | 3 | 4;
-};
+export type Volume = {
+  LaskumalliID : number;
+  HakukohdeID : number;
+  vuosi : number;
+  prosentti : number;
+  valintajono : 0 | 1 | 2 | 3 | 4
+}
 
-type CalculationModel = {
-  calculationModelId: number;
-};
+export type CalculationModel = {
+  laskumalliNimi : string;
+  LaskumalliID : number;
+  maxPiste : number;
+  maxAine : number;
+}
 
 export type Theme = {
-  themeId: number;
-  name: string;
-  degrees: Degree[];
-};
+  AiheID : number;
+  aihe : string;
+}

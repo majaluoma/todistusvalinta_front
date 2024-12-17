@@ -1,5 +1,10 @@
 import { post } from '@/lib/apiClient';
 import { ResultParams } from '../types/types';
+import { DegreeObject } from '@/types/apiTypes';
+
+type ResultResponse = {
+  data: {laskentatulosKaikki: DegreeObject []};
+}
 
 export async function getResult(
   resultParams: ResultParams,
@@ -12,10 +17,12 @@ export async function getResult(
     return param.subject;
   });
   const query = {
-    query: `{laskentaTulosKaikki(ensikertalainen: ${resultParams.firstTimer}, arviointitiedot: {oppiaineet: ${JSON.stringify(subjectsOnly)}, arvosanat:${JSON.stringify(gradesOnly)}, ammatillinen:${vocational}}) {hakukohde korkeakoulu vuosikerrat {pisteRaja laskumalli {summa {pisteet}}}}}
+    query: `{laskentatulosKaikki(ensikertalainen: ${resultParams.firstTimer}, arviointitiedot: {oppiaineet: ${JSON.stringify(subjectsOnly)}, arvosanat:${JSON.stringify(gradesOnly)}, ammatillinen:${vocational}}) {hakukohde HakukohdeID AiheID korkeakoulu vuosikerrat {pisteRaja laskumalli {summa {pisteet}}}}}
 `,
   };
-  return await post(query);
+  const response = await post<ResultResponse>(query);
+
+  return response.data.laskentatulosKaikki;
 
   //TODO TYPECHECKING
 }

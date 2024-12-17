@@ -1,6 +1,8 @@
 
 import './App.css'
+import ResultContextProvider from './components/context/resultContext/ResultContext'
 import GradesForm from './features/gradesForm/GradesForm'
+import ThemeAccordion from './features/themeAccordion/ThemeAccordion'
 
 
 const gradeOptions = [
@@ -25,8 +27,10 @@ const subjectOptions = [
 
 function App() {
   return (
-
-    <GradesForm gradeOptions={gradeOptions} subjectOptions={subjectOptions} />
+    <ResultContextProvider>
+      <GradesForm gradeOptions={gradeOptions} subjectOptions={subjectOptions} />
+      <ThemeAccordion/>
+    </ResultContextProvider>
 
   )
 }

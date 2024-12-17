@@ -18,11 +18,12 @@ import { formSchema } from './types/schemas';
 import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
+import { useResultContext } from '@/components/context/resultContext/useResultContext';
 
 export default function GradeForm({
   gradeOptions,
   subjectOptions,
-}: GradeFormProps) {
+}: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,6 +32,7 @@ export default function GradeForm({
       grades: Array(5).fill({ value: "" }),
     },
   });
+  const {setDegreesAndThemes} = useResultContext()
 
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
@@ -40,7 +42,7 @@ export default function GradeForm({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const result =  await getResult(values, false);
-      console.log(result);
+      setDegreesAndThemes(result);
     }catch (error : unknown) {
       console.log(error);
     }
@@ -105,7 +107,7 @@ export default function GradeForm({
         <OptionCheckBox
           formcontrol={form.control}
           label="Olen ensikertalainen"
-          name="firstGo"
+          name="firstTimer"
           tooltip="Jos et ole ottanut paikkaa vastaan suomalaisesta korkeakoulusta"
         ></OptionCheckBox>
         <OptionCheckBox

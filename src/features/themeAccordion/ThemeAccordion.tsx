@@ -5,28 +5,29 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import DegreeItem from './DegreeItem';
-import { ThemeAccordionProps } from './types';
 import { firstUpper } from '@/lib/utils';
+import { useResultContext } from '@/components/context/resultContext/useResultContext';
 
-export default function ThemeAccoridon({
-  themesAndDegree,
-}: ThemeAccordionProps) {
+export default function ThemeAccordion() {
+  const {degrees} = useResultContext();
   return (
+    degrees.length > 0?
     <Accordion type="single" collapsible className="w-full">
-      {themesAndDegree.map((theme) => {
+      {degrees.map((theme, index) => {
         return (
-          <AccordionItem key={`theme_${theme.themeId}`} value="item-3">
-            <AccordionTrigger>{firstUpper(theme.name)}</AccordionTrigger>
-            {theme.degrees.map((degree) => {
+          <AccordionItem key={`theme_${theme.AiheID}`} value={`item-${index}`}>
+            <AccordionTrigger>{firstUpper(theme.aihe)}</AccordionTrigger>
+            {theme.hakukohteet.map((hakukohde) => {
               return (
-                <AccordionContent key={`degree_${degree.degreeId}`}>
-                  <DegreeItem degree={degree} />
+                <AccordionContent key={`degree_${hakukohde.HakukohdeID}`}>
+                  <DegreeItem degree={hakukohde} />
                 </AccordionContent>
               );
             })}
           </AccordionItem>
         );
       })}
-    </Accordion>
+    </Accordion>:
+    <></>
   );
 }
