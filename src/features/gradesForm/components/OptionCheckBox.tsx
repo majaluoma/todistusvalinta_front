@@ -4,7 +4,7 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form';
-import { OptionCheckBoxProps } from './types';
+import { OptionCheckBoxProps } from '../types/types';
 import { FieldValues } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import HoverInfo from '@/components/customUi/HoverInfo';

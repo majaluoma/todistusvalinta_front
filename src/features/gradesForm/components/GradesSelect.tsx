@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { GradesSelectProps } from './types';
+import { GradesSelectProps } from '../types/types';
 import { FieldValues } from 'react-hook-form';
 
 export default function GradesSelect<T extends FieldValues>({placeholder, field, options, fieldValue = field.value, onValueChange = field.onChange} : GradesSelectProps<T> ) {

@@ -13,10 +13,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { PlusCircle, X } from 'lucide-react';
-import { GradeFormProps } from './types';
-import { formSchema } from './schemas';
-import OptionCheckBox from './OptionCheckBox';
-import GradesSelect from './GradesSelect';
+import { GradeFormProps } from './types/types';
+import { formSchema } from './types/schemas';
+import OptionCheckBox from './components/OptionCheckBox';
+import GradesSelect from './components/GradesSelect';
 
 export default function GradeForm({
   gradeOptions,
