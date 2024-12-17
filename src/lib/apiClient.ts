@@ -1,12 +1,13 @@
-const makeRequest = async (path : string, method : string, body? : JSON) => {
-    const res = await fetch(process.env.VITE_API_URL + path, {
+const makeRequest = async (method : string, body? : object) => {
+    const res = await fetch(import.meta.env.VITE_API_URL + "", {
         method: method,
-        body : JSON.stringify(body)
+        headers: { "Content-Type": "application/JSON" },
+        body : JSON.stringify(body),
+        mode: 'cors'
     })
     return await res.json();
 }
 
-
-export async function get (path : string) : Promise<unknown> {
-    return makeRequest (path, "GET");
+export async function post (body : object) : Promise<unknown> {
+    return makeRequest ("POST", body);
 }

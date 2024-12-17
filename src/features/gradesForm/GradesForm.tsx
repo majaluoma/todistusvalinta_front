@@ -17,6 +17,7 @@ import { GradeFormProps } from './types/types';
 import { formSchema } from './types/schemas';
 import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
+import { getResult } from './api/getResult';
 
 export default function GradeForm({
   gradeOptions,
@@ -25,7 +26,7 @@ export default function GradeForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstGo: false,
+      firstTimer: false,
       onlyPassed: false,
       grades: Array(5).fill({ value: "" }),
     },
@@ -36,8 +37,13 @@ export default function GradeForm({
     control: form.control,
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(JSON.stringify(values, null, 2));
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const result =  await getResult(values, false);
+      console.log(result);
+    }catch (error : unknown) {
+      console.log(error);
+    }
   }
 
   return (

@@ -4,19 +4,23 @@ import GradesForm from './features/gradesForm/GradesForm'
 
 
 const gradeOptions = [
-  { value: 'A', label: 'A' },
-  { value: 'B', label: 'B' },
-  { value: 'C', label: 'C' },
-  { value: 'D', label: 'D' },
-  { value: 'F', label: 'F' },
+  { value: 'l', label: 'L' },
+  { value: 'e', label: 'E' },
+  { value: 'm', label: 'M' },
+  { value: 'c', label: 'C' },
+  { value: 'b', label: 'B' },
 ]
-
+       
 const subjectOptions = [
-  { value: 'math', label: 'Mathematics' },
-  { value: 'science', label: 'Science' },
-  { value: 'history', label: 'History' },
-  { value: 'literature', label: 'Literature' },
-  { value: 'physics', label: 'Physics' },
+  { value: "ai", label: "Äidinkieli" },
+  { value: "s2", label: "Suomi toisena kielenä" },
+  { value: "r2", label: "Ruotsi toisena kielenä" },
+  { value: "ena", label: "Englanti, pitkä" },
+  { value: "enb", label: "Englanti, lyhyt" },
+  { value: "rua", label: "Toinen kotimainen kieli, pitkä" },
+  { value: "rub", label: "Toinen kotimainen kieli, keskipitkä" },
+  { value: "maa", label: "Matematiikka, pitkä" },
+  { value: "mab", label: "Matematiikka, lyhyt" },
 ]
 
 function App() {

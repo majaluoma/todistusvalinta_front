@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  firstGo: z.boolean().default(false),
+  firstTimer: z.boolean().default(false),
   onlyPassed: z.boolean().default(false),
   grades: z.array(
     z.object({
