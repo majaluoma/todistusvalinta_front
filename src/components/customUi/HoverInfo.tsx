@@ -5,17 +5,19 @@ import {
   Tooltip,
 } from '../ui/tooltip';
 
+type HoverInfoProps = {
+  text: string;
+  children: React.ReactNode;
+}
+
 export default function HoverInfo({
   text,
   children,
-}: {
-  text: string;
-  children: React.ReactNode;
-}) {
+}: Readonly<HoverInfoProps>) {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent>
           <p>{text}</p>
         </TooltipContent>

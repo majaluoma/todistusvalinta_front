@@ -14,21 +14,24 @@ export default function OptionCheckBox<T extends FieldValues>({
   label,
   name,
   tooltip,
-}: OptionCheckBoxProps<T>) {
+}: Readonly<OptionCheckBoxProps<T>>) {
   return (
     <FormField
       control={formcontrol}
       name={name}
       render={({ field }) => (
         <FormItem className="flex flex-row items-start space-x-3 space-y-0 ">
-          <FormControl>
-            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-          </FormControl>
-          <div className="space-y-1 leading-none">
-            <HoverInfo text={tooltip}>
+          <HoverInfo text={tooltip}>
+              <div className="space-y-1 leading-none">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
               <FormLabel>{label}</FormLabel>
-            </HoverInfo>
-          </div>
+            </div>
+          </HoverInfo>
         </FormItem>
       )}
     />

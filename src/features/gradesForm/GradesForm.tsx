@@ -19,13 +19,13 @@ import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
 import { useResultContext } from '@/components/context/resultContext/useResultContext';
-import { useState } from 'react';
-import laskin from '@/assets/laskin.svg'
+import { BaseSyntheticEvent, useState } from 'react';
+import laskin from '@/assets/laskin.svg';
 
 export default function GradeForm({
   gradeOptions,
   subjectOptions,
-  handleCalculation
+  handleCalculation,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,10 +55,22 @@ export default function GradeForm({
     }
   };
 
+  function withErrorLog (submitHandler : (e?: BaseSyntheticEvent<object, unknown, unknown> | undefined) => Promise<void>, logInfo : unknown) {
+    console.log("logInfo");
+    console.log(logInfo);
+    return submitHandler;
+  }
+  
+  
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div>
+      <form onSubmit={withErrorLog(form.handleSubmit(onSubmit), form.formState.errors)} className="space-y-8">
+        {form.formState.errors.grades && (
+          <div className="text-red-500 mb-2">
+            {form.formState.errors.grades.root?.message}
+          </div>
+        )}
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -96,6 +108,15 @@ export default function GradeForm({
                     </div>
                   </FormControl>
                   <FormMessage />
+                  <FormField
+                  control={form.control}
+                  name={`grades.${index}.grade`}
+                  render={({ fieldState }) => (
+                    <FormMessage>
+                      {fieldState.error?.message}
+                    </FormMessage>
+                  )}
+                />
                 </FormItem>
               )}
             />
@@ -110,7 +131,6 @@ export default function GradeForm({
             <PlusCircle className="mr-2 h-4 w-4" />
             Lisää arvosana
           </Button>
-        </div>
         <OptionCheckBox
           formcontrol={form.control}
           label="Olen ensikertalainen"
@@ -124,7 +144,7 @@ export default function GradeForm({
           tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
         ></OptionCheckBox>
         <Button type="submit">
-          {isLoading? "Pieni hetki" : "Laske"}  
+          {isLoading ? 'Pieni hetki' : 'Laske'}
           <img
             alt="loading..."
             src={laskin}
