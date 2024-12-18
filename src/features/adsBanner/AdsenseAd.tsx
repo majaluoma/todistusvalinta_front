@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 export default function AdsenseAd() {
 
     useEffect(() => {
