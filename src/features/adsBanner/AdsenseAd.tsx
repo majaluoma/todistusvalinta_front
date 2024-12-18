@@ -13,7 +13,7 @@ export default function AdsenseAd() {
           document.body.appendChild(script);
         }
     
-        if (window.adsbygoogle && window.adsbygoogle.length > 0) {
+        if (window.adsbygoogle) {
           try {
             window.adsbygoogle.push({});
           } catch (error) {
@@ -25,10 +25,6 @@ export default function AdsenseAd() {
 
   return (
     <div>
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-      ></script>
       <ins
         className="adsbygoogle block"
         data-ad-client="ca-pub-6696837920628178"

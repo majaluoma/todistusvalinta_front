@@ -20,7 +20,6 @@ export default function AdsBanner({ ads }: Readonly<AdsBannerProps>) {
               ) : (
                 <AdsenseAd></AdsenseAd>
               )}
-              ;
             </CarouselItem>
           );
         })}
