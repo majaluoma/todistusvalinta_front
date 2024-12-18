@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import privacyPolicy from '@/assets/privacyPolicy.pdf'
+import privacyPolicy from '@/assets/privacyPolicy.pdf';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,17 +10,17 @@ import {
 } from '@/components/ui/card';
 import useAds from '@/hooks/GoogleAdHooks';
 
-export default function CookieBanner () {
+export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
-  const {continueLoading, pauseLoading} = useAds();
+  const { continueLoading, pauseLoading } = useAds();
 
   useEffect(() => {
     const consent = localStorage.getItem('cookieConsent');
     if (!consent) {
-        pauseLoading()
+      pauseLoading();
       setShowBanner(true);
     }
-  }, []);
+  }, [pauseLoading]);
 
   const acceptAll = () => {
     localStorage.setItem('cookieConsent', 'cookie');
@@ -43,8 +43,8 @@ export default function CookieBanner () {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-          Voit halutessasi hyväksyä myös keksit. Tarkemmat
-            tiedot evästeistä löydät{' '}
+            Voit halutessasi hyväksyä myös keksit. Tarkemmat tiedot evästeistä
+            löydät{' '}
             <a className="text-blue-900 underline" href={privacyPolicy}>
               tietosuojaselosteesta.
             </a>
