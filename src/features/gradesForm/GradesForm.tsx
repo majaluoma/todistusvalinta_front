@@ -19,20 +19,24 @@ import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
 import { useResultContext } from '@/components/context/resultContext/useResultContext';
+import { useState } from 'react';
+import laskin from '@/assets/laskin.svg'
 
 export default function GradeForm({
   gradeOptions,
   subjectOptions,
+  handleCalculation
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstTimer: false,
       onlyPassed: false,
-      grades: Array(5).fill({ value: "" }),
+      grades: Array(5).fill({ value: '' }),
     },
   });
-  const {setDegreesAndThemes} = useResultContext()
+  const [isLoading, setIsLoading] = useState(false);
+  const { setDegreesAndThemes } = useResultContext();
 
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
@@ -41,12 +45,15 @@ export default function GradeForm({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const result =  await getResult(values, false);
+      setIsLoading(true);
+      const result = await getResult(values, false);
       setDegreesAndThemes(result);
-    }catch (error : unknown) {
+      handleCalculation();
+      setInterval(() => setIsLoading(false), 500);
+    } catch (error: unknown) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <Form {...form}>
@@ -116,7 +123,15 @@ export default function GradeForm({
           name="onlyPassed"
           tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
         ></OptionCheckBox>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">
+          {isLoading? "Pieni hetki" : "Laske"}  
+          <img
+            alt="loading..."
+            src={laskin}
+            className={`h-5 w-5 mr-3
+              ${isLoading && 'animate-pulse'}`}
+          />
+        </Button>
       </form>
     </Form>
   );

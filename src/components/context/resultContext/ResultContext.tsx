@@ -20,7 +20,6 @@ export default function ResultContextProvider({
         query: `query {aiheet {AiheID, aihe}}`,
       };
       const response = await post<ThemeResponse>(query);
-      console.log(response);
       setThemes(response.data.aiheet)
     }
     initialThemes();
