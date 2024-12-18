@@ -1,34 +1,16 @@
 
-import './App.css'
 import MatriculationExamination from './pages/MatriculationExamination'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './pages/root/Root';
+import Layout from './pages/root/Layout';
 import ErrorPage from './components/error/ErrorPage';
+import { titles } from './data/titles';
 
 function App() {
-  const titles = [
-    {
-      path: '/ylioppilastutkinto',
-      title: 'Ylioppilastutkinto',
-    },
-    {
-      path: '/ammatillinen-tutkinto',
-      title: 'Ammatillinen perustutkinto',
-    },
-    {
-      path: '/yhteys',
-      title: 'Yhteys',
-    },
-    {
-      path: '/sivustosta',
-      title: 'Sivustosta',
-    },
-  ];
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root titles={titles}></Root>,
+      element: <Layout titles={titles}></Layout>,
       errorElement: <ErrorPage />,
       children: [
         {

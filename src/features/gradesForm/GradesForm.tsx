@@ -55,82 +55,90 @@ export default function GradeForm({
     }
   };
 
-  function withErrorLog (submitHandler : (e?: BaseSyntheticEvent<object, unknown, unknown> | undefined) => Promise<void>, logInfo : unknown) {
-    console.log("logInfo");
+  function withErrorLog(
+    submitHandler: (
+      e?: BaseSyntheticEvent<object, unknown, unknown> | undefined,
+    ) => Promise<void>,
+    logInfo: unknown,
+  ) {
+    console.log('logInfo');
     console.log(logInfo);
     return submitHandler;
   }
-  
-  
 
   return (
     <Form {...form}>
-      <form onSubmit={withErrorLog(form.handleSubmit(onSubmit), form.formState.errors)} className="space-y-8">
+      <form
+        onSubmit={withErrorLog(
+          form.handleSubmit(onSubmit),
+          form.formState.errors,
+        )}
+        className="space-y-4 flex flex-col items-center"
+      >
         {form.formState.errors.grades && (
           <div className="text-red-500 mb-2">
             {form.formState.errors.grades.root?.message}
           </div>
         )}
-          {fields.map((field, index) => (
-            <FormField
-              control={form.control}
-              key={field.id}
-              name={`grades.${index}.subject`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={index !== 0 ? 'sr-only' : ''}>
-                    Oppiaineet ja arvosanat
-                  </FormLabel>
-                  <FormControl>
-                    <div className="flex items-center space-x-2">
-                      <GradesSelect
-                        placeholder={'Select subject'}
-                        field={field}
-                        options={subjectOptions}
-                      />
-                      <GradesSelect
-                        placeholder={'Select grade'}
-                        field={field}
-                        options={gradeOptions}
-                        fieldValue={form.watch(`grades.${index}.grade`)}
-                        onValueChange={(value) =>
-                          form.setValue(`grades.${index}.grade`, value || '')
-                        }
-                      />
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => remove(index)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                  <FormField
+        {fields.map((field, index) => (
+          <FormField
+            control={form.control}
+            key={field.id}
+            name={`grades.${index}.subject`}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className={`${index !== 0 ? 'sr-only' : ''} text-lg`}>
+                  Oppiaineet ja arvosanat
+                </FormLabel>
+                <FormControl>
+                  <div className="flex items-center space-x-2">
+                    <GradesSelect
+                      placeholder={'Oppiaine'}
+                      field={field}
+                      options={subjectOptions}
+                    />
+                    <GradesSelect
+                      placeholder={'Arvosana'}
+                      field={field}
+                      options={gradeOptions}
+                      fieldValue={form.watch(`grades.${index}.grade`)}
+                      onValueChange={(value) =>
+                        form.setValue(`grades.${index}.grade`, value || '')
+                      }
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => remove(index)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+                <FormField
                   control={form.control}
                   name={`grades.${index}.grade`}
                   render={({ fieldState }) => (
-                    <FormMessage>
-                      {fieldState.error?.message}
-                    </FormMessage>
+                    <FormMessage>{fieldState.error?.message}</FormMessage>
                   )}
                 />
-                </FormItem>
-              )}
-            />
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2"
-            onClick={() => append({ subject: '', grade: '' })}
-          >
-            <PlusCircle className="mr-2 h-4 w-4" />
-            Lisää arvosana
-          </Button>
+              </FormItem>
+            )}
+          />
+        ))}
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="mt-2"
+          onClick={() => append({ subject: '', grade: '' })}
+        >
+          <PlusCircle className="mr-2 h-4 w-4" />
+          Lisää arvosana
+        </Button>
+        <div className='flex flex-col gap-3 items-start justify-start align-top w-full ml-5'>
         <OptionCheckBox
           formcontrol={form.control}
           label="Olen ensikertalainen"
@@ -143,7 +151,8 @@ export default function GradeForm({
           name="onlyPassed"
           tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
         ></OptionCheckBox>
-        <Button type="submit">
+        </div>
+        <Button type="submit" className={`${isLoading ? 'bg-primary' : 'bg-secondary'} bg-secondary pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-primary `}>
           {isLoading ? 'Pieni hetki' : 'Laske'}
           <img
             alt="loading..."

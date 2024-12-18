@@ -29,7 +29,6 @@ export default function CookieBanner() {
   };
 
   const rejectAll = () => {
-    localStorage.setItem('cookieConsent', 'null');
     setShowBanner(false);
   };
 

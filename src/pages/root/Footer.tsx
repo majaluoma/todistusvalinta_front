@@ -5,7 +5,7 @@ import privacyPolicy from '@/assets/privacyPolicy.pdf';
  */
 export default function Footer() {
   return (
-    <footer className="bg-muted text-muted-foreground mt-auto">
+    <footer className="bg-muted text-muted-foreground mt-auto w-full">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-4 md:mb-0 flex items-center">
@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
           <nav className="flex flex-wrap justify-center md:justify-end gap-4">
             <a href={privacyPolicy} className="text-blue-900 underline">
-              Tietosuoja
+              Tietosuojaseloste
             </a>
           </nav>
         </div>

@@ -22,14 +22,15 @@ export default function OptionCheckBox<T extends FieldValues>({
       render={({ field }) => (
         <FormItem className="flex flex-row items-start space-x-3 space-y-0 ">
           <HoverInfo text={tooltip}>
-              <div className="space-y-1 leading-none">
-            <FormControl>
-              <Checkbox
-                checked={field.value}
-                onCheckedChange={field.onChange}
-              />
-            </FormControl>
-              <FormLabel>{label}</FormLabel>
+            <div className="space-y-1 leading-none align-middle flex">
+              <FormControl>
+                <Checkbox
+                  className='mr-3 w-6 h-6'
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel className='self-center'>{label}</FormLabel>
             </div>
           </HoverInfo>
         </FormItem>
