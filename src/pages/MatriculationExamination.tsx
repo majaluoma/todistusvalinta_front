@@ -28,24 +28,28 @@ const subjectOptions = [
 export default function MatriculationExamination() {
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleCalculation = (ref : React.RefObject<HTMLDivElement>) => {
+  const handleCalculation = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
-    }else {
-      console.warn("Calculation result not found")
+    } else {
+      console.warn('Calculation result not found');
     }
   };
 
   return (
     <ResultContextProvider>
-      <GradesForm
-        gradeOptions={gradeOptions}
-        subjectOptions={subjectOptions}
-        handleCalculation={()=>handleCalculation(ref)}
-      />
-      <div ref = {ref}>
-      <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
-      <ThemeAccordion/>
+      <div className='flex flex-col gap-8'>
+        <GradesForm
+          gradeOptions={gradeOptions}
+          subjectOptions={subjectOptions}
+          handleCalculation={() => handleCalculation(ref)}
+          production={false}
+        />
+        <div ref={ref}>
+          <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
+        </div>
+        <h2 className='text-lg font-bold'>Tulokset</h2>
+          <ThemeAccordion />
       </div>
     </ResultContextProvider>
   );

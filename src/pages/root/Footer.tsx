@@ -5,8 +5,8 @@ import privacyPolicy from '@/assets/privacyPolicy.pdf';
  */
 export default function Footer() {
   return (
-    <footer className="bg-muted text-muted-foreground mt-auto w-full">
-      <div className="container mx-auto px-4 py-8">
+    <footer className="bg-muted text-muted-foreground mt-auto w-full shadow-lg shadow-secondary">
+      <div className="container mx-auto px-4 py-8 ">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-4 md:mb-0 flex items-center">
             <h2 className="text-2xl font-bold text-primary">Todistusvalinta.fi</h2>

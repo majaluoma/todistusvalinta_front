@@ -11,7 +11,7 @@ import { FieldValues } from 'react-hook-form';
 export default function GradesSelect<T extends FieldValues>({placeholder, field, options, fieldValue = field.value, onValueChange = field.onChange} : GradesSelectProps<T> ) {
   return (
     <Select value={fieldValue} onValueChange={onValueChange} >
-      <SelectTrigger className="w-[180px] bg-white">
+      <SelectTrigger className={`w-[180px] bg-card ${fieldValue && "bg-accent"}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>

@@ -21,6 +21,7 @@ export type GradeFormProps = {
   gradeOptions: Grade[];
   subjectOptions: Subject[];
   handleCalculation : () => void;
+  production : boolean;
 };
 
 export type FormData = {

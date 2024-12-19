@@ -18,7 +18,7 @@ export default function HoverInfo({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className='bg-popover text-popover-foreground'>
           <p>{text}</p>
         </TooltipContent>
       </Tooltip>

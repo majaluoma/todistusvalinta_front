@@ -15,4 +15,5 @@ export type ResultContextType = {
     setDegreesAndThemes: (degrees: DegreeObject[]) => void;
     setThemes: (themes: Theme[]) => void;
     themes: Theme[];
+    passedTotal: Map<string, number>;
   };

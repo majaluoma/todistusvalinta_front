@@ -26,12 +26,14 @@ export default function GradeForm({
   gradeOptions,
   subjectOptions,
   handleCalculation,
+  production = true,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstTimer: false,
       onlyPassed: false,
+      test: false,
       grades: Array(5).fill({ value: '' }),
     },
   });
@@ -54,6 +56,17 @@ export default function GradeForm({
       console.log(error);
     }
   };
+
+  function testausData() {
+    form.setValue('grades', [
+      { subject: 'ai', grade: 'e' },
+      { subject: 'maa', grade: 'm' },
+      { subject: 'ena', grade: 'c' },
+      { subject: 's2', grade: 'm' },
+      { subject: 'r2', grade: 'l' },
+      { subject: 'mab', grade: 'c' },
+    ]);
+  }
 
   function withErrorLog(
     submitHandler: (
@@ -87,7 +100,9 @@ export default function GradeForm({
             name={`grades.${index}.subject`}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className={`${index !== 0 ? 'sr-only' : ''} text-lg`}>
+                <FormLabel
+                  className={`${index !== 0 ? 'sr-only' : ''} text-lg`}
+                >
                   Oppiaineet ja arvosanat
                 </FormLabel>
                 <FormControl>
@@ -138,29 +153,52 @@ export default function GradeForm({
           <PlusCircle className="mr-2 h-4 w-4" />
           Lisää arvosana
         </Button>
-        <div className='flex flex-col gap-3 items-start justify-start align-top w-full ml-5'>
-        <OptionCheckBox
-          formcontrol={form.control}
-          label="Olen ensikertalainen"
-          name="firstTimer"
-          tooltip="Jos et ole ottanut paikkaa vastaan suomalaisesta korkeakoulusta"
-        ></OptionCheckBox>
-        <OptionCheckBox
-          formcontrol={form.control}
-          label="Vain paikat, joihin pääsisin"
-          name="onlyPassed"
-          tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
-        ></OptionCheckBox>
+        <div className="flex flex-col gap-3 items-start justify-start align-top w-full ml-5">
+          <OptionCheckBox
+            formcontrol={form.control}
+            label="Olen ensikertalainen"
+            name="firstTimer"
+            tooltip="Jos et ole ottanut paikkaa vastaan suomalaisesta korkeakoulusta"
+          ></OptionCheckBox>
+          <OptionCheckBox
+            formcontrol={form.control}
+            label="Vain paikat, joihin pääsisin"
+            name="onlyPassed"
+            tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
+          ></OptionCheckBox>
         </div>
-        <Button type="submit" className={`${isLoading ? 'bg-primary' : 'bg-secondary'} bg-secondary pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-primary `}>
-          {isLoading ? 'Pieni hetki' : 'Laske'}
-          <img
-            alt="loading..."
-            src={laskin}
-            className={`h-5 w-5 mr-3
+        <div className='flex gap-4'>
+          <Button
+            type="submit"
+            className={`${
+              isLoading ? 'bg-primary' : 'bg-secondary'
+            } bg-secondary pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-primary shadow-sm shadow-secondary`}
+          >
+            {isLoading ? 'Pieni hetki' : 'Laske'}
+            <img
+              alt="loading..."
+              src={laskin}
+              className={`h-5 w-5 mr-3
               ${isLoading && 'animate-pulse'}`}
-          />
-        </Button>
+            />
+          </Button>
+          {!production && (
+            <Button
+              onClick={testausData}
+              className={`${
+                isLoading ? 'bg-secondary' : 'bg-primary'
+              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-accent shadow-sm shadow-secondary`}
+            >
+              {isLoading ? 'Pieni hetki' : 'Testaa'}
+              <img
+                alt="loading..."
+                src={laskin}
+                className={`h-5 w-5 mr-3
+              ${isLoading && 'animate-pulse'}`}
+              />
+            </Button>
+          )}
+        </div>
       </form>
     </Form>
   );
