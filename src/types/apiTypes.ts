@@ -15,15 +15,15 @@ export type ThemeObject = {
 
 export type Degree = {
   HakukohdeID: number;
-  KorkeakouluID: number;
+  korkeakoulu : string
   AiheID: number;
   hakukohde: string;
   nimiVipusessa: string;
 };
 
 export type Volume = {
+  VuosikertaID : number
   LaskumalliID: number;
-  HakukohdeID: number;
   vuosi: number;
   prosentti: number;
   valintajono: 0 | 1 | 2 | 3 | 4;
@@ -31,10 +31,6 @@ export type Volume = {
 };
 
 export type CalculationModel = {
-  laskumalliNimi: string;
-  LaskumalliID: number;
-  maxPiste: number;
-  maxAine: number;
   summa: { pisteet: number };
 };
 

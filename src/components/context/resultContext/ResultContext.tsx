@@ -40,7 +40,6 @@ export default function ResultContextProvider({
     };
     console.log(passedAmountPerTheme());
     setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
-    console.log(passedTotal);
   }, [degrees]);
 
   const setDegreesAndThemes = (degrees: DegreeObject[]) => {

@@ -36,7 +36,7 @@ export default function ThemeAccordion() {
           <AccordionItem key={`theme_${theme.AiheID}`} value={`item-${index}`}>
             <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3">
               <div className="flex flex-row items-center gap-2">
-                <span className="group-hover:underline text-start">{firstUpper(theme.aihe)}</span>
+                <span className="group-hover:underline text-start text-xl">{firstUpper(theme.aihe)}</span>
                 <NumberBall
                   number={theme.hakukohteet.length}
                   className="bg-transparent mr-9"
@@ -50,13 +50,13 @@ export default function ThemeAccordion() {
             </AccordionTrigger>
             {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
               return (
-                <div key={`degree_${degree.HakukohdeID}`}>
+                <div key={`degree_${degree.HakukohdeID}`} className='mb-2'>
                   {ad && (
                     <AccordionContent>
                       <AdsBanner ads={[ad]} />
                     </AccordionContent>
                   )}
-                  <AccordionContent>
+                  <AccordionContent className='p-0'>
                     <DegreeItem degree={degree} />
                   </AccordionContent>
                 </div>
