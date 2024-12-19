@@ -29,20 +29,24 @@ export default function ThemeAccordion() {
   };
 
   return degrees.length > 0 ? (
+    <>        <h2 className='text-lg font-bold'>Tulokset</h2>
     <Accordion type="single" collapsible className="w-full">
       {degrees.map((theme, index) => {
         return (
           <AccordionItem key={`theme_${theme.AiheID}`} value={`item-${index}`}>
-            <AccordionTrigger className="flex flex-row items-center justify-between">
-              <div className="flex flex-row gap-2">
-                {firstUpper(theme.aihe)}
+            <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3">
+              <div className="flex flex-row items-center gap-2">
+                <span className="group-hover:underline text-start">{firstUpper(theme.aihe)}</span>
                 <NumberBall
                   number={theme.hakukohteet.length}
-                  className="bg-transparent"
+                  className="bg-transparent mr-9"
                 />
               </div>
 
-              <NumberBall number={passedTotal.get(theme.aihe) } className="ml-auto mr-2 text-secondary-foreground" />
+              <NumberBall
+                number={passedTotal.get(theme.aihe)}
+                className="ml-auto mr-2 text-secondary-foreground"
+              />
             </AccordionTrigger>
             {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
               return (
@@ -62,7 +66,7 @@ export default function ThemeAccordion() {
         );
       })}
     </Accordion>
-  ) : (
+    </>) : (
     <></>
   );
 }

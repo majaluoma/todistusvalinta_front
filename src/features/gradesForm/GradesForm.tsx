@@ -101,7 +101,7 @@ export default function GradeForm({
             render={({ field }) => (
               <FormItem>
                 <FormLabel
-                  className={`${index !== 0 ? 'sr-only' : ''} text-lg`}
+                  className={`${index !== 0 ? 'sr-only' : ''} text-xl`}
                 >
                   Oppiaineet ja arvosanat
                 </FormLabel>
@@ -147,7 +147,7 @@ export default function GradeForm({
           type="button"
           variant="outline"
           size="sm"
-          className="mt-2"
+          className="mt-2 text-base"
           onClick={() => append({ subject: '', grade: '' })}
         >
           <PlusCircle className="mr-2 h-4 w-4" />
@@ -172,7 +172,7 @@ export default function GradeForm({
             type="submit"
             className={`${
               isLoading ? 'bg-primary' : 'bg-secondary'
-            } bg-secondary pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-primary shadow-sm shadow-secondary`}
+            } bg-secondary pt-6 pb-6 pl-10 pr-10 text-xl hover:bg-primary shadow-sm shadow-secondary`}
           >
             {isLoading ? 'Pieni hetki' : 'Laske'}
             <img
@@ -187,7 +187,7 @@ export default function GradeForm({
               onClick={testausData}
               className={`${
                 isLoading ? 'bg-secondary' : 'bg-primary'
-              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 text-lg hover:bg-accent shadow-sm shadow-secondary`}
+              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 text-xl hover:bg-accent shadow-sm shadow-secondary`}
             >
               {isLoading ? 'Pieni hetki' : 'Testaa'}
               <img

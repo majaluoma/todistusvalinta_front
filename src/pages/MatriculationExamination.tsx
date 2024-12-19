@@ -48,7 +48,6 @@ export default function MatriculationExamination() {
         <div ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
         </div>
-        <h2 className='text-lg font-bold'>Tulokset</h2>
           <ThemeAccordion />
       </div>
     </ResultContextProvider>
