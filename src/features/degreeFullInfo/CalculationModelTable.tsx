@@ -1,9 +1,9 @@
-import { CalculationModel } from "@/types/apiTypes"
+import { LaskumalliRakenne } from "./types"
 
 type  CalculationModelProps =  {
-    calculationModel: CalculationModel
+    calculationModel: LaskumalliRakenne
 }
 
 export default function CalculationModelTable ({calculationModel} : Readonly<CalculationModelProps>) {
-    return <>Not implemented {calculationModel.summa.pisteet}</>
+    return <>Not implemented {calculationModel.laskumalliNimi}</>
 }

@@ -1,3 +1,4 @@
+import { ResultParams } from '@/features/gradesForm/types/types';
 import { DegreeObject, Theme, ThemeObject } from '@/types/apiTypes';
 import { ReactNode } from 'react';
 
@@ -12,8 +13,8 @@ export type ResultContextProviderProps = {
 
 export type ResultContextType = {
     degrees: ThemeObject[];
-    setDegreesAndThemes: (degrees: DegreeObject[]) => void;
+    setDegreesAndThemes: (degrees: DegreeObject[], resultParams : ResultParams) => void;
     setThemes: (themes: Theme[]) => void;
     themes: Theme[];
-    passedTotal: Map<string, number>;
+    resultParams : ResultParams | null;
   };

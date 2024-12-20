@@ -6,6 +6,7 @@ import {
   ThemeResponse,
   ResultContextType,
 } from './types';
+import { ResultParams } from '@/features/gradesForm/types/types';
 
 export const ResultContext = createContext<ResultContextType | null>(null);
 
@@ -14,7 +15,7 @@ export default function ResultContextProvider({
 }: Readonly<ResultContextProviderProps>) {
   const [degrees, setDegrees] = useState<ThemeObject[]>([]);
   const [themes, setThemes] = useState<Theme[]>([]);
-  const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
+  const [resultParams, setResultParams] = useState<ResultParams | null>(null)
   useEffect(() => {
     const initialThemes = async () => {
       const query = {
@@ -26,23 +27,9 @@ export default function ResultContextProvider({
     initialThemes();
   }, []);
 
-  useEffect(() => {
-    const passedAmountPerTheme = () => {
-      return degrees.map(function filterPassed(theme): [string, number] {
-        const passedDegrees = theme.hakukohteet.filter((e) => {
-          return (
-            e.vuosikerrat[0].laskumalli.summa.pisteet >
-            e.vuosikerrat[0].pisteRaja
-          );
-        });
-        return [theme.aihe, passedDegrees.length];
-      });
-    };
-    console.log(passedAmountPerTheme());
-    setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
-  }, [degrees]);
 
-  const setDegreesAndThemes = (degrees: DegreeObject[]) => {
+  const setDegreesAndThemes = (degrees: DegreeObject[], resultParams : ResultParams) => {
+    setResultParams(resultParams);
     setDegrees(formThemesFromDegrees(degrees));
   };
 
@@ -74,9 +61,9 @@ export default function ResultContextProvider({
       setDegreesAndThemes,
       themes,
       setThemes,
-      passedTotal,
+      resultParams,
     }),
-    [degrees, themes],
+    [degrees, themes, resultParams, setThemes],
   );
 
   return (

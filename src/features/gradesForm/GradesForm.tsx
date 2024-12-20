@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { FieldErrors, useFieldArray, useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { PlusCircle, X } from 'lucide-react';
-import { GradeFormProps } from './types/types';
+import { GradeFormProps, ResultParams } from './types/types';
 import { formSchema } from './types/schemas';
 import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
@@ -45,11 +45,11 @@ export default function GradeForm({
     control: form.control,
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: ResultParams) => {
     try {
       setIsLoading(true);
       const result = await getResult(values, false);
-      setDegreesAndThemes(result);
+      setDegreesAndThemes(result, values);
       handleCalculation();
       setInterval(() => setIsLoading(false), 500);
     } catch (error: unknown) {
@@ -72,10 +72,9 @@ export default function GradeForm({
     submitHandler: (
       e?: BaseSyntheticEvent<object, unknown, unknown> | undefined,
     ) => Promise<void>,
-    logInfo: unknown,
+    logInfo: FieldErrors,
   ) {
-    console.log('logInfo');
-    console.log(logInfo);
+    if (logInfo.root) console.log(logInfo);
     return submitHandler;
   }
 

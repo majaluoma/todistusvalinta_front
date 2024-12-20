@@ -16,7 +16,7 @@ export type ThemeObject = {
 export type Degree = {
   HakukohdeID: number;
   korkeakoulu : string
-  AiheID: number;
+  AiheID : number;
   hakukohde: string;
   nimiVipusessa: string;
 };
@@ -25,9 +25,8 @@ export type Volume = {
   VuosikertaID : number
   LaskumalliID: number;
   vuosi: number;
-  prosentti: number;
-  valintajono: 0 | 1 | 2 | 3 | 4;
   pisteRaja: number;
+  kynnysehtoOK : boolean;
 };
 
 export type CalculationModel = {

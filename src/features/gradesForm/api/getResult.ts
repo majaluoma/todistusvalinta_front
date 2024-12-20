@@ -17,7 +17,7 @@ export async function getResult(
     return param.subject;
   });
   const query = {
-    query: `{laskentatulosKaikki(ensikertalainen: ${resultParams.firstTimer}, arviointitiedot: {oppiaineet: ${JSON.stringify(subjectsOnly)}, arvosanat:${JSON.stringify(gradesOnly)}, ammatillinen:${vocational}}) {hakukohde HakukohdeID AiheID korkeakoulu vuosikerrat {pisteRaja VuosikertaID vuosi LaskumalliID laskumalli {summa {pisteet}}}}}
+    query: `{laskentatulosKaikki(ensikertalainen: ${resultParams.firstTimer}, arviointitiedot: {oppiaineet: ${JSON.stringify(subjectsOnly)}, arvosanat:${JSON.stringify(gradesOnly)}, ammatillinen:${vocational}}) {hakukohde HakukohdeID AiheID korkeakoulu vuosikerrat {pisteRaja VuosikertaID kynnysehtoOK vuosi LaskumalliID laskumalli {summa {pisteet}}}}}
 `,
   };
   const response = await post<ResultResponse>(query);

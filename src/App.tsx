@@ -33,6 +33,14 @@ function App() {
           path: '/sivustosta',
           element: <MatriculationExamination />,
         },
+        {
+          path: '/muut-reitit-korkeakouluun',
+          element: <MatriculationExamination />,
+        },
+        {
+          path: '/miten-kaytan-laskuria',
+          element: <MatriculationExamination />,
+        },
       ],
     }
   ]);

@@ -15,4 +15,12 @@ export const titles = [
       path: '/sivustosta',
       title: 'Sivustosta',
     },
+    {
+      path: '/miten-kaytan-laskuria',
+      title: 'Miten käytän laskuria',
+    },
+    {
+      path: '/muut-reitit-korkeakouluun',
+      title: 'Muut reitit korkeakouluun',
+    },
   ];

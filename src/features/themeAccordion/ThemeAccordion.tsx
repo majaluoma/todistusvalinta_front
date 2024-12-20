@@ -11,10 +11,25 @@ import { DegreeObject } from '@/types/apiTypes';
 import AdsBanner from '../adsBanner/AdsBanner';
 import { AccordionAds } from '@/data/adsData';
 import NumberBall from '@/components/customUi/NumberBall';
+import { useEffect, useState } from 'react';
 
 export default function ThemeAccordion() {
-  const { degrees, passedTotal } = useResultContext();
-
+  const { degrees } = useResultContext();
+  const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
+  useEffect(() => {
+    const passedAmountPerTheme = () => {
+      return degrees.map(function filterPassed(theme): [string, number] {
+        const passedDegrees = theme.hakukohteet.filter((e) => {
+          return (
+            e.vuosikerrat[0].laskumalli.summa.pisteet >
+            e.vuosikerrat[0].pisteRaja
+          );
+        });
+        return [theme.aihe, passedDegrees.length];
+      });
+    };
+    setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
+  }, [degrees]);
   const degreesAndAds = (degrees: DegreeObject[]) => {
     const degreesAndAds = degrees.map((degree) => {
       return {

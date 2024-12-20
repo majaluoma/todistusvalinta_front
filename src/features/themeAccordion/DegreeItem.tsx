@@ -6,7 +6,7 @@ import DegreeFullInfo from '../degreeFullInfo/DegreeFullInfo';
 export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
   return (
     <div className='relative'>
-    <DegreeFullInfo degree={degree}></DegreeFullInfo>
+    <DegreeFullInfo className="absolute right-2 top-6" degree={degree}></DegreeFullInfo>
     <Tabs defaultValue={degree.vuosikerrat[0].vuosi.toString()} className="w-auto p-0">
       <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
         {degree.vuosikerrat.map((volume) => {
