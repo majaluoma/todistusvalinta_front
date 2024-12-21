@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 import { ResultParams } from '@/features/gradesForm/types/types';
 import { InfoViewContextProps, InfoViewContextType } from './types';
@@ -13,18 +13,11 @@ export default function InfoViewContextProvider({
   const [resultParams, setResultParams] = useState<ResultParams | null>(null);
   const [infoViewOpen, setInfoViewOpen] = useState(false);
 
-  useEffect(()=> {
-    console.log(infoViewOpen)
-  }, [infoViewOpen])
-  
   const setDegreesAndOpen = (degree : FullDegreeInfo[]) => {
     setDegrees(degree);
     setInfoViewOpen(true);
   }
 
-  useEffect (()=> {
-    console.log("changed " + degrees.length)
-  }, [degrees])
   const values = useMemo(
     () => ({
       degrees,

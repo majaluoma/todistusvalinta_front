@@ -66,7 +66,7 @@ type Aine = {
   };
   
   // Define the type for 'Vuosikerta'
-  type Vuosikerta = {
+  export type Vuosikerta = {
     VuosikertaID: number;
     hakukohde: string;
     pisteRaja: number;
@@ -77,8 +77,8 @@ type Aine = {
     vuosi: number;
   };
   
-  // Define the overall return type
+  // First is the ensikertalaiset, second the other
   export type FullDegreeInfo = {
-    hakukohde: Hakukohde;
+    hakukohteet: [Hakukohde, Hakukohde | undefined];
     laskumalli: LaskumalliRakenne;
   };

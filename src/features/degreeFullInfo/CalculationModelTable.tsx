@@ -5,5 +5,5 @@ type  CalculationModelProps =  {
 }
 
 export default function CalculationModelTable ({calculationModel} : Readonly<CalculationModelProps>) {
-    return <>Not implemented {calculationModel.laskumalliNimi}</>
+    return <>{calculationModel.laskumalliNimi}</>
 }

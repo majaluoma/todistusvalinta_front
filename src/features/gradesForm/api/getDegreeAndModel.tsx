@@ -31,7 +31,7 @@ query {
       ammatillinen: ${vocational}}
   ) 
       {
-    hakukohde {
+    hakukohteet {
       hakukohde
       HakukohdeID
       AiheID
