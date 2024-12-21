@@ -7,7 +7,6 @@ import {
 } from '@/components/ui/card';
 
 import { VolumeItemProps } from './types';
-import DegreeFullInfo from '../degreeFullInfo/DegreeFullInfo';
 
 export default function DegreeItem({
   volume,
@@ -27,9 +26,7 @@ export default function DegreeItem({
           Pisteesi: {volume.laskumalli.summa.pisteet} / {volume.pisteRaja}
         </p>
         {!volume.kynnysehtoOK && (
-          <DegreeFullInfo degree={degree}>
             <p className={`ml-4 text-sm`}>Kynnysehto ei täyty</p>
-          </DegreeFullInfo>
         )}
       </CardContent>
     </Card>

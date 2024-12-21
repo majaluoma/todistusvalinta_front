@@ -54,7 +54,7 @@ type Aine = {
   };
   
   // Define the type for 'Kynnysehto'
-  type Kynnysehto = {
+  export type Kynnysehto = {
     KynnysehtoID: number;
     ehdot: Ehto[];
   };
@@ -79,6 +79,6 @@ type Aine = {
   
   // Define the overall return type
   export type FullDegreeInfo = {
-    degree: Hakukohde;
-    calculationModel: LaskumalliRakenne;
+    hakukohde: Hakukohde;
+    laskumalli: LaskumalliRakenne;
   };

@@ -4,6 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './pages/root/Layout';
 import ErrorPage from './components/error/ErrorPage';
 import { titles } from './data/titles';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import RoutesToUniversities from './pages/RoutesToUniversities';
+import Help from './pages/Help';
 
 function App() {
 
@@ -27,19 +31,19 @@ function App() {
         },
         {
           path: '/yhteys',
-          element: <MatriculationExamination />,
+          element: <Contact />,
         },
         {
           path: '/sivustosta',
-          element: <MatriculationExamination />,
+          element: <About />,
         },
         {
           path: '/muut-reitit-korkeakouluun',
-          element: <MatriculationExamination />,
+          element: <RoutesToUniversities/>,
         },
         {
           path: '/miten-kaytan-laskuria',
-          element: <MatriculationExamination />,
+          element: <Help />,
         },
       ],
     }

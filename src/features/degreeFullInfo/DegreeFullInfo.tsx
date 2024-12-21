@@ -1,82 +1,125 @@
-import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '../../components/ui/sheet';
 import CalculationModelTable from './CalculationModelTable';
-import { ReactNode, useState } from 'react';
-import { getDegreeAndModel } from './api/getDegreeAndModel';
-import { ResultParams } from '../gradesForm/types/types';
-import { Hakukohde, LaskumalliRakenne } from './types';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useResultContext } from '@/components/context/resultContext/useResultContext';
+import { useInfoViewContext } from '@/components/context/infoViewContext/useResultContext';
+import InfoCard from './InfoCard';
+import { Kynnysehto } from './types';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-type DegreeFullInfoProps = {
-    hakukohdeId: number;
-  className? : string;
-  children?: ReactNode;
-};
+export default function DegreeFullInfo() {
+  const { degrees, infoViewOpen, setInfoViewOpen } = useInfoViewContext();
 
-export default function DegreeFullInfo({
-  hakukohdeId,
-  className,
-  children,
-}: Readonly<DegreeFullInfoProps>) {
-    const [degree, setDegree] = useState<Hakukohde| null>(null);
-    const [calculationModel, setCalculationModel] = useState<LaskumalliRakenne | null>(null);
-    const {resultParams} = useResultContext();
-
-    const handleClick = () => {
-      console.log(degree)
-      const fetchDegreeInfo = async (resultParams : ResultParams, hakukohdeId : number) => {
-          const degreeInfo =  await getDegreeAndModel(resultParams, hakukohdeId);
-          setDegree(degreeInfo.degree);
-          setCalculationModel(degreeInfo.calculationModel);
-      } 
-      if (resultParams) fetchDegreeInfo(resultParams, hakukohdeId);
-    }
-    
-    
+  const kynnysehdotLuettelona = (kynnysehdot: Kynnysehto[]) => {
+    return (
+      <ul>
+        {kynnysehdot.map((kynnysehto) => {
+          return (
+            <li className="list-disc ml-6" key={`kynnysehto_${kynnysehto.KynnysehtoID}`}>
+              {kynnysehto.ehdot.map((ehto, index) => {
+                return (
+                  <>
+                    {index !== 0 && " tai "} {ehto.nimi} {ehto.arvosana?.toUpperCase()} 
+                  </>
+                );
+              })}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+  
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        {
-            children || <Button onClick={handleClick} className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer ${className}`}>
-            ?
-          </Button>
-        }
-      </SheetTrigger>
-      <SheetContent side={'left'} className="pl-0 pr-0">
-        <SheetHeader className="flex flex-col">
-          <SheetTitle className="text-xl mb-8 ml-4 text-wrap mr-7">
-            {degree?.hakukohde}
-          </SheetTitle>
-        </SheetHeader>
-        {degree? <SheetDescription>
-         <h3>{degree.korkeakoulu}</h3>
-         <p>{"degree.nimivipusessa"}</p>
-           {degree.vuosikerrat.map((vuosikerta) => {
-            return (
-              <div key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}>
-                <p>{vuosikerta.vuosi}</p>
-                <p>Pisteesi: {vuosikerta.laskumalli.summa.pisteet} / {vuosikerta.pisteRaja}</p>
-              </div>
-            );
-          })}
-        </SheetDescription>: <Skeleton className="h-[100px] w-6em m-6"/>}
-          {calculationModel? <SheetDescription><CalculationModelTable calculationModel={calculationModel}></CalculationModelTable>
-          </SheetDescription>: 
-          <div>
-            <Skeleton className="h-[50px] w-6em m-6"/> 
-            <Skeleton className="h-[50px] w-6em m-6"/> 
-            <Skeleton className="h-[50px] w-6em m-6"/> 
-            <Skeleton className="h-[50px] w-6em m-6"/> 
-          </div>
-            }
+    <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
+      <SheetContent side={'left'}>
+        {degrees.map((degree) => {
+          return (
+            <div key={`allinfo_${degree.hakukohde.HakukohdeID}`}>
+              <SheetHeader>
+                <SheetTitle className="text-xl mb-8 ml-4 text-wrap mr-7">
+                  {degree.hakukohde.hakukohde}
+                </SheetTitle>
+              </SheetHeader>
+            <ScrollArea>
+              <SheetDescription className="flex flex-col gap-4 ">
+                <h2>{degree.hakukohde.korkeakoulu}</h2>
+
+                {degree.hakukohde.vuosikerrat.map((vuosikerta) => {
+                  return (
+                    <InfoCard
+                      key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}
+                      header={vuosikerta.vuosi.toString()}
+                      >
+                      <div>
+                        <p>
+                          Pisteesi: {vuosikerta.laskumalli.summa.pisteet} /{' '}
+                          {vuosikerta.pisteRaja}
+                        </p>
+                        {vuosikerta.kynnysehdot && (
+                          <p> Kynnysehdot:
+                            {kynnysehdotLuettelona(vuosikerta.kynnysehdot)}</p>
+                        )}
+                      </div>
+                    </InfoCard>
+                  );
+                })}
+
+                <InfoCard
+                  header="Kuinka pisteeni laskettiin?"
+                  subheader={`Yhteensä ${degree.hakukohde.vuosikerrat[0].laskumalli.summa.pisteet} pistettä`}
+                  >
+                  <div className="flex flex-col w-full m-2 ml-2 mr-2">
+                    {degree.hakukohde.vuosikerrat[0].laskumalli.summa
+                      .lasketut ? (
+                        degree.hakukohde.vuosikerrat[0].laskumalli.summa.lasketut?.map(
+                          (laskettu, index) => {
+                          return (
+                            <div
+                            key={`arvosana_${laskettu.nimi}`}
+                            className={`w-full flex flex-row justify-between p-3
+                              ${index % 2 > 0 && 'bg-background'}`}
+                            >
+                              <p>
+                                {laskettu.nimi} {laskettu.arvosana}
+                              </p>
+                              <p className="ml-auto">
+                                {laskettu.pisteet} pistettä
+                              </p>
+                            </div>
+                          );
+                        },
+                      )
+                    ) : (
+                      <>Virhe</>
+                    )}
+                  </div>
+                </InfoCard>
+              </SheetDescription>
+
+              {degree.laskumalli ? (
+                <SheetDescription>
+                  <CalculationModelTable
+                    calculationModel={degree.laskumalli}
+                  ></CalculationModelTable>
+                </SheetDescription>
+              ) : (
+                <div>
+                  <Skeleton className="h-[50px] w-6em m-6" />
+                  <Skeleton className="h-[50px] w-6em m-6" />
+                  <Skeleton className="h-[50px] w-6em m-6" />
+                  <Skeleton className="h-[50px] w-6em m-6" />
+                </div>
+              )}
+              </ScrollArea>
+            </div>
+          );
+        })}
       </SheetContent>
     </Sheet>
   );

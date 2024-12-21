@@ -6,6 +6,9 @@ export type ThemeResponse = {
   data: {aiheet: Theme []};
 };
 
+export type YearResponse = {
+  data: {viimeisin_vuosi: number};
+};
 
 export type ResultContextProviderProps = {
   children: ReactNode;
@@ -17,4 +20,5 @@ export type ResultContextType = {
     setThemes: (themes: Theme[]) => void;
     themes: Theme[];
     resultParams : ResultParams | null;
+    year : number
   };

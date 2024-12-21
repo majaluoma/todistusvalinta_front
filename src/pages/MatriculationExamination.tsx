@@ -4,6 +4,8 @@ import GradesForm from '@/features/gradesForm/GradesForm';
 import ThemeAccordion from '@/features/themeAccordion/ThemeAccordion';
 import { useRef } from 'react';
 import { BannerAdsMatriculation } from '@/data/adsData';
+import InfoViewContextProvider from '@/components/context/infoViewContext/InfoViewContext';
+import DegreeFullInfo from '@/features/degreeFullInfo/DegreeFullInfo';
 
 const gradeOptions = [
   { value: 'l', label: 'L' },
@@ -38,7 +40,7 @@ export default function MatriculationExamination() {
 
   return (
     <ResultContextProvider>
-      <div className='flex flex-col gap-8'>
+      <div className="flex flex-col gap-8">
         <GradesForm
           gradeOptions={gradeOptions}
           subjectOptions={subjectOptions}
@@ -48,7 +50,10 @@ export default function MatriculationExamination() {
         <div ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
         </div>
-          <ThemeAccordion />
+        <InfoViewContextProvider>
+          <ThemeAccordion/>
+          <DegreeFullInfo/>
+        </InfoViewContextProvider>
       </div>
     </ResultContextProvider>
   );

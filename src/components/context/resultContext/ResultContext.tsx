@@ -5,6 +5,7 @@ import {
   ResultContextProviderProps,
   ThemeResponse,
   ResultContextType,
+  YearResponse,
 } from './types';
 import { ResultParams } from '@/features/gradesForm/types/types';
 
@@ -15,7 +16,9 @@ export default function ResultContextProvider({
 }: Readonly<ResultContextProviderProps>) {
   const [degrees, setDegrees] = useState<ThemeObject[]>([]);
   const [themes, setThemes] = useState<Theme[]>([]);
-  const [resultParams, setResultParams] = useState<ResultParams | null>(null)
+  const [resultParams, setResultParams] = useState<ResultParams | null>(null);
+  const [year, setYear] = useState<number>(1994);
+  
   useEffect(() => {
     const initialThemes = async () => {
       const query = {
@@ -25,12 +28,28 @@ export default function ResultContextProvider({
       setThemes(response.data.aiheet);
     };
     initialThemes();
+
+    const mostRecentYear = async () => {
+      const query = {
+        query: `query {viimeisin_vuosi}`,
+      };
+      const response = await post<YearResponse>(query);
+      setYear(response.data.viimeisin_vuosi);
+    };
+    mostRecentYear();
   }, []);
 
 
   const setDegreesAndThemes = (degrees: DegreeObject[], resultParams : ResultParams) => {
     setResultParams(resultParams);
-    setDegrees(formThemesFromDegrees(degrees));
+    if (resultParams.onlyPassed) {
+      const onlyPassedDegrees = degrees.filter(degree => {
+        return degree.vuosikerrat[0].kynnysehtoOK && degree.vuosikerrat[0].pisteRaja <= degree.vuosikerrat[0].laskumalli.summa.pisteet
+      })
+      setDegrees(formThemesFromDegrees(onlyPassedDegrees));
+    }else {
+      setDegrees(formThemesFromDegrees(degrees));
+    }
   };
 
   const formThemesFromDegrees = (degrees: DegreeObject[]): ThemeObject[] => {
@@ -62,8 +81,9 @@ export default function ResultContextProvider({
       themes,
       setThemes,
       resultParams,
+      year
     }),
-    [degrees, themes, resultParams, setThemes],
+    [degrees, themes, resultParams, setThemes, year],
   );
 
   return (

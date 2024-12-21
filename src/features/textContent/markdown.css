@@ -1,0 +1,17 @@
+.markdown p {
+    color: #333; /* Tailwind's text-gray-900 */
+    font-size: 1.125rem; /* or text-xl */
+    line-height: 1.75; /* or leading-relaxed */
+    margin-bottom: 2em;
+  }
+  
+  .markdown h1 {
+    font-size: 2rem; /* or text-3xl */
+    font-weight: bold; /* or font-bold */
+    margin-bottom: 1rem; /* Tailwind margin-bottom */
+  }
+  
+  .markdown ul {
+    list-style-type: disc; /* default Tailwind list style */
+    margin-left: 2rem; /* or pl-6 */
+  }

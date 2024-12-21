@@ -31,7 +31,7 @@ export default function GradeForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstTimer: false,
+      firstTimer: true,
       onlyPassed: false,
       test: false,
       grades: Array(5).fill({ value: '' }),

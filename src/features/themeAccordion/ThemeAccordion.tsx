@@ -44,7 +44,8 @@ export default function ThemeAccordion() {
   };
 
   return degrees.length > 0 ? (
-    <>        <h2 className='text-lg font-bold'>Tulokset</h2>
+    <>
+    <h2 className='text-lg font-bold'>Tulokset</h2>
     <Accordion type="single" collapsible className="w-full">
       {degrees.map((theme, index) => {
         return (
@@ -72,7 +73,7 @@ export default function ThemeAccordion() {
                     </AccordionContent>
                   )}
                   <AccordionContent className='p-0'>
-                    <DegreeItem degree={degree} />
+                    <DegreeItem degree={degree}/>
                   </AccordionContent>
                 </div>
               );
