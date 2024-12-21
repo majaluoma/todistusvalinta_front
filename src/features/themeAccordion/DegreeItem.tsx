@@ -17,6 +17,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
       hakukohdeId: number,
       laskumalliID: number,
     ) => {
+      setDegreesAndOpen([]);
       const degreeInfo = await getDegreeAndModel(
         resultParams,
         hakukohdeId,

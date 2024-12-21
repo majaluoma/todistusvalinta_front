@@ -14,8 +14,8 @@ export default function InfoViewContextProvider({
   const [infoViewOpen, setInfoViewOpen] = useState(false);
 
   const setDegreesAndOpen = (degree : FullDegreeInfo[]) => {
-    setDegrees(degree);
     setInfoViewOpen(true);
+    setDegrees(degree);
   }
 
   const values = useMemo(
