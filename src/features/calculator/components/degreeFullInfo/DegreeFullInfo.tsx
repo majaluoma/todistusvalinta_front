@@ -28,11 +28,11 @@ export default function DegreeFullInfo() {
                 <SheetHeader>
                   <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
                     {degree.hakukohteet[0].hakukohde}
-                    <SheetDescription className="flex flex-col gap-4 ">
-                      <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
-                    </SheetDescription>
                   </SheetTitle>
                 </SheetHeader>
+                <SheetDescription className="relative flex flex-col gap-4 bottom-7 left-4 ">
+                  <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
+                </SheetDescription>
                 <ScrollArea className="h-full sw-auto rounded-md border">
                   <SheetDescription className="flex flex-col gap-4 ">
                     {degree.hakukohteet[0].vuosikerrat.map((vuosikerta) => {
@@ -60,11 +60,20 @@ export default function DegreeFullInfo() {
             );
           })
         ) : (
-          <div>
-            <Skeleton className="h-[50px] w-6em m-6" />
-            <Skeleton className="h-[50px] w-6em m-6" />
-            <Skeleton className="h-[50px] w-6em m-6" />
-            <Skeleton className="h-[50px] w-6em m-6" />
+          <div
+            className="h-full pb-20"
+          >
+            <SheetHeader>
+              <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
+                Ladataan tietoja
+              </SheetTitle>
+            </SheetHeader>
+            <SheetDescription className="relative flex flex-col gap-4 bottom-7 left-4 ">
+              <Skeleton className="h-[50px] w-6em m-6" />
+              <Skeleton className="h-[50px] w-6em m-6" />
+              <Skeleton className="h-[50px] w-6em m-6" />
+              <Skeleton className="h-[50px] w-6em m-6" />
+            </SheetDescription>
           </div>
         )}
       </SheetContent>
