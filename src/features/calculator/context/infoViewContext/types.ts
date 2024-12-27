@@ -1,6 +1,7 @@
-import { FullDegreeInfo } from '@/features/degreeFullInfo/types';
-import { ResultParams } from '@/features/gradesForm/types/types';
+
+import { ResultParams } from '@/features/calculator/components/gradesForm/types/types';
 import { ReactNode } from 'react';
+import { FullDegreeInfo } from '../../components/degreeFullInfo/types';
 
 export type FullDegreeInfoResponse = {
     data: {kaikkiTiedotHakukohteesta: FullDegreeInfo};

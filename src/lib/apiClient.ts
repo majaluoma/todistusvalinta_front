@@ -1,3 +1,7 @@
+type GraphqlData<T> = {
+    data: T
+}
+
 const makeRequest = async (method : string, body? : object) => {
     const res = await fetch(import.meta.env.VITE_API_URL + "", {
         method: method,
@@ -8,6 +12,6 @@ const makeRequest = async (method : string, body? : object) => {
     return await res.json();
 }
 
-export async function post<T> (body : object) : Promise<T> {
-    return makeRequest ("POST", body) as Promise<T>;
+export async function post<T> (body : object) : Promise<GraphqlData<T>> {
+    return makeRequest ("POST", body) as Promise<GraphqlData<T>>;
 }

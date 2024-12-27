@@ -1,4 +1,4 @@
-import { AdSchema, CustomAdSchema } from '@/features/adsBanner/types';
+import { AdSchema, CustomAdSchema } from '@/components/customUi/adsBanner/types';
 import { z } from 'zod';
 
 export type DegreeObject = {

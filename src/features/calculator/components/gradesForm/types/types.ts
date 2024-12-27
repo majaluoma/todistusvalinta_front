@@ -6,6 +6,7 @@ import {
 } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from './schemas';
+import { EvaluationOptions } from '@/features/calculator/types/types';
 
 export type Grade = {
   value: string;
@@ -18,10 +19,10 @@ export type Subject = {
 };
 
 export type GradeFormProps = {
-  gradeOptions: Grade[];
-  subjectOptions: Subject[];
+  readyOptions : { option: EvaluationOptions; locked: boolean; }[]
   handleCalculation : () => void;
   production : boolean;
+  addableOptions? : EvaluationOptions;
 };
 
 export type FormData = {
@@ -42,6 +43,7 @@ export type OptionCheckBoxProps<T extends FieldValues> = {
   tooltip: string;
 };
 export type GradesSelectProps<T extends FieldValues> = {
+  id: number;
   placeholder: string;
   field: ControllerRenderProps<T>;
   options: { label: string; value: string }[];

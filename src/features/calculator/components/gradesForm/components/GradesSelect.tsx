@@ -8,7 +8,7 @@ import {
 import { GradesSelectProps } from '../types/types';
 import { FieldValues } from 'react-hook-form';
 
-export default function GradesSelect<T extends FieldValues>({placeholder, field, options, fieldValue = field.value, onValueChange = field.onChange} : GradesSelectProps<T> ) {
+export default function GradesSelect<T extends FieldValues>({id, placeholder, field, options, fieldValue = field.value, onValueChange = field.onChange} : Readonly<GradesSelectProps<T>> ) {
   return (
     <Select value={fieldValue} onValueChange={onValueChange} >
       <SelectTrigger className={`w-[180px] bg-card ${fieldValue && "bg-accent"}`}>
@@ -16,7 +16,7 @@ export default function GradesSelect<T extends FieldValues>({placeholder, field,
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
+          <SelectItem key={`${id}_${option.value}`} value={option.value}>
             {option.label}
           </SelectItem>
         ))}

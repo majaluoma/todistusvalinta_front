@@ -2,9 +2,9 @@ import { DegreeItemProps } from './types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import VolumeItem from './VolumeItem';
 import { Button } from '@/components/ui/button';
+import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
+import { useInfoViewContext } from '@/features/calculator/context/infoViewContext/useResultContext';
 import { ResultParams } from '../gradesForm/types/types';
-import { useResultContext } from '@/components/context/resultContext/useResultContext';
-import { useInfoViewContext } from '@/components/context/infoViewContext/useResultContext';
 import { getDegreeAndModel } from '../gradesForm/api/getDegreeAndModel';
 
 export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {

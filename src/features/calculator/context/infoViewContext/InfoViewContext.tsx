@@ -1,8 +1,8 @@
 import { createContext, useMemo, useState } from 'react';
 
-import { ResultParams } from '@/features/gradesForm/types/types';
+import { ResultParams } from '@/features/calculator/components/gradesForm/types/types';
 import { InfoViewContextProps, InfoViewContextType } from './types';
-import { FullDegreeInfo } from '@/features/degreeFullInfo/types';
+import { FullDegreeInfo } from '../../components/degreeFullInfo/types';
 
 export const InfoViewContext = createContext<InfoViewContextType>({} as InfoViewContextType);
 

@@ -1,4 +1,4 @@
-import { ResultParams } from '@/features/gradesForm/types/types';
+import { ResultParams } from '@/features/calculator/components/gradesForm/types/types';
 import { post } from '@/lib/apiClient';
 import { FullDegreeInfo } from '../../degreeFullInfo/types';
 

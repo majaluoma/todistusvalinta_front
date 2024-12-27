@@ -6,12 +6,12 @@ import {
 } from '@/components/ui/accordion';
 import DegreeItem from './DegreeItem';
 import { firstUpper } from '@/lib/utils';
-import { useResultContext } from '@/components/context/resultContext/useResultContext';
+import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
 import { DegreeObject } from '@/types/apiTypes';
-import AdsBanner from '../adsBanner/AdsBanner';
 import { AccordionAds } from '@/data/adsData';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
+import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 
 export default function ThemeAccordion() {
   const { degrees } = useResultContext();

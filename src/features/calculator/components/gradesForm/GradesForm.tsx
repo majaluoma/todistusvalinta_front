@@ -18,13 +18,14 @@ import { formSchema } from './types/schemas';
 import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
-import { useResultContext } from '@/components/context/resultContext/useResultContext';
-import { BaseSyntheticEvent, useState } from 'react';
+import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
+import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import laskin from '@/assets/laskin.svg';
+import { EvaluationOptions } from '../../types/types';
 
 export default function GradeForm({
-  gradeOptions,
-  subjectOptions,
+  readyOptions,
+  addableOptions,
   handleCalculation,
   production = true,
 }: Readonly<GradeFormProps>) {
@@ -34,16 +35,28 @@ export default function GradeForm({
       firstTimer: true,
       onlyPassed: false,
       test: false,
-      grades: Array(5).fill({ value: '' }),
+      grades: Array(5).fill({ subject: '', grade: '' }),
     },
   });
   const [isLoading, setIsLoading] = useState(false);
   const { setDegreesAndThemes } = useResultContext();
-
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
     control: form.control,
   });
+  const subjectOptions = (options : EvaluationOptions) => {
+    return options.oppiaineet.map(option => {return  {value: option.oppiaine, label: option.oppiaineTeksti}})
+  } 
+  const gradeOptions = (options : EvaluationOptions) => {
+    return options.arvosanat.map(option => {return  {value: option.arvosana, label: option.arvosanaTeksti}})
+  } 
+
+  useEffect(() => {
+    form.reset({
+      ...form.getValues(),
+      grades: Array(readyOptions.length).fill({ subject: '', grade: '' }),
+    });
+  }, [readyOptions, form]);
 
   const onSubmit = async (values: ResultParams) => {
     try {
@@ -95,7 +108,7 @@ export default function GradeForm({
         {fields.map((field, index) => (
           <FormField
             control={form.control}
-            key={field.id}
+            key={`field_${field.id}`}
             name={`grades.${index}.subject`}
             render={({ field }) => (
               <FormItem>
@@ -107,14 +120,16 @@ export default function GradeForm({
                 <FormControl>
                   <div className="flex items-center space-x-2">
                     <GradesSelect
+                      id={index}
                       placeholder={'Oppiaine'}
                       field={field}
-                      options={subjectOptions}
+                      options={subjectOptions(readyOptions[0].option)}
                     />
                     <GradesSelect
+                      id={index}
                       placeholder={'Arvosana'}
                       field={field}
-                      options={gradeOptions}
+                      options={gradeOptions(readyOptions[0].option)}
                       fieldValue={form.watch(`grades.${index}.grade`)}
                       onValueChange={(value) =>
                         form.setValue(`grades.${index}.grade`, value || '')
