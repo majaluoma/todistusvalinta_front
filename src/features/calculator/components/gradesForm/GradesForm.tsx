@@ -35,7 +35,7 @@ export default function GradeForm({
       firstTimer: true,
       onlyPassed: false,
       test: false,
-      grades: Array(5).fill({ subject: '', grade: '' }),
+      grades: Array(readyOptions.length).fill({ subject: '', grade: '' }),
     },
   });
   const [isLoading, setIsLoading] = useState(false);
