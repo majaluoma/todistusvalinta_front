@@ -74,7 +74,7 @@ export default function VocationalDegree() {
   }) 
 
   return (
-    <>
+    <div className='flex flex-col items-center'>
       <RadioGroup
         defaultValue="1-5"
         onValueChange={handleChange}
@@ -105,6 +105,6 @@ export default function VocationalDegree() {
           helperCalculators={helperCalculator3}
         />
       )}
-    </>
+    </div>
   );
 }

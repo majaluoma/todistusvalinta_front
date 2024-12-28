@@ -21,7 +21,6 @@ export type Subject = {
 export type GradeFormProps = {
   readyOptions : EvaluationOptions[]
   handleCalculation : () => void;
-  production : boolean;
   addableOptions : boolean;
   vocational : boolean;
   helperCalculators? : MeanCalculator [];

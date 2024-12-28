@@ -25,13 +25,14 @@ import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
 
+const production = true;
+
 export default function GradeForm({
   readyOptions,
   addableOptions,
   handleCalculation,
   vocational,
   helperCalculators,
-  production = true,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -18,7 +18,7 @@ export default function VocationalHelper({
 }: Readonly<VocationalHelperProps>) {
     const [open, setOpen] = useState(false)
 
-    const closeWindow = (result : number) => {
+    const saveAndClose = (result : number) => {
         setOpen(false);
         callback(result)
     } 
@@ -36,7 +36,7 @@ export default function VocationalHelper({
       ) : (
         <PopoverContent className='w-2/3 p-9 flex flex-col gap-5'>
           <p>{text}</p>
-          <WeightedMeanCalculator gradeOptions={gradeOptions} subjects={subjects} callback={closeWindow}/>
+          <WeightedMeanCalculator gradeOptions={gradeOptions} subjects={subjects} callback={callback} saveAndClose={saveAndClose}/>
         </PopoverContent>
       )}
     </Popover>

@@ -1,4 +1,5 @@
 import privacyPolicy from '@/assets/privacyPolicy.pdf';
+
 /**  Footer shows in the bottom of every page.
  * It includes some information that customer might want to navigate
  * from every site. Base is copied from Vercel AI-chat and modified from there
@@ -25,9 +26,9 @@ export default function Footer() {
             <p className="flex flex-row align-baseline">
               Sähköposti:{' '}
               <img
-                src={""}
+                src={"/assets/contactEmailImage.png"}
                 alt="sahkopostiosoite"
-                className="align-baseline ml-2 w-auto h-[18px] relative top-1"
+                className="align-baseline ml-2 w-auto h-max relative "
               />
             </p>
           </div>

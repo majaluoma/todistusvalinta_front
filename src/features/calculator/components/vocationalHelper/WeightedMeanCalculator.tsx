@@ -12,6 +12,7 @@ type WeightedMeanCalculatorProps = {
   subjects: { subject: string; points: number }[];
   gradeOptions: number[];
   callback: (weightedMean: number) => void;
+  saveAndClose: (weightedMean: number) => void;
 };
 
 const meanFormSchema = z.object({
@@ -28,6 +29,7 @@ export default function WeightedMeanCalculator({
   subjects,
   gradeOptions,
   callback,
+  saveAndClose
 }: Readonly<WeightedMeanCalculatorProps>) {
   const form = useForm<z.infer<typeof meanFormSchema>>({
     resolver: zodResolver(meanFormSchema),
@@ -53,7 +55,7 @@ export default function WeightedMeanCalculator({
   const pointsOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const handleSubmit = (values: z.infer<typeof meanFormSchema>) => {
-    callback(calculateMean(values));
+    saveAndClose(calculateMean(values));
   };
 
   const calculateMean = (values: z.infer<typeof meanFormSchema>) => {
@@ -75,7 +77,9 @@ export default function WeightedMeanCalculator({
   };
 
   const handeChange = () => {
-    setWeightedMean(calculateMean(form.getValues()));
+    const mean = calculateMean(form.getValues())
+    setWeightedMean(mean);
+    callback(mean);
   };
 
   return (
