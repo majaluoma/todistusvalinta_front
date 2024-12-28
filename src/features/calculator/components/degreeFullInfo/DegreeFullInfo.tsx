@@ -14,7 +14,6 @@ import { useInfoViewContext } from '../../context/infoViewContext/useResultConte
 
 export default function DegreeFullInfo() {
   const { degrees, infoViewOpen, setInfoViewOpen } = useInfoViewContext();
-
   return (
     <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
       <SheetContent side={'left'}>
@@ -60,9 +59,7 @@ export default function DegreeFullInfo() {
             );
           })
         ) : (
-          <div
-            className="h-full pb-20"
-          >
+          <div className="h-full pb-20">
             <SheetHeader>
               <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
                 Ladataan tietoja

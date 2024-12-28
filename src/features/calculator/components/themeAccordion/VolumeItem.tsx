@@ -13,7 +13,7 @@ export default function DegreeItem({
   degree,
 }: Readonly<VolumeItemProps>) {
   const passed =
-    volume.laskumalli.summa.pisteet > volume.pisteRaja && volume.kynnysehtoOK;
+    volume.laskumalli.summa.pisteet >= volume.pisteRaja && volume.kynnysehtoOK;
 
   return (
     <Card className={`${passed ? 'bg-accent' : ''}`}>

@@ -22,6 +22,6 @@ export default function MatriculationExamination() {
     locked: false
   }]
   return (
-    <Calculator optionTypes={optionType} addableOptionType="yo"/>
+    <Calculator optionTypes={optionType} addableOptions={true} vocational = {false}/>
   );
 }

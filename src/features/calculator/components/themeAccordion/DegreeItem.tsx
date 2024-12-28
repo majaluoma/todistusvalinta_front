@@ -48,7 +48,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
       >
         <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
           {degree.vuosikerrat.map((volume) => {
-            const passed = volume.laskumalli.summa.pisteet > volume.pisteRaja && volume.kynnysehtoOK;
+            const passed = volume.laskumalli.summa.pisteet >= volume.pisteRaja && volume.kynnysehtoOK;
             return (
               <TabsTrigger
                 key={`volumeTab_${degree.HakukohdeID}_${volume.vuosi}`}

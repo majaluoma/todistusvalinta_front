@@ -5,6 +5,7 @@ export const formSchema = z
   .object({
     firstTimer: z.boolean().default(false),
     onlyPassed: z.boolean().default(false),
+    vocational: z.boolean().default(false),
     test: z.boolean().default(false),
     grades: z
       .array(

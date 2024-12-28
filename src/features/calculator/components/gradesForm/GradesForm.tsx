@@ -27,11 +27,13 @@ export default function GradeForm({
   readyOptions,
   addableOptions,
   handleCalculation,
+  vocational,
   production = true,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      vocational: vocational,
       firstTimer: true,
       onlyPassed: false,
       test: false,
@@ -52,16 +54,28 @@ export default function GradeForm({
   } 
 
   useEffect(() => {
+
+    const defaultOptions = readyOptions.map(options => {
+      if (options.oppiaineet.length > 1) {
+        return { subject: '', grade: '' }
+      }
+      else {
+        return {subject:options.oppiaineet[0].oppiaine, grade: ''}
+      }
+    })
+    
+    Array(readyOptions.length).fill({ subject: '', grade: '' })
+
     form.reset({
       ...form.getValues(),
-      grades: Array(readyOptions.length).fill({ subject: '', grade: '' }),
+      grades: defaultOptions,
     });
   }, [readyOptions, form]);
 
   const onSubmit = async (values: ResultParams) => {
     try {
       setIsLoading(true);
-      const result = await getResult(values, false);
+      const result = await getResult(values);
       setDegreesAndThemes(result, values);
       handleCalculation();
       setInterval(() => setIsLoading(false), 500);
@@ -71,14 +85,17 @@ export default function GradeForm({
   };
 
   function testausData() {
-    form.setValue('grades', [
-      { subject: 'ai', grade: 'e' },
-      { subject: 'maa', grade: 'm' },
-      { subject: 'ena', grade: 'c' },
-      { subject: 's2', grade: 'm' },
-      { subject: 'r2', grade: 'l' },
-      { subject: 'mab', grade: 'c' },
-    ]);
+    const testData = readyOptions.map ( (option, index) => {
+      if (option.oppiaineet.length>1) {
+        return { subject: option.oppiaineet[index].oppiaine, grade: 'e' }
+      } else {
+        return { subject: option.oppiaineet[0].oppiaine, grade: option.arvosanat[2].arvosana }
+      }
+      
+    }) 
+    form.setValue('grades', 
+        testData
+    );
   }
 
   function withErrorLog(
@@ -123,13 +140,13 @@ export default function GradeForm({
                       id={index}
                       placeholder={'Oppiaine'}
                       field={field}
-                      options={subjectOptions(readyOptions[0].option)}
+                      options={readyOptions[index] ? subjectOptions(readyOptions[index]) : subjectOptions(readyOptions[0])}
                     />
                     <GradesSelect
                       id={index}
                       placeholder={'Arvosana'}
                       field={field}
-                      options={gradeOptions(readyOptions[0].option)}
+                      options={readyOptions[index] ? gradeOptions(readyOptions[index]) : subjectOptions(readyOptions[0])}
                       fieldValue={form.watch(`grades.${index}.grade`)}
                       onValueChange={(value) =>
                         form.setValue(`grades.${index}.grade`, value || '')
@@ -157,7 +174,7 @@ export default function GradeForm({
             )}
           />
         ))}
-        <Button
+        {addableOptions ? <Button
           type="button"
           variant="outline"
           size="sm"
@@ -166,7 +183,7 @@ export default function GradeForm({
         >
           <PlusCircle className="mr-2 h-4 w-4" />
           Lisää arvosana
-        </Button>
+        </Button> : <></>}
         <div className="flex flex-col gap-3 items-start justify-start align-top w-full ml-5">
           <OptionCheckBox
             formcontrol={form.control}

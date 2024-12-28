@@ -10,20 +10,19 @@ import { getEvaluationOptions } from './api/getEvaluationOptions';
 import { EvaluationOptions } from './types/types';
 
 type CalculatorProps = {
-  optionTypes: { type: string; locked: boolean }[];
-  addableOptionType: string;
+  optionTypes: { type: string}[];
+  addableOptions: boolean;
+  vocational : boolean;
 };
 export default function Calculator({
   optionTypes,
-  addableOptionType,
+  addableOptions,
+  vocational
 }: Readonly<CalculatorProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const [readyOptions, setReadyOptions] = useState(
-    [] as { option: EvaluationOptions; locked: boolean }[],
+    [] as EvaluationOptions[],
   );
-  const [addableOptions, setAddableOptions] = useState<
-    EvaluationOptions | undefined
-  >({} as EvaluationOptions);
 
   const handleCalculation = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -42,7 +41,7 @@ export default function Calculator({
           return option.tyyppi === type.type;
         });
         if (option) {
-          return { option: option, locked: type.locked };
+          return option;
         }
       });
       function filterDefined<T>(array: (T | undefined)[]): T[] {
@@ -50,14 +49,9 @@ export default function Calculator({
       }
 
       setReadyOptions(filterDefined(filteredOptions));
-      setAddableOptions(
-        allOptions.find((e) => {
-          return e.tyyppi === addableOptionType;
-        }),
-      );
     };
     fetchOptions();
-  }, [addableOptionType, optionTypes]);
+  }, [optionTypes]);
 
   return (
     <ResultContextProvider>
@@ -65,8 +59,9 @@ export default function Calculator({
         <GradesForm
           readyOptions={readyOptions}
           handleCalculation={() => handleCalculation(ref)}
-          production={false}
           addableOptions={addableOptions}
+          vocational={vocational}
+          production={false}
         />
         <div ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>

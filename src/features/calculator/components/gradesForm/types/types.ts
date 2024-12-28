@@ -19,10 +19,11 @@ export type Subject = {
 };
 
 export type GradeFormProps = {
-  readyOptions : { option: EvaluationOptions; locked: boolean; }[]
+  readyOptions : EvaluationOptions[]
   handleCalculation : () => void;
   production : boolean;
-  addableOptions? : EvaluationOptions;
+  addableOptions : boolean;
+  vocational : boolean;
 };
 
 export type FormData = {

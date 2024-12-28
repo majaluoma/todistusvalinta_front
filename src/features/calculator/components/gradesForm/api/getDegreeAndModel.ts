@@ -3,15 +3,13 @@ import { post } from '@/lib/apiClient';
 import { FullDegreeInfo } from '../../degreeFullInfo/types';
 
 
-type ResultResponse = {
-  data: {kaikkiTiedotHakukohteesta: FullDegreeInfo};
-}
+type ResultResponse = {kaikkiTiedotHakukohteesta: FullDegreeInfo};
+
 
 export async function getDegreeAndModel(
   resultParams: ResultParams,
   hakukohdeId: number,
-  laskumalliId : number,
-  vocational = false
+  laskumalliId : number
 ) {
   const gradesOnly = resultParams.grades.map((param) => {
     return param.grade;
@@ -28,7 +26,7 @@ query {
     arviointitiedot: {
       oppiaineet: ${JSON.stringify(subjectsOnly)}, 
       arvosanat: ${JSON.stringify(gradesOnly)}, 
-      ammatillinen: ${vocational}}
+      ammatillinen: ${resultParams.vocational}}
   ) 
       {
     hakukohteet {

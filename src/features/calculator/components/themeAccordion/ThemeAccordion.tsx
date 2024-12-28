@@ -21,8 +21,8 @@ export default function ThemeAccordion() {
       return degrees.map(function filterPassed(theme): [string, number] {
         const passedDegrees = theme.hakukohteet.filter((e) => {
           return (
-            e.vuosikerrat[0].laskumalli.summa.pisteet >
-            e.vuosikerrat[0].pisteRaja
+            e.vuosikerrat[0].laskumalli.summa.pisteet >=
+            e.vuosikerrat[0].pisteRaja && e.vuosikerrat[0].kynnysehtoOK
           );
         });
         return [theme.aihe, passedDegrees.length];

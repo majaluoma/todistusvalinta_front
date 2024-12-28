@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import RoutesToUniversities from './pages/RoutesToUniversities';
 import Help from './pages/Help';
+import VocationalDegree from './pages/VocationalDegree';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
         },
         {
           path: '/ammatillinen-tutkinto',
-          element: <MatriculationExamination />,
+          element: <VocationalDegree />,
         },
         {
           path: '/yhteys',

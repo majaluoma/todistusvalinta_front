@@ -2,13 +2,11 @@ import { ResultParams } from '@/features/calculator/components/gradesForm/types/
 import { DegreeObject, Theme, ThemeObject } from '@/types/apiTypes';
 import { ReactNode } from 'react';
 
-export type ThemeResponse = {
-  data: {aiheet: Theme []};
-};
+export type ThemeResponse = {aiheet: Theme []};
 
-export type YearResponse = {
-  data: {viimeisin_vuosi: number};
-};
+
+export type YearResponse = {viimeisin_vuosi: number};
+
 
 export type ResultContextProviderProps = {
   children: ReactNode;
