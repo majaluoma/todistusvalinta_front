@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from './schemas';
-import { EvaluationOptions } from '@/features/calculator/types/types';
+import { EvaluationOptions, MeanCalculator } from '@/features/calculator/types/types';
 
 export type Grade = {
   value: string;
@@ -24,6 +24,7 @@ export type GradeFormProps = {
   production : boolean;
   addableOptions : boolean;
   vocational : boolean;
+  helperCalculators? : MeanCalculator [];
 };
 
 export type FormData = {
@@ -50,4 +51,5 @@ export type GradesSelectProps<T extends FieldValues> = {
   options: { label: string; value: string }[];
   fieldValue?: string;
   onValueChange?: (value: string) => void;
+  className? : string
 };

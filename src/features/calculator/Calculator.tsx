@@ -7,17 +7,19 @@ import InfoViewContextProvider from '@/features/calculator/context/infoViewConte
 import ThemeAccordion from './components/themeAccordion/ThemeAccordion';
 import DegreeFullInfo from './components/degreeFullInfo/DegreeFullInfo';
 import { getEvaluationOptions } from './api/getEvaluationOptions';
-import { EvaluationOptions } from './types/types';
+import { EvaluationOptions, MeanCalculator } from './types/types';
 
 type CalculatorProps = {
   optionTypes: { type: string}[];
   addableOptions: boolean;
   vocational : boolean;
+  helperCalculators? : MeanCalculator [];
 };
 export default function Calculator({
   optionTypes,
   addableOptions,
-  vocational
+  vocational,
+  helperCalculators
 }: Readonly<CalculatorProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const [readyOptions, setReadyOptions] = useState(
@@ -61,6 +63,7 @@ export default function Calculator({
           handleCalculation={() => handleCalculation(ref)}
           addableOptions={addableOptions}
           vocational={vocational}
+          helperCalculators={helperCalculators}
           production={false}
         />
         <div ref={ref}>

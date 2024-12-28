@@ -22,12 +22,15 @@ import { useResultContext } from '@/features/calculator/context/resultContext/us
 import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import laskin from '@/assets/laskin.svg';
 import { EvaluationOptions } from '../../types/types';
+import VocationalHelper from '../vocationalHelper/VocationalHelper';
+import { numberGradeToString } from '@/lib/utils';
 
 export default function GradeForm({
   readyOptions,
   addableOptions,
   handleCalculation,
   vocational,
+  helperCalculators,
   production = true,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -108,6 +111,10 @@ export default function GradeForm({
     return submitHandler;
   }
 
+  const helperFunction = (result : number, fieldIndex : number) => {
+    form.setValue(`grades.${fieldIndex}.grade`, numberGradeToString(result, readyOptions[0].tyyppi));
+  }
+
   return (
     <Form {...form}>
       <form
@@ -152,14 +159,15 @@ export default function GradeForm({
                         form.setValue(`grades.${index}.grade`, value || '')
                       }
                     />
-                    <Button
+                    {readyOptions[index].oppiaineet.length > 1 && <Button
                       type="button"
                       variant="ghost"
                       size="icon"
                       onClick={() => remove(index)}
                     >
                       <X className="h-4 w-4" />
-                    </Button>
+                    </Button>}
+                    {helperCalculators && helperCalculators[index] && <VocationalHelper calculator={helperCalculators[index]} callback={(num) => helperFunction(num, index)}/>}
                   </div>
                 </FormControl>
                 <FormMessage />

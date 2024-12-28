@@ -14,3 +14,10 @@ export type EvaluationOptions =  {
     oppiaine: string;
     oppiaineTeksti: string;
   }
+
+
+  export type MeanCalculator = {
+    subjects: { subject: string; points: number }[];
+    gradeOptions : number  [];
+    text: string;
+  };

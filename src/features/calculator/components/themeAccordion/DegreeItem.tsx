@@ -1,11 +1,11 @@
 import { DegreeItemProps } from './types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import VolumeItem from './VolumeItem';
-import { Button } from '@/components/ui/button';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
 import { useInfoViewContext } from '@/features/calculator/context/infoViewContext/useResultContext';
 import { ResultParams } from '../gradesForm/types/types';
 import { getDegreeAndModel } from '../gradesForm/api/getDegreeAndModel';
+import { Button } from '@/components/ui/button';
 
 export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
   const  {resultParams, year} = useResultContext();
@@ -38,7 +38,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
     <div className="relative">
       <Button
         onClick={handleClick}
-        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-2 top-6`}
+        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer`}
       >
         ?
       </Button>
