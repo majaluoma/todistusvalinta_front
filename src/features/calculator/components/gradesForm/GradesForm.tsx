@@ -25,7 +25,7 @@ import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
 
-const production = true;
+const VITE_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
 export default function GradeForm({
   readyOptions,
@@ -212,7 +212,7 @@ export default function GradeForm({
             type="submit"
             className={`${
               isLoading ? 'bg-primary' : 'bg-secondary'
-            } bg-secondary pt-6 pb-6 pl-10 pr-10 text-xl hover:bg-primary shadow-sm shadow-secondary`}
+            } bg-secondary pt-6 pb-6 pl-10 pr-10 w-44 text-xl hover:bg-primary shadow-sm shadow-secondary`}
           >
             {isLoading ? 'Pieni hetki' : 'Laske'}
             <img
@@ -222,12 +222,12 @@ export default function GradeForm({
               ${isLoading && 'animate-pulse'}`}
             />
           </Button>
-          {!production && (
+          {VITE_ENVIRONMENT === "development" && (
             <Button
               onClick={testausData}
               className={`${
                 isLoading ? 'bg-secondary' : 'bg-primary'
-              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 text-xl hover:bg-accent shadow-sm shadow-secondary`}
+              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 w-44 text-xl hover:bg-accent shadow-sm shadow-secondary`}
             >
               {isLoading ? 'Pieni hetki' : 'Testaa'}
               <img
