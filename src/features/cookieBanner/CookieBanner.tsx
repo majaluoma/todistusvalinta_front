@@ -35,8 +35,8 @@ export default function CookieBanner() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 z-50">
-      <Card className="max-w-2xl mx-auto">
+    <div className="fixed bottom-0 mb-4 z-50 flex items-center justify-center">
+      <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle>Evästeet</CardTitle>
         </CardHeader>

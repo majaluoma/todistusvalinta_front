@@ -64,7 +64,6 @@ export default function Calculator({
           addableOptions={addableOptions}
           vocational={vocational}
           helperCalculators={helperCalculators}
-          production={false}
         />
         <div ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>

@@ -32,7 +32,7 @@ export default function NavigationSheet({
   };
   return (
     <Sheet>
-      <SheetTrigger className="fixed top-7 right-7 bg-none" asChild>
+      <SheetTrigger className="absolute top-7 right-7 bg-none" asChild>
         {menuIcon()}
       </SheetTrigger>
       <SheetContent className='pl-0 pr-0'>

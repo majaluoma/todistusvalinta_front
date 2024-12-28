@@ -14,12 +14,12 @@ export default function GradesSelect<T extends FieldValues>({id, placeholder, fi
   return (
     <Select value={fieldValue} onValueChange={onValueChange} disabled={options.length <= 1}>
 
-      <SelectTrigger className={`w-[220px] bg-card ${fieldValue && "bg-accent break-all" } disabled:opacity-70 ${className}`}>
+      <SelectTrigger className={`w-44 bg-card ${fieldValue && "bg-accent break-all" } disabled:opacity-70 ${className}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className={`w-[220px] ${className}`}>
+      <SelectContent className={`w-44 ${className}`}>
         {options.map((option) => (
-          <SelectItem key={`${id}_${option.value}`} value={option.value} className={`w-[220px] ${className}`}>
+          <SelectItem key={`${id}_${option.value}`} value={option.value} className={`w-44 ${className}`}>
             {option.label}
           </SelectItem>
         ))}

@@ -123,7 +123,7 @@ export default function GradeForm({
           form.handleSubmit(onSubmit),
           form.formState.errors,
         )}
-        className="space-y-4 flex flex-col items-center"
+        className="space-y-4 flex flex-col items-center max-w-full"
       >
         {form.formState.errors.grades && (
           <div className="text-red-500 mb-2">
@@ -143,7 +143,7 @@ export default function GradeForm({
                   Oppiaineet ja arvosanat
                 </FormLabel>
                 <FormControl>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 w-full">
                     <GradesSelect
                       id={index}
                       placeholder={'Oppiaine'}
@@ -193,7 +193,7 @@ export default function GradeForm({
           <PlusCircle className="mr-2 h-4 w-4" />
           Lisää arvosana
         </Button> : <></>}
-        <div className="flex flex-col gap-3 items-start justify-start align-top w-full ml-5">
+        <div className="flex flex-col gap-3 items-start justify-start align-top w-full max-w-[26rem]">
           <OptionCheckBox
             formcontrol={form.control}
             label="Olen ensikertalainen"
