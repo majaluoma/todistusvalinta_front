@@ -35,7 +35,7 @@ export default function VolumeInfo({volume: vuosikerta, kaikkienPisteet} : Reado
         {kaikkienPisteet && <p>
           Pisteraja ei-ensikertalaisille: {kaikkienPisteet}
         </p>}
-        {vuosikerta.kynnysehdot && (
+        {vuosikerta.kynnysehdot.length>0 &&  (
           <p>
             {' '}
             Kynnysehdot:

@@ -70,7 +70,7 @@ type Aine = {
     VuosikertaID: number;
     hakukohde: string;
     pisteRaja: number;
-    kynnysehdot?: Kynnysehto[];
+    kynnysehdot: Kynnysehto[];
     laskumalli: Laskumalli;
     kynnysehtoOK: boolean;
     LaskumalliID: number;

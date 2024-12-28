@@ -38,7 +38,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
     <div className="relative">
       <Button
         onClick={handleClick}
-        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer`}
+        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-2 top-6`}
       >
         ?
       </Button>
