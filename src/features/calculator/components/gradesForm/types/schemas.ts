@@ -7,6 +7,7 @@ export const formSchema = z
     onlyPassed: z.boolean().default(false),
     vocational: z.boolean().default(false),
     test: z.boolean().default(false),
+    saveDegrees: z.boolean().default(false),
     grades: z
       .array(
         z.object({

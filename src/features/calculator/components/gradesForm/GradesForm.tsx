@@ -32,6 +32,7 @@ export default function GradeForm({
   addableOptions,
   handleCalculation,
   vocational,
+  saveDegreesByDefault,
   helperCalculators,
 }: Readonly<GradeFormProps>) {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -41,6 +42,7 @@ export default function GradeForm({
       firstTimer: true,
       onlyPassed: false,
       test: false,
+      saveDegrees: saveDegreesByDefault,
       grades: Array(readyOptions.length).fill({ subject: '', grade: '' }),
     },
   });
@@ -220,6 +222,12 @@ export default function GradeForm({
             label="Vain paikat, joihin pääsisin"
             name="onlyPassed"
             tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
+          ></OptionCheckBox>
+          <OptionCheckBox
+            formcontrol={form.control}
+            label="Muista minut"
+            name="saveDegrees"
+            tooltip="Arvosanasi tallennetaan selaimellesi. Tietosuojaseloste"
           ></OptionCheckBox>
         </div>
         <div className="flex gap-4">

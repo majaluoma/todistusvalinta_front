@@ -34,7 +34,7 @@ export default function Calculator({
   const [readyOptions, setReadyOptions] = useState(
     [] as EvaluationOptions[],
   );
-  const {value, updateCookie } = useCookies({name: `sessionDegrees${vocational? "Vocational" : "Matriculation"}`, initialValue: JSON.stringify(initialSessionCookie), expireDays: 180})
+  const {value, updateCookie, cookiesAccepted, allowCookies } = useCookies({name: `sessionDegrees${vocational? "Vocational" : "Matriculation"}`, initialValue: JSON.stringify(initialSessionCookie), expireDays: 180})
 
 
   const formOptionsFromResult = ( result : ResultParams) : SavedDegree [] => {
@@ -51,8 +51,11 @@ export default function Calculator({
     return function handleCalculation (result : ResultParams) {
       if (ref.current) {
         ref.current.scrollIntoView({ behavior: 'smooth' });
-        const resultOptions = formOptionsFromResult(result);
-        updateCookie(JSON.stringify({degrees: resultOptions}), {expires: 180});
+        if (result.saveDegrees)  {
+          allowCookies();
+          const resultOptions = formOptionsFromResult(result);
+          updateCookie(JSON.stringify({degrees: resultOptions}), {expires: 180});
+        }
       } else {
         console.warn('Calculation result not found');
       }
@@ -99,6 +102,7 @@ export default function Calculator({
     <ResultContextProvider>
       <div className="flex flex-col gap-8">
         <GradesForm
+          saveDegreesByDefault = {JSON.parse(value).degrees.length > 0 || cookiesAccepted}
           readyOptions={readyOptions}
           handleCalculation={handleCalculation(ref)}
           addableOptions={addableOptions}

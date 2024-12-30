@@ -14,6 +14,7 @@ export default function useCookies({
   initialValue,
   expireDays,
 }: UseCookiesProps) {
+  const [cookiesAccepted, setCookiesAccepted] = useState(()=> {return Cookies.get('cookieConsent') === "accepted"})
   const [value, setValue] = useState(() => {
     const cookie = Cookies.get(name);
     if (cookie !== undefined) {
@@ -41,5 +42,10 @@ export default function useCookies({
     setValue('');
   }, [name]);
 
-  return { value, deleteCookie, updateCookie };
+  const allowCookies = useCallback(() => {
+    updateCookie("accepted", {expires: 60});
+    setCookiesAccepted(true);
+  }, [updateCookie])
+
+  return { value, cookiesAccepted, deleteCookie, updateCookie, allowCookies };
 }

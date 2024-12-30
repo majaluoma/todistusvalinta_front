@@ -23,6 +23,7 @@ export type GradeFormProps = {
   handleCalculation : (values : ResultParams) => void;
   addableOptions : boolean;
   vocational : boolean;
+  saveDegreesByDefault : boolean;
   helperCalculators? : MeanCalculator [];
 };
 
