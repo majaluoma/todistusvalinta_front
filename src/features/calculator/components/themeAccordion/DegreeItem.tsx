@@ -6,11 +6,12 @@ import { useInfoViewContext } from '@/features/calculator/context/infoViewContex
 import { ResultParams } from '../gradesForm/types/types';
 import { getDegreeAndModel } from '../gradesForm/api/getDegreeAndModel';
 import { Button } from '@/components/ui/button';
+import NumberBall from '@/components/customUi/NumberBall';
 
 export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
-  const  {resultParams, year} = useResultContext();
-  const {setDegreesAndOpen, setResultParams} = useInfoViewContext();
-  
+  const { resultParams, year } = useResultContext();
+  const { setDegreesAndOpen, setResultParams } = useInfoViewContext();
+
   const handleClick = () => {
     const fetchDegreeInfo = async (
       resultParams: ResultParams,
@@ -32,42 +33,48 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
         degree.HakukohdeID,
         degree.vuosikerrat[0].LaskumalliID,
       );
-  }
-  
+  };
+
   return (
     <div className="relative">
       <Button
         onClick={handleClick}
         className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-2 top-6 shadow-lg
-          ${!degree.vuosikerrat[0].kynnysehtoOK && "bg-destructive"}`}
+          ${!degree.vuosikerrat[0].kynnysehtoOK && 'bg-destructive'}`}
       >
         ?
       </Button>
-      <Tabs
-        defaultValue={year.toString()}
-        className="w-auto p-0"
-      >
+      <Tabs defaultValue={year.toString()} className="w-auto p-0">
         <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
           {degree.vuosikerrat.map((volume) => {
-            const passed = volume.laskumalli.summa.pisteet >= volume.pisteRaja && volume.kynnysehtoOK;
+            const passed =
+              volume.laskumalli.summa.pisteet >= volume.pisteRaja &&
+              volume.kynnysehtoOK;
             return (
               <TabsTrigger
                 key={`volumeTab_${degree.HakukohdeID}_${volume.vuosi}`}
                 value={`${volume.vuosi}`}
-                className={`text-sm w-24 rounded-b-none ${
-                  passed
-                    ? 'bg-accent data-[state=active]:bg-accent'
-                    : 'bg-card data-[state=active]:bg-card'
-                }`}
+                className={`text-sm w-24 rounded-b-none bg-card data-[state=active]:bg-card`}
               >
                 {volume.vuosi}
+                {passed ? (
+                  <NumberBall
+                    text="✓"
+                    className="bg-primary text-primary-foreground w-[16px] h-[16px]"
+                  />
+                ): (
+                  <NumberBall
+                    text="𐄂"
+                    className="w-[16px] h-[16px]"
+                  />
+                )}
               </TabsTrigger>
             );
           })}
         </TabsList>
         {degree.vuosikerrat.map((volume) => {
           return (
-            <TabsContent
+            <TabsContent 
               value={`${volume.vuosi}`}
               key={`volume_${degree.HakukohdeID}_${volume.vuosi}`}
             >

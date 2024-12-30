@@ -72,11 +72,11 @@ export default function ThemeAccordion() {
                       theme.hakukohteet.length -
                       (passedTotal.get(theme.aihe) ?? 0)
                     }
-                    className="mr-5  bg-transparent m-auto"
+                    className="mr-5 bg-transparent m-auto"
                   />
                   <NumberBall
                     text={passedTotal.get(theme.aihe)}
-                    className="ml-auto mr-2 text-secondary-foreground m-auto"
+                    className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                   />
                 </div>
               </AccordionTrigger>
@@ -88,7 +88,7 @@ export default function ThemeAccordion() {
                         <AdsBanner ads={[ad]} />
                       </AccordionContent>
                     )}
-                    <AccordionContent className="p-0">
+                    <AccordionContent className="">
                       <DegreeItem degree={degree} />
                     </AccordionContent>
                   </div>

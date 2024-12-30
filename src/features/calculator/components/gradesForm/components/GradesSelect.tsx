@@ -14,7 +14,7 @@ export default function GradesSelect<T extends FieldValues>({id, placeholder, fi
   return (
     <Select value={fieldValue} onValueChange={onValueChange} disabled={options.length <= 1}>
 
-      <SelectTrigger className={`w-44 bg-card ${fieldValue && "bg-accent break-all" } disabled:opacity-70 ${className}`}>
+      <SelectTrigger className={`w-44 bg-input break-all disabled:opacity-70 ${className}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className={`w-44 ${className}`}>
