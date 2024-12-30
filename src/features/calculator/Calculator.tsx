@@ -8,6 +8,15 @@ import ThemeAccordion from './components/themeAccordion/ThemeAccordion';
 import DegreeFullInfo from './components/degreeFullInfo/DegreeFullInfo';
 import { getEvaluationOptions } from './api/getEvaluationOptions';
 import { EvaluationOptions, MeanCalculator } from './types/types';
+import { ResultParams } from './components/gradesForm/types/types';
+import useCookies from '@/hooks/useCookies';
+
+const initialSessionCookie  : {degrees:  SavedDegree []} = {
+  degrees: [
+  ]
+} 
+
+type SavedDegree = {subjectValue: string, gradeValue : string}
 
 type CalculatorProps = {
   optionTypes: { type: string}[];
@@ -25,15 +34,42 @@ export default function Calculator({
   const [readyOptions, setReadyOptions] = useState(
     [] as EvaluationOptions[],
   );
+  const {value, updateCookie } = useCookies({name: `sessionDegrees${vocational? "Vocational" : "Matriculation"}`, initialValue: JSON.stringify(initialSessionCookie), expireDays: 180})
+
+
+  const formOptionsFromResult = ( result : ResultParams) : SavedDegree [] => {
+    return result.grades.map( (grade) => {
+      return {
+        subjectValue: grade.subject,
+        gradeValue: grade.grade
+      }
+    }
+    )
+  } 
 
   const handleCalculation = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.warn('Calculation result not found');
+    return function handleCalculation (result : ResultParams) {
+      if (ref.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+        const resultOptions = formOptionsFromResult(result);
+        updateCookie(JSON.stringify({degrees: resultOptions}), {expires: 180});
+      } else {
+        console.warn('Calculation result not found');
+      }
     }
   };
 
+  function injectSavedDegrees(options: EvaluationOptions[], savedDegree : SavedDegree[]): EvaluationOptions[] {
+    return savedDegree.map((savedDegree, index) => {
+      const optionsInIndex = options[index] || options[0]  
+      return {
+        ...optionsInIndex,
+        initialGrade: savedDegree.gradeValue,
+        initialSubject: savedDegree.subjectValue
+      }
+    })
+   
+  }
   useEffect(() => {
     const fetchOptions = async () => {
       const allOptions = await getEvaluationOptions();
@@ -49,18 +85,22 @@ export default function Calculator({
       function filterDefined<T>(array: (T | undefined)[]): T[] {
         return array.filter((item): item is T => item !== undefined);
       }
-
-      setReadyOptions(filterDefined(filteredOptions));
+      const jsonCookieValue = JSON.parse(value) as {degrees:  SavedDegree []};
+      if (jsonCookieValue.degrees.length === 0) {
+        setReadyOptions(filterDefined(filteredOptions));
+      } else {
+        setReadyOptions(injectSavedDegrees(filterDefined(filteredOptions), jsonCookieValue.degrees));
+      }
     };
     fetchOptions();
-  }, [optionTypes]);
+  }, [optionTypes, value]);
 
   return (
     <ResultContextProvider>
       <div className="flex flex-col gap-8">
         <GradesForm
           readyOptions={readyOptions}
-          handleCalculation={() => handleCalculation(ref)}
+          handleCalculation={handleCalculation(ref)}
           addableOptions={addableOptions}
           vocational={vocational}
           helperCalculators={helperCalculators}

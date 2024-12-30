@@ -1,8 +1,10 @@
 export type EvaluationOptions =  {
     ArvosanaValikkoID: number;
     tyyppi: string;
-    oppiaineet : OptionSubject []
-    arvosanat : OptionEvaluation[]
+    oppiaineet : OptionSubject [];
+    arvosanat : OptionEvaluation[];
+    initialGrade?: string; 
+    initialSubject?: string; 
   }
   
   export type OptionEvaluation = {

@@ -8,27 +8,31 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import useAds from '@/hooks/GoogleAdHooks';
+import useAds from '@/hooks/useAds';
+import useCookies from '@/hooks/useCookies';
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const { continueLoading, pauseLoading } = useAds();
+  const {value, updateCookie} = useCookies({name: "cookieConsent", initialValue: "pending", expireDays: 60})
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
+    if (value === "pending") {
       pauseLoading();
       setShowBanner(true);
+    } else if (value === "denied") {
+      pauseLoading();
     }
-  }, [pauseLoading]);
+  }, [pauseLoading, value]);
 
   const acceptAll = () => {
-    localStorage.setItem('cookieConsent', 'cookie');
+    updateCookie("accepted", {expires: 60})
     continueLoading();
     setShowBanner(false);
   };
 
   const rejectAll = () => {
+    updateCookie("denied", {expires: 1})
     setShowBanner(false);
   };
 
@@ -50,10 +54,10 @@ export default function CookieBanner() {
           </p>
         </CardContent>
         <CardFooter className="flex justify-center space-x-2">
-          <Button variant="outline" onClick={rejectAll}>
+          <Button variant="outline" onClick={acceptAll}>
             Hyväksy
           </Button>
-          <Button onClick={acceptAll}>Ei kiitos</Button>
+          <Button onClick={rejectAll}>Ei kiitos</Button>
         </CardFooter>
       </Card>
     </div>

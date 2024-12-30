@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FieldErrors, useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,11 +19,11 @@ import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
-import { BaseSyntheticEvent, useEffect, useState } from 'react';
-import laskin from '@/assets/laskin.svg';
+import { useEffect, useState } from 'react';
 import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
+import SubmitButton from './components/SubmitButton';
 
 const VITE_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
@@ -50,25 +50,27 @@ export default function GradeForm({
     name: 'grades',
     control: form.control,
   });
-  const subjectOptions = (options : EvaluationOptions) => {
-    return options.oppiaineet.map(option => {return  {value: option.oppiaine, label: option.oppiaineTeksti}})
-  } 
-  const gradeOptions = (options : EvaluationOptions) => {
-    return options.arvosanat.map(option => {return  {value: option.arvosana, label: option.arvosanaTeksti}})
-  } 
+  const subjectOptions = (options: EvaluationOptions) => {
+    return options.oppiaineet.map((option) => {
+      return { value: option.oppiaine, label: option.oppiaineTeksti };
+    });
+  };
+  const gradeOptions = (options: EvaluationOptions) => {
+    return options.arvosanat.map((option) => {
+      return { value: option.arvosana, label: option.arvosanaTeksti };
+    });
+  };
 
   useEffect(() => {
-
-    const defaultOptions = readyOptions.map(options => {
+    const defaultOptions = readyOptions.map((options) => {
       if (options.oppiaineet.length > 1) {
-        return { subject: '', grade: '' }
+        return { subject: options.initialSubject ?? "", grade: options.initialGrade ?? "" };
+      } else {
+        return { subject: options.oppiaineet[0].oppiaine, grade: options.initialGrade ?? "" };
       }
-      else {
-        return {subject:options.oppiaineet[0].oppiaine, grade: ''}
-      }
-    })
-    
-    Array(readyOptions.length).fill({ subject: '', grade: '' })
+    });
+
+    Array(readyOptions.length).fill({ subject: '', grade: '' });
 
     form.reset({
       ...form.getValues(),
@@ -81,48 +83,42 @@ export default function GradeForm({
       setIsLoading(true);
       const result = await getResult(values);
       setDegreesAndThemes(result, values);
-      handleCalculation();
+      handleCalculation(values);
       setInterval(() => setIsLoading(false), 500);
     } catch (error: unknown) {
       console.log(error);
     }
   };
 
-  function testausData() {
-    const testData = readyOptions.map ( (option, index) => {
-      if (option.oppiaineet.length>1) {
-        return { subject: option.oppiaineet[index].oppiaine, grade: 'e' }
+  function inputTestData() {
+    const testData = readyOptions.map((option, index) => {
+      if (option.oppiaineet.length > 1) {
+        return { subject: option.oppiaineet[index].oppiaine, grade: 'e' };
       } else {
-        return { subject: option.oppiaineet[0].oppiaine, grade: option.arvosanat[2].arvosana }
+        return {
+          subject: option.oppiaineet[0].oppiaine,
+          grade: option.arvosanat[2].arvosana,
+        };
       }
-      
-    }) 
-    form.setValue('grades', 
-        testData
+    });
+    form.setValue('grades', testData);
+  }
+
+
+
+  const helperFunction = (result: number, fieldIndex: number) => {
+    form.setValue(
+      `grades.${fieldIndex}.grade`,
+      numberGradeToString(result, readyOptions[0].tyyppi),
     );
-  }
-
-  function withErrorLog(
-    submitHandler: (
-      e?: BaseSyntheticEvent<object, unknown, unknown> | undefined,
-    ) => Promise<void>,
-    logInfo: FieldErrors,
-  ) {
-    if (logInfo.root) console.log(logInfo);
-    return submitHandler;
-  }
-
-  const helperFunction = (result : number, fieldIndex : number) => {
-    form.setValue(`grades.${fieldIndex}.grade`, numberGradeToString(result, readyOptions[0].tyyppi));
-  }
+  };
 
   return (
     <Form {...form}>
       <form
-        onSubmit={withErrorLog(
-          form.handleSubmit(onSubmit),
-          form.formState.errors,
-        )}
+        onSubmit={
+          form.handleSubmit(onSubmit)
+        }
         className="space-y-4 flex flex-col items-center max-w-full"
       >
         {form.formState.errors.grades && (
@@ -148,27 +144,42 @@ export default function GradeForm({
                       id={index}
                       placeholder={'Oppiaine'}
                       field={field}
-                      options={readyOptions[index] ? subjectOptions(readyOptions[index]) : subjectOptions(readyOptions[0])}
+                      options={
+                        readyOptions[index]
+                          ? subjectOptions(readyOptions[index])
+                          : subjectOptions(readyOptions[0])
+                      }
                     />
                     <GradesSelect
                       id={index}
                       placeholder={'Arvosana'}
                       field={field}
-                      options={readyOptions[index] ? gradeOptions(readyOptions[index]) : subjectOptions(readyOptions[0])}
+                      options={
+                        readyOptions[index]
+                          ? gradeOptions(readyOptions[index])
+                          : gradeOptions(readyOptions[0])
+                      }
                       fieldValue={form.watch(`grades.${index}.grade`)}
                       onValueChange={(value) =>
                         form.setValue(`grades.${index}.grade`, value || '')
                       }
                     />
-                    {readyOptions[index].oppiaineet.length > 1 && <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => remove(index)}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>}
-                    {helperCalculators && helperCalculators[index] && <VocationalHelper calculator={helperCalculators[index]} callback={(num) => helperFunction(num, index)}/>}
+                    {addableOptions && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => remove(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    )}
+                    {helperCalculators && helperCalculators[index] && (
+                      <VocationalHelper
+                        calculator={helperCalculators[index]}
+                        callback={(num) => helperFunction(num, index)}
+                      />
+                    )}
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -183,16 +194,20 @@ export default function GradeForm({
             )}
           />
         ))}
-        {addableOptions ? <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="mt-2 text-base"
-          onClick={() => append({ subject: '', grade: '' })}
-        >
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Lisää arvosana
-        </Button> : <></>}
+        {addableOptions ? (
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="mt-2 text-base"
+            onClick={() => append({ subject: '', grade: '' })}
+          >
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Lisää arvosana
+          </Button>
+        ) : (
+          <></>
+        )}
         <div className="flex flex-col gap-3 items-start justify-start align-top w-full max-w-[26rem]">
           <OptionCheckBox
             formcontrol={form.control}
@@ -207,36 +222,15 @@ export default function GradeForm({
             tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
           ></OptionCheckBox>
         </div>
-        <div className='flex gap-4'>
-          <Button
-            type="submit"
-            className={`${
-              isLoading ? 'bg-primary' : 'bg-secondary'
-            } bg-secondary pt-6 pb-6 pl-10 pr-10 w-44 text-xl hover:bg-primary shadow-sm shadow-secondary`}
-          >
-            {isLoading ? 'Pieni hetki' : 'Laske'}
-            <img
-              alt="loading..."
-              src={laskin}
-              className={`h-5 w-5 mr-3
-              ${isLoading && 'animate-pulse'}`}
+        <div className="flex gap-4">
+          <SubmitButton text="Laske" isLoading={isLoading} />
+          {VITE_ENVIRONMENT === 'development' && (
+            <SubmitButton
+              text="Testaa"
+              isLoading={isLoading}
+              onClick={inputTestData}
+              className="bg-primary hover:bg-secondary"
             />
-          </Button>
-          {VITE_ENVIRONMENT === "development" && (
-            <Button
-              onClick={testausData}
-              className={`${
-                isLoading ? 'bg-secondary' : 'bg-primary'
-              } bg-primary text-accent-foreground pt-6 pb-6 pl-10 pr-10 w-44 text-xl hover:bg-accent shadow-sm shadow-secondary`}
-            >
-              {isLoading ? 'Pieni hetki' : 'Testaa'}
-              <img
-                alt="loading..."
-                src={laskin}
-                className={`h-5 w-5 mr-3
-              ${isLoading && 'animate-pulse'}`}
-              />
-            </Button>
           )}
         </div>
       </form>
