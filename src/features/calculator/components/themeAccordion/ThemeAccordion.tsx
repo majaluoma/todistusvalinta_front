@@ -22,7 +22,7 @@ export default function ThemeAccordion() {
         const passedDegrees = theme.hakukohteet.filter((e) => {
           return (
             e.vuosikerrat[0].laskumalli.summa.pisteet >=
-            e.vuosikerrat[0].pisteRaja && e.vuosikerrat[0].kynnysehtoOK
+              e.vuosikerrat[0].pisteRaja && e.vuosikerrat[0].kynnysehtoOK
           );
         });
         return [theme.aihe, passedDegrees.length];
@@ -45,44 +45,61 @@ export default function ThemeAccordion() {
 
   return degrees.length > 0 ? (
     <>
-    <h2 className='text-lg font-bold'>Tulokset</h2>
-    <Accordion type="single" collapsible className="w-full">
-      {degrees.map((theme, index) => {
-        return (
-          <AccordionItem key={`theme_${theme.AiheID}`} value={`item-${index}`}>
-            <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3">
-              <div className="flex flex-row items-center gap-2">
-                <span className="group-hover:underline text-start text-xl">{firstUpper(theme.aihe)}</span>
-                <NumberBall
-                  number={theme.hakukohteet.length}
-                  className="bg-transparent mr-9"
-                />
-              </div>
-
-              <NumberBall
-                number={passedTotal.get(theme.aihe)}
-                className="ml-auto mr-2 text-secondary-foreground"
-              />
-            </AccordionTrigger>
-            {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
-              return (
-                <div key={`degree_${degree.HakukohdeID}`} className='mb-2'>
-                  {ad && (
-                    <AccordionContent>
-                      <AdsBanner ads={[ad]} />
-                    </AccordionContent>
-                  )}
-                  <AccordionContent className='p-0'>
-                    <DegreeItem degree={degree}/>
-                  </AccordionContent>
+      <div className="flex flex-row justify-between">
+        <h2 className="text-2xl font-bold">Tulokset</h2>
+        <div className="flex flex-row gap-1 mr-6">
+          <NumberBall
+            text={'🙁'}
+            className="border-2 bg-transparent border-black"
+          />
+          <NumberBall text={'🙂'} />
+        </div>
+      </div>
+      <Accordion type="single" collapsible className="w-full">
+        {degrees.map((theme, index) => {
+          return (
+            <AccordionItem
+              key={`theme_${theme.AiheID}`}
+              value={`item-${index}`}
+            >
+              <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3 w-max">
+                <span className="group-hover:underline text-start text-xl">
+                  {firstUpper(theme.aihe)}
+                </span>
+                <div className="flex ml-auto justify-end">
+                  <NumberBall
+                    text={
+                      theme.hakukohteet.length -
+                      (passedTotal.get(theme.aihe) ?? 0)
+                    }
+                    className="mr-5  bg-transparent m-auto"
+                  />
+                  <NumberBall
+                    text={passedTotal.get(theme.aihe)}
+                    className="ml-auto mr-2 text-secondary-foreground m-auto"
+                  />
                 </div>
-              );
-            })}
-          </AccordionItem>
-        );
-      })}
-    </Accordion>
-    </>) : (
+              </AccordionTrigger>
+              {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
+                return (
+                  <div key={`degree_${degree.HakukohdeID}`} className="mb-2">
+                    {ad && (
+                      <AccordionContent>
+                        <AdsBanner ads={[ad]} />
+                      </AccordionContent>
+                    )}
+                    <AccordionContent className="p-0">
+                      <DegreeItem degree={degree} />
+                    </AccordionContent>
+                  </div>
+                );
+              })}
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+    </>
+  ) : (
     <></>
   );
 }
