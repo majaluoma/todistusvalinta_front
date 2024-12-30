@@ -62,7 +62,7 @@ export default function ThemeAccordion() {
               key={`theme_${theme.AiheID}`}
               value={`item-${index}`}
             >
-              <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3 w-max">
+              <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3 w-max bg-card hover:bg-background mb-2 ">
                 <span className="group-hover:underline text-start text-xl">
                   {firstUpper(theme.aihe)}
                 </span>
@@ -82,7 +82,7 @@ export default function ThemeAccordion() {
               </AccordionTrigger>
               {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
                 return (
-                  <div key={`degree_${degree.HakukohdeID}`} className="mb-2">
+                  <div key={`degree_${degree.HakukohdeID}`} className="">
                     {ad && (
                       <AccordionContent>
                         <AdsBanner ads={[ad]} />
