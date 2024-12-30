@@ -78,14 +78,14 @@ export default function VocationalDegree() {
       <RadioGroup
         defaultValue="1-5"
         onValueChange={handleChange}
-        className="flex flex-row gap-6 mb-4"
+        className="flex flex-row gap-3 mb-4 flex-wrap mx-4"
       >
         <p>Valitse todistuksesi arviointiasteikko:</p>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <RadioGroupItem value="1-5" id="1-5" />
           <Label htmlFor="1-5">1-5</Label>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center ">
           <RadioGroupItem value="1-3" id="1-3" />
           <Label htmlFor="1-3">1-3</Label>
         </div>

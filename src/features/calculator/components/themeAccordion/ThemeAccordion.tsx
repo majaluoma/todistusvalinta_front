@@ -44,15 +44,15 @@ export default function ThemeAccordion() {
   };
 
   return degrees.length > 0 ? (
-    <>
-      <div className="flex flex-row justify-between">
+    <div>
+      <div className="flex flex-row justify-between w-full pr-6">
         <h2 className="text-2xl font-bold">Tulokset</h2>
-        <div className="flex flex-row gap-1 mr-6">
+        <div className="flex flex-row gap-1 mr-8">
+          <NumberBall text={'✓'} className='bg-primary text-secondary-foreground text-xl font-bold' />
           <NumberBall
-            text={'🙁'}
-            className="border-2 bg-transparent border-black"
+            text={'𐄂'}
+            className="border-2 bg-transparent border-black font-bold text-xl"
           />
-          <NumberBall text={'🙂'} />
         </div>
       </div>
       <Accordion type="single" collapsible className="w-full">
@@ -62,21 +62,21 @@ export default function ThemeAccordion() {
               key={`theme_${theme.AiheID}`}
               value={`item-${index}`}
             >
-              <AccordionTrigger className="flex flex-row justify-between p-2 rounded-md group pb-3 pt-3 w-max bg-card hover:bg-background mb-2 ">
+              <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mb-2 ">
                 <span className="group-hover:underline text-start text-xl">
                   {firstUpper(theme.aihe)}
                 </span>
                 <div className="flex ml-auto justify-end">
                   <NumberBall
+                    text={passedTotal.get(theme.aihe)}
+                    className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
+                  />
+                  <NumberBall
                     text={
                       theme.hakukohteet.length -
                       (passedTotal.get(theme.aihe) ?? 0)
                     }
-                    className="mr-5 bg-transparent m-auto"
-                  />
-                  <NumberBall
-                    text={passedTotal.get(theme.aihe)}
-                    className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
+                    className="mr-5 bg-transparent m-auto "
                   />
                 </div>
               </AccordionTrigger>
@@ -98,7 +98,7 @@ export default function ThemeAccordion() {
           );
         })}
       </Accordion>
-    </>
+    </div>
   ) : (
     <></>
   );

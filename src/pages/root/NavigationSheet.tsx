@@ -32,8 +32,10 @@ export default function NavigationSheet({
   };
   return (
     <Sheet>
-      <SheetTrigger className="absolute top-7 right-7 bg-none" asChild>
+      <SheetTrigger className="fixed w-screen bg-none flex justify-end z-50" asChild>
+        <div className="bg-none top-7 mr-20 ">
         {menuIcon()}
+        </div>
       </SheetTrigger>
       <SheetContent className='pl-0 pr-0'>
         <SheetHeader className="flex flex-col">
@@ -41,7 +43,7 @@ export default function NavigationSheet({
           <div className="flex flex-col">
             {titles.map((title) => {
               return (
-                <a className="w-full text-lg hover:bg-accent pt-4 pb-4" key={`title_${title.title}`} href={title.path}>
+                <a className="w-full text-lg hover:bg-card pt-4 pb-4" key={`title_${title.title}`} href={title.path}>
                   <p className='ml-4'>{title.title}</p>
                 </a>
               );

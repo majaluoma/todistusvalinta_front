@@ -66,9 +66,15 @@ export default function GradeForm({
   useEffect(() => {
     const defaultOptions = readyOptions.map((options) => {
       if (options.oppiaineet.length > 1) {
-        return { subject: options.initialSubject ?? "", grade: options.initialGrade ?? "" };
+        return {
+          subject: options.initialSubject ?? '',
+          grade: options.initialGrade ?? '',
+        };
       } else {
-        return { subject: options.oppiaineet[0].oppiaine, grade: options.initialGrade ?? "" };
+        return {
+          subject: options.oppiaineet[0].oppiaine,
+          grade: options.initialGrade ?? '',
+        };
       }
     });
 
@@ -106,8 +112,6 @@ export default function GradeForm({
     form.setValue('grades', testData);
   }
 
-
-
   const helperFunction = (result: number, fieldIndex: number) => {
     form.setValue(
       `grades.${fieldIndex}.grade`,
@@ -118,10 +122,8 @@ export default function GradeForm({
   return (
     <Form {...form}>
       <form
-        onSubmit={
-          form.handleSubmit(onSubmit)
-        }
-        className="space-y-4 flex flex-col items-center max-w-full"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4 flex flex-col justify-center items-center max-w-[32rem]"
       >
         {form.formState.errors.grades && (
           <div className="text-red-500 mb-2">
@@ -134,15 +136,16 @@ export default function GradeForm({
             key={`field_${field.id}`}
             name={`grades.${index}.subject`}
             render={({ field }) => (
-              <FormItem>
+              <FormItem className='w-full'>
                 <FormLabel
                   className={`${index !== 0 ? 'sr-only' : ''} text-xl`}
                 >
                   Oppiaineet ja arvosanat
                 </FormLabel>
-                <FormControl>
-                  <div className="flex items-center space-x-2 w-full">
+                <FormControl >
+                  <div className="flex items-center space-x-2 ">
                     <GradesSelect
+                      className="w-3/5"
                       id={index}
                       placeholder={'Oppiaine'}
                       field={field}
@@ -153,6 +156,7 @@ export default function GradeForm({
                       }
                     />
                     <GradesSelect
+                      className="w-2/5"
                       id={index}
                       placeholder={'Arvosana'}
                       field={field}
@@ -170,6 +174,7 @@ export default function GradeForm({
                       <Button
                         type="button"
                         variant="ghost"
+                        className="hover:bg-card"
                         size="icon"
                         onClick={() => remove(index)}
                       >
@@ -201,7 +206,7 @@ export default function GradeForm({
             type="button"
             variant="outline"
             size="sm"
-            className="mt-2 text-base"
+            className="mt-2 text-base hover:bg-card"
             onClick={() => append({ subject: '', grade: '' })}
           >
             <PlusCircle className="mr-2 h-4 w-4" />
@@ -227,7 +232,7 @@ export default function GradeForm({
             formcontrol={form.control}
             label="Muista minut"
             name="saveDegrees"
-            tooltip="Arvosanasi tallennetaan selaimellesi. Tietosuojaseloste"
+            tooltip="Arvosanasi tallennetaan evästeelle."
           ></OptionCheckBox>
         </div>
         <div className="flex gap-4">

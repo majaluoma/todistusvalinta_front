@@ -50,12 +50,12 @@ export default function Calculator({
   const handleCalculation = (ref: React.RefObject<HTMLDivElement>) => {
     return function handleCalculation (result : ResultParams) {
       if (ref.current) {
-        ref.current.scrollIntoView({ behavior: 'smooth' });
         if (result.saveDegrees)  {
           allowCookies();
           const resultOptions = formOptionsFromResult(result);
           updateCookie(JSON.stringify({degrees: resultOptions}), {expires: 180});
         }
+        ref.current.scrollIntoView({ behavior: 'smooth' });
       } else {
         console.warn('Calculation result not found');
       }
@@ -100,7 +100,7 @@ export default function Calculator({
 
   return (
     <ResultContextProvider>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 justify-center items-center">
         <GradesForm
           saveDegreesByDefault = {JSON.parse(value).degrees.length > 0 || cookiesAccepted}
           readyOptions={readyOptions}
@@ -109,7 +109,7 @@ export default function Calculator({
           vocational={vocational}
           helperCalculators={helperCalculators}
         />
-        <div ref={ref}>
+        <div className='w-full' ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
         </div>
         <InfoViewContextProvider>

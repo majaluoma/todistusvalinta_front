@@ -32,9 +32,9 @@ export default function VocationalHelper({
       </div>
       </PopoverTrigger>
       {subjects.length < 1 ? (
-        <PopoverContent className='w-2/3 p-9'>{text}</PopoverContent>
+        <PopoverContent className='w-[21rem] md:w-[33rem] p-9'>{text}</PopoverContent>
       ) : (
-        <PopoverContent className='w-2/3 p-9 flex flex-col gap-5'>
+        <PopoverContent className='w-[24rem] md:w-[33rem] p-9 flex flex-col gap-5 mx-3'>
           <p>{text}</p>
           <WeightedMeanCalculator gradeOptions={gradeOptions} subjects={subjects} callback={callback} saveAndClose={saveAndClose}/>
         </PopoverContent>
