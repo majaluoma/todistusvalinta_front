@@ -32,11 +32,11 @@ export default function NavigationSheet({
   };
   return (
     <Sheet>
-      <SheetTrigger className="fixed w-screen bg-none flex justify-end z-50" asChild>
-        <div className="bg-none top-7 mr-20 ">
+      <div className='fixed bg-transparent w-screen flex justify-end'>
+      <SheetTrigger className="fixed bg-none top-7 mr-20" asChild>
         {menuIcon()}
-        </div>
       </SheetTrigger>
+      </div>
       <SheetContent className='pl-0 pr-0'>
         <SheetHeader className="flex flex-col">
           <SheetTitle className='text-xl mb-8 ml-4'>todistusvalinta.fi</SheetTitle>
