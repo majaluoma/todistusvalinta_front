@@ -61,7 +61,7 @@ Make the build by issuing
 npm run build 
 ``` 
 
-Move the build -folder to your webserver's folder to be served as static html files. Make sure that your index.html -file is referenced correctly by your domain.
+Move the `dist` -folder to your webserver's folder to be served as static html files. Make sure that your index.html -file is referenced correctly by your domain.
 
 If you have rights to git and want to push production to `main` production line make a git pull request or push directly to `main` branch. Github Actions will deal with the deployment to todistusvalinta.fi
 
