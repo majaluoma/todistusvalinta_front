@@ -52,10 +52,10 @@ jobs:
       #transfer SSH -key to file so scp can use it to sign the document
       - name: Set up SSH Key
         run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.PRIVATE_SSH_SECRET_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -p ${{ secrets.SSH_SERVER_PORT }} ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-        chmod 600 ~/.ssh/id_rsa
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PRIVATE_SSH_SECRET_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.SSH_SERVER_PORT }} ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_rsa
 
       #Use SSH-key and destination to transfer the artifact to server
       - name: SCP file to server
