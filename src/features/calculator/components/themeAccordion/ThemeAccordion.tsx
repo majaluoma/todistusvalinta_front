@@ -4,14 +4,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import DegreeItem from './DegreeItem';
 import { firstUpper } from '@/lib/utils';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
 import { DegreeObject } from '@/types/apiTypes';
 import { AccordionAds } from '@/data/adsData';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
-import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
+import VirtualizedDegreeList from './VirtualizedDegreeList';
 
 const degreesAndAds = (degrees: DegreeObject[]) => {
   const degreesAndAds = degrees.map((degree) => {
@@ -48,7 +47,10 @@ export default function ThemeAccordion() {
       <div className="flex flex-row justify-between w-full pr-6">
         <h2 className="text-2xl font-bold">Tulokset</h2>
         <div className="flex flex-row gap-1 mr-8">
-          <NumberBall text={'✓'} className='bg-primary text-secondary-foreground text-xl font-bold' />
+          <NumberBall
+            text={'✓'}
+            className="bg-primary text-secondary-foreground text-xl font-bold"
+          />
           <NumberBall
             text={'𐄂'}
             className="border-2 bg-transparent border-black font-bold text-xl"
@@ -80,20 +82,11 @@ export default function ThemeAccordion() {
                   />
                 </div>
               </AccordionTrigger>
-              {degreesAndAds(theme.hakukohteet).map(({ degree, ad }) => {
-                return (
-                  <div key={`degree_${degree.HakukohdeID}`} className="">
-                    {ad && (
-                      <AccordionContent>
-                        <AdsBanner ads={[ad]} />
-                      </AccordionContent>
-                    )}
-                    <AccordionContent className="">
-                      <DegreeItem degree={degree} />
-                    </AccordionContent>
-                  </div>
-                );
-              })}
+              <AccordionContent className="">
+                <VirtualizedDegreeList
+                  degreesAndAds={degreesAndAds(theme.hakukohteet)}
+                />
+              </AccordionContent>
             </AccordionItem>
           );
         })}

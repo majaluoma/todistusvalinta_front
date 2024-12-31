@@ -17,13 +17,13 @@ export default function VolumeItem({
 
   return (
     <Card>
-      <CardHeader className="p-6">
-        <CardTitle className='text-xl'>{degree.hakukohde}</CardTitle>
-        <CardDescription>{degree.korkeakoulu}</CardDescription>
+      <CardHeader className='pl-8 pb-2'>
+        <CardTitle className='text-base h-[3.5rem]'>{degree.hakukohde}</CardTitle>
+        <CardDescription className='text-sm'>{degree.korkeakoulu}</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-row justify-between">
+      <CardContent className="flex flex-row justify-between pt-0">
         <div className='flex flex-row '>
-        <p className={`text-base ${passed && "bg-primary text-primary-foreground"} rounded-lg pr-2 pl-2`}>
+        <p className={`text-sm ${passed && "bg-primary text-primary-foreground"} rounded-lg pr-2 pl-2`}>
           Pisteesi: {volume.laskumalli.summa.pisteet} / {volume.pisteRaja}
         </p>
         {passed && <div className='relative top-1'></div>}

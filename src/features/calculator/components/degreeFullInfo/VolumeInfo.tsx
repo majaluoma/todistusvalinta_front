@@ -11,9 +11,9 @@ export default function VolumeInfo({volume: vuosikerta, kaikkienPisteet} : Reado
                 <li className="list-disc ml-6" key={`kynnysehto_${kynnysehto.KynnysehtoID}`}>
                   {kynnysehto.ehdot.map((ehto, index) => {
                     return (
-                      <>
+                      <span key={`kynnysehto_${kynnysehto.KynnysehtoID}_${index}`}>
                         {index !== 0 && " tai "} {ehto.nimi} {ehto.arvosana?.toUpperCase()} 
-                      </>
+                      </span>
                     );
                   })}
                 </li>

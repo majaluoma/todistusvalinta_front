@@ -5,7 +5,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import CalculationModelTable from './CalculationModelTable';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import VolumeInfo from './VolumeInfo';
@@ -22,7 +21,7 @@ export default function DegreeFullInfo() {
             return (
               <div
                 key={`allinfo_${degree.hakukohteet[0].HakukohdeID}`}
-                className="h-full pb-20"
+                className="h-full pb-28"
               >
                 <SheetHeader>
                   <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
@@ -50,9 +49,7 @@ export default function DegreeFullInfo() {
                     <PointsInfo degree={degree.hakukohteet[0]} />
                   </SheetDescription>
                   <SheetDescription>
-                    <CalculationModelTable
-                      calculationModel={degree.laskumalli}
-                    ></CalculationModelTable>
+                   {/**Calculation model not implemented*/}
                   </SheetDescription>
                 </ScrollArea>
               </div>
