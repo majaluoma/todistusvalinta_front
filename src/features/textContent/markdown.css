@@ -1,17 +1,44 @@
 .markdown p {
-    color: #333; /* Tailwind's text-gray-900 */
-    font-size: 1.125rem; /* or text-xl */
-    line-height: 1.75; /* or leading-relaxed */
-    margin-bottom: 2em;
-  }
-  
-  .markdown h1 {
-    font-size: 2rem; /* or text-3xl */
-    font-weight: bold; /* or font-bold */
-    margin-bottom: 1rem; /* Tailwind margin-bottom */
-  }
-  
-  .markdown ul {
-    list-style-type: disc; /* default Tailwind list style */
-    margin-left: 2rem; /* or pl-6 */
-  }
+  color: #333;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 2em;
+}
+
+.markdown h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.markdown h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.markdown h3 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.markdown ul {
+  list-style-type: disc;
+  margin-left: 2rem; 
+}
+
+.markdown a {
+  color: darkslategray;
+  border-bottom: 1px solid darkslategray;
+  text-decoration: none;
+  padding-bottom: 2px;
+}
+
+.markdown a:hover {
+  color: blue;
+  border-bottom: 20, solid,black; 
+}

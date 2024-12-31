@@ -43,7 +43,7 @@ export default function useCookies({
   }, [name]);
 
   const allowCookies = useCallback((allowed : boolean) => {
-    Cookies.set('cookieConsent', `${allowed? "accepted" : "denied"}`, {expires: 60});
+    Cookies.set('cookieConsent', `${allowed? "accepted" : "denied"}`, {expires: 90});
     setCookiesAccepted(true);
     setValue("accepted");
   }, [])

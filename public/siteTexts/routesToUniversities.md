@@ -1,13 +1,25 @@
-Todistusvalintalaskuri laskee antamiesi arvojen perusteella pisteesi eri korkeakouluihin. Laskuri perustuu 2. asteelta saamiisi arvosanoihin. Se kertoo myös olisitko päässyt mahdollisesti hakukohteisiin opiskelemaan aikaisempina vuosina.
+## Ohjeet
 
-Todistusvalinnassa huomioidaan 1.8.2015 alkaen suoritetut toisen asteen ammatilliset perustutkinnot. Ylioppilaskirjoitusten arvosanoista huomioidaan 2006 alkaen saadut arvosanat sekä sitä vanhemmista kirjoituksista muut kuin reaaliaineiden arvosanat.
+Vaikka nettisivumme keskittyykin todistusvalintaan, on korkeakouluihin useita muitakin reittejä. Toisin kuin todistusvalinnassa, muissa reiteissä harvemmin erotellaan opiskelijoita sen mukaan, ovatko he suorittaneet ammatillisen vai lukiokoulutuksen. Tämän lisäksi myös muut oppilaitokset voivat tarjota vastaavantyyppistä koulutusta kuin korkeakoulut. 
 
-Kun olet syöttänyt arvosanasi, paina "Laske" -painiketta. Hetken päästä sivuston alalaitaan ilmestyy taulukko, jossa ovat tuloksesi. Voit selata näitä tuloksia aiheittain ja suosittelemmekin tutustumaan laajasti vaihtoehtoihisi.
+Muista, että voit myös hakea opiskelemaan aikuislukioon tai jatkuvalla haulla ammattikouluun, mikä voi parantaa mahdollisuuksiasi korkeakouluun pääsemisessä.  
 
-Ensikertalainen on hakija, joka ei ole ottanut suomalaista korkeakoulupaikkaa vastaan.
+Jos sinun pisteesi eivät riitä mieluisaan hakukohteeseen, voit yrittää korottaa tai täydentää ylioppilastutkintoasi. Näin parannat mahdollisuuksiasi päästä mihin tahansa korkeakouluun. Myös ammatillisen tutkinnon arvosanoja pystyy nykyään korottamaan niin, että uudet arvosanat otetaan huomioon todistusvalinnassa. 
 
-Aloita syöttämällä laskuriin kaikki ylioppilastutkintotodistuksesi aineet. Syötä näiden viereen saamasi arvosana kyseisestä oppiaineesta. Jos olet kirjoittanut yli neljä ainetta, voit lisätä oppiaineita plus -painikkeesta.
+Toinen vaihtoehto on yrittää päästä sisään pääsykokeella. Joillakin aloilla pelkästään pääsykokeella voidaan valita jopa puolet opiskelijoista, joten se on hyvin realistinen väylä opintoihin. Etenkin jos et ole ensikertalainen, pääsykoe voi olla pääreittisi korkeakouluun niinkuin ennen todistusvalintaakin.  
 
-Aloita valitsemalla ammattikoulussasi käytetty arviointiskaala eli joko 1-3 tai 1-5. Seuraavaksi syötä kolmen yhteisen tutkinnon osan arvosanat. Päättötodistuksen yhteisten tutkinnon osien arvosanat on voitu antaa arvioinnilla hyväksytty-hylätty. Tällöin arvosana saadaan laskemalla keskiarvo tutkinnon osien sisältämien osa-alueiden numeroarvosanoista. Osa-alueiden arvosanat löydät oma Opintopolku -palvelusta tai ammattikoulusi antamasta suoritusotteesta.
+Korkeakouluihin löytyy myös muita reittejä, kuten avoimen väylä, jossa teet maksullisia opintoja esimerkiksi vuoden ajan ilman opiskelijastatusta. Tämän jälkeen sinut voidaan hyväksyä tutkinto-opiskelijaksi. Toisella asreella voit jo opintojen aikana tehdä väyläopintoja ammattikorkeakouluun. Joihinkin korkeakouluihin valinta voidaan suorittaa myös jonkin yksittäisenkin kurssin suorituksen perusteella. 
 
-Lopuksi syötä tutkintosi painotettu keskiarvo. Keskiarvo lasketaan siten, että ensiksi kerrotaan jokainen numeroilla arvioitu osa-alue sen osaamispistemäärällä. Sen jälkeen nämä kaikki osa-alueeista saadut tulot summataan yhteen. Pistä ylös se, kuinka monta osaamispistettä on arvioitu yhteensä numeroilla. Saat painotetun keskiarvon nyt jakamalla osa-alueiden summan osaamispisteiden määrällä. Ammattikorkeakouluun.fi -sivustolta löytyy myös esimerkki painotetun keskiarvon laskemisesta.
+[opintopolku.fi/avoin-yliopisto](https://opintopolku.fi/konfo/fi/sivu/avoin-yliopisto)
+
+Jos sinulla on jo korkeakoulupaikka Suomessa, voit yrittää hakea siirtohaulla toiselle alalle tai toiseen korkeakouluun. Lisää tietoa aiheesta löydät Opintopolusta.  
+
+[opintopolku.fi/korkeakoulujen-siirtohaut](https://opintopolku.fi/konfo/fi/sivu/korkeakoulujen-siirtohaut)
+
+Jos sinulla on jo ammattikorkeakoulusta tai yliopistosta hankittu alempi korkeakoulututkinto, kannattaa harkita hakua suoraan maisterivaiheeseen. Nämä haut ovat erillishakuja ja saat niistä lisää tietoa Opintopolusta.  
+
+[opintopolku.fi/korkeakoulujen-erillishaut-ja-joustavat-haut](https://opintopolku.fi/konfo/fi/sivu/korkeakoulujen-erillishaut-ja-joustavat-haut)
+
+Opintopolusta löytyy myös yleisiä vinkkejä siihen, jos jäit ilman korkeakoulupaikkaa.  
+
+[opintopolku.fi/jaitko-ilman-korkeakoulupaikkaa](https://opintopolku.fi/konfo/fi/sivu/jaitko-ilman-korkeakoulupaikkaa)
