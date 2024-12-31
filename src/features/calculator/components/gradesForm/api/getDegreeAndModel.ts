@@ -89,6 +89,4 @@ query {
   const response = await postApi<ResultResponse>(query);
 
   return response.data.kaikkiTiedotHakukohteesta;
-
-  //TODO TYPECHECKING
 }

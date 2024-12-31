@@ -1,7 +1,6 @@
 import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 import { DegreeObject } from '@/types/apiTypes';
 import { AccordionContent } from '@radix-ui/react-accordion';
-import React from 'react';
 import { FixedSizeList as List } from 'react-window';
 import DegreeItem from './DegreeItem';
 
