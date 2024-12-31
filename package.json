@@ -1,11 +1,11 @@
 {
   "name": "todistusvalinta_front",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build --production",
     "lint": "eslint .",
     "preview": "vite preview"
   },
