@@ -9,7 +9,7 @@ import {
 
 export default function AdsBanner({ ads }: Readonly<AdsBannerProps>) {
   return (
-    <Carousel className='shadow-sm shadow-secondary'>
+    <Carousel className='shadow-sm shadow-secondary' >
       <CarouselContent>
         {ads.map((ad) => {
           const parsedCustomAd = CustomAdSchema.safeParse(ad).data;

@@ -1,5 +1,5 @@
 import { ResultParams } from '@/features/calculator/components/gradesForm/types/types';
-import { post } from '@/lib/apiClient';
+import { postApi } from '@/lib/apiClient';
 import { FullDegreeInfo } from '../../degreeFullInfo/types';
 
 
@@ -86,7 +86,7 @@ query {
 }
 `,
   };
-  const response = await post<ResultResponse>(query);
+  const response = await postApi<ResultResponse>(query);
 
   return response.data.kaikkiTiedotHakukohteesta;
 

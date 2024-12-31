@@ -102,7 +102,7 @@ export default function Calculator({
 
   return (
     <ResultContextProvider>
-      <div className="flex flex-col gap-8 justify-center items-center">
+      <div className="align-top flex flex-col gap-8 items-center">
         <GradesForm
           saveDegreesByDefault = {JSON.parse(value).degrees.length > 0 || cookiesAccepted}
           readyOptions={readyOptions}

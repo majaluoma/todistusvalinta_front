@@ -1,4 +1,4 @@
-import { post } from '@/lib/apiClient';
+import { postApi } from '@/lib/apiClient';
 import { DegreeObject, Theme, ThemeObject } from '@/types/apiTypes';
 import { createContext, useEffect, useMemo, useState } from 'react';
 import {
@@ -24,7 +24,7 @@ export default function ResultContextProvider({
       const query = {
         query: `query {aiheet {AiheID, aihe}}`,
       };
-      const response = await post<ThemeResponse>(query);
+      const response = await postApi<ThemeResponse>(query);
       setThemes(response.data.aiheet);
     };
     initialThemes();
@@ -33,7 +33,7 @@ export default function ResultContextProvider({
       const query = {
         query: `query {viimeisin_vuosi}`,
       };
-      const response = await post<YearResponse>(query);
+      const response = await postApi<YearResponse>(query);
       setYear(response.data.viimeisin_vuosi);
     };
     mostRecentYear();

@@ -1,4 +1,4 @@
-import { post } from '@/lib/apiClient';
+import { postApi } from '@/lib/apiClient';
 import { ResultParams } from '../types/types';
 import { DegreeObject } from '@/types/apiTypes';
 
@@ -19,7 +19,7 @@ export async function getResult(
     query: `{laskentatulosKaikki(ensikertalainen: ${resultParams.firstTimer}, arviointitiedot: {oppiaineet: ${JSON.stringify(subjectsOnly)}, arvosanat:${JSON.stringify(gradesOnly)}, ammatillinen:${resultParams.vocational}}) {hakukohde HakukohdeID AiheID korkeakoulu vuosikerrat {pisteRaja VuosikertaID kynnysehtoOK vuosi LaskumalliID laskumalli {summa {pisteet}}}}}
 `,
   };
-  const response = await post<ResultResponse>(query);
+  const response = await postApi<ResultResponse>(query);
 
   return response.data.laskentatulosKaikki;
 

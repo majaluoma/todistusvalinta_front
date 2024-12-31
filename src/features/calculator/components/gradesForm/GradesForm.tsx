@@ -123,27 +123,28 @@ export default function GradeForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 flex flex-col justify-center items-center w-full"
+        className="space-y-4 flex flex-col items-center w-full align-top"
       >
         {form.formState.errors.grades && (
           <div className="text-red-500 mb-2">
             {form.formState.errors.grades.root?.message}
           </div>
         )}
+        <div className='flex space-y-4 flex-col items-center w-full align-top min-h-[21rem]'>
         {fields.map((field, index) => (
           <FormField
-            control={form.control}
+          control={form.control}
             key={`field_${field.id}`}
             name={`grades.${index}.subject`}
             render={({ field }) => (
               <FormItem className='w-full'>
                 <FormLabel
                   className={`${index !== 0 ? 'sr-only' : ''} text-xl`}
-                >
+                  >
                   Oppiaineet ja arvosanat
                 </FormLabel>
                 <FormControl >
-                  <div className="flex items-center space-x-2 ">
+                  <div className="flex items-center space-x-2">
                     <GradesSelect
                       className="w-3/5"
                       id={index}
@@ -151,10 +152,10 @@ export default function GradeForm({
                       field={field}
                       options={
                         readyOptions[index]
-                          ? subjectOptions(readyOptions[index])
-                          : subjectOptions(readyOptions[0])
+                        ? subjectOptions(readyOptions[index])
+                        : subjectOptions(readyOptions[0])
                       }
-                    />
+                      />
                     <GradesSelect
                       className="w-2/5"
                       id={index}
@@ -162,21 +163,21 @@ export default function GradeForm({
                       field={field}
                       options={
                         readyOptions[index]
-                          ? gradeOptions(readyOptions[index])
-                          : gradeOptions(readyOptions[0])
+                        ? gradeOptions(readyOptions[index])
+                        : gradeOptions(readyOptions[0])
                       }
                       fieldValue={form.watch(`grades.${index}.grade`)}
                       onValueChange={(value) =>
                         form.setValue(`grades.${index}.grade`, value || '')
                       }
-                    />
+                      />
                     {addableOptions && (
                       <Button
-                        type="button"
-                        variant="ghost"
-                        className="hover:bg-card"
-                        size="icon"
-                        onClick={() => remove(index)}
+                      type="button"
+                      variant="ghost"
+                      className="hover:bg-card"
+                      size="icon"
+                      onClick={() => remove(index)}
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -185,8 +186,8 @@ export default function GradeForm({
                       <VocationalHelper
                         calculator={helperCalculators[index]}
                         callback={(num) => helperFunction(num, index)}
-                      />
-                    )}
+                        />
+                      )}
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -196,18 +197,19 @@ export default function GradeForm({
                   render={({ fieldState }) => (
                     <FormMessage>{fieldState.error?.message}</FormMessage>
                   )}
-                />
+                  />
               </FormItem>
             )}
           />
         ))}
+        </div>
         {addableOptions ? (
           <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2 text-base hover:bg-card"
-            onClick={() => append({ subject: '', grade: '' })}
+          type="button"
+          variant="outline"
+          size="sm"
+          className="mt-2 text-base hover:bg-card"
+          onClick={() => append({ subject: '', grade: '' })}
           >
             <PlusCircle className="mr-2 h-4 w-4" />
             Lisää arvosana
