@@ -14,25 +14,26 @@ import useCookies from '@/hooks/useCookies';
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const { continueLoading, pauseLoading } = useAds();
-  const {value, updateCookie} = useCookies({name: "cookieConsent", initialValue: "pending", expireDays: 60})
+  const {value, cookiesAccepted, allowCookies,} = useCookies({name: "cookieConsent", initialValue: "pending", expireDays: 60})
 
   useEffect(() => {
-    if (value === "pending") {
-      pauseLoading();
-      setShowBanner(true);
-    } else if (value === "denied") {
+    if (!cookiesAccepted) {
       pauseLoading();
     }
-  }, [pauseLoading, value]);
+    console.log(value)
+    if (value === "pending") {
+      setShowBanner(true);
+    }
+  }, [pauseLoading, setShowBanner, cookiesAccepted]);
 
   const acceptAll = () => {
-    updateCookie("accepted", {expires: 60})
+    allowCookies(true)
     continueLoading();
     setShowBanner(false);
   };
 
   const rejectAll = () => {
-    updateCookie("denied", {expires: 1})
+    allowCookies(false)
     setShowBanner(false);
   };
 

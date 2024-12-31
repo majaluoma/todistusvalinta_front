@@ -22,7 +22,7 @@ export default function Layout({ titles }: Readonly<RootProps>) {
     <div className="bg-background flex flex-col justify-center items-center gap-10 h-max overflow-x-hidden">
       <NavigationSheet titles={titles} />
       <Header/>
-      <div className="flex flex-col bg-background w-[22rem] md:w-[42rem] lg:w-[50rem] justify-center items-center ">
+      <div className="flex flex-col bg-background w-[22rem] sm:w-[26rem] md:w-[34rem] lg:w-[42rem] justify-center items-center ">
         <Outlet />
       </div>
       <CookieBanner />

@@ -13,6 +13,18 @@ import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
 import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 
+const degreesAndAds = (degrees: DegreeObject[]) => {
+  const degreesAndAds = degrees.map((degree) => {
+    return {
+      degree: degree,
+      ad: AccordionAds.find((ad) => {
+        return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
+      }),
+    };
+  });
+  return degreesAndAds;
+};
+
 export default function ThemeAccordion() {
   const { degrees } = useResultContext();
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
@@ -30,18 +42,6 @@ export default function ThemeAccordion() {
     };
     setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
   }, [degrees]);
-  const degreesAndAds = (degrees: DegreeObject[]) => {
-    const degreesAndAds = degrees.map((degree) => {
-      return {
-        degree: degree,
-        ad: AccordionAds.find((ad) => {
-          return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
-        }),
-      };
-    });
-
-    return degreesAndAds;
-  };
 
   return degrees.length > 0 ? (
     <div>

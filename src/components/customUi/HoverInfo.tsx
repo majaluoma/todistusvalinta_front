@@ -14,14 +14,19 @@ export default function HoverInfo({
   text,
   children,
 }: Readonly<HoverInfoProps>) {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className='bg-popover text-popover-foreground'>
-          <p>{text}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
+
+  if (text.length > 8 && text !== "undefined") {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>{children}</TooltipTrigger>
+          <TooltipContent className='bg-popover text-popover-foreground'>
+            <p>{text}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }else {
+    return <>{children}</>
+  }
 }

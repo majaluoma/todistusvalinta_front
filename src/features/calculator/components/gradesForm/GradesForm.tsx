@@ -123,7 +123,7 @@ export default function GradeForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 flex flex-col justify-center items-center max-w-[32rem]"
+        className="space-y-4 flex flex-col justify-center items-center w-full"
       >
         {form.formState.errors.grades && (
           <div className="text-red-500 mb-2">

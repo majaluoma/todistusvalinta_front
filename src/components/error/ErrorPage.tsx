@@ -9,7 +9,7 @@ import Footer from '@/pages/root/Footer';
 export default function ErrorPage() {
   const error = useRouteError();
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="h-[24rem] flex flex-col justify-center items-center align-middle relative">
         <div className="flex-grow">
           <ErrorBlock error={error}></ErrorBlock>
         </div>

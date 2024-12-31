@@ -19,7 +19,7 @@ export default function useCookies({
     const cookie = Cookies.get(name);
     if (cookie !== undefined) {
       return cookie;
-    } else if (Cookies.get('cookieConsent') === 'accepted') {
+    } else if (cookiesAccepted) {
       Cookies.set(name, initialValue, { expires: expireDays, path: '' });
       setValue(initialValue);
       return initialValue;
@@ -29,12 +29,12 @@ export default function useCookies({
 
   const updateCookie = useCallback(
     (newValue: string, options: Cookies.CookieAttributes) => {
-      if (Cookies.get('cookieConsent') === 'accepted') {
+      if (cookiesAccepted) {
         Cookies.set(name, newValue, options);
       }
       setValue(newValue);
     },
-    [name],
+    [name, cookiesAccepted],
   );
 
   const deleteCookie = useCallback(() => {
@@ -42,10 +42,11 @@ export default function useCookies({
     setValue('');
   }, [name]);
 
-  const allowCookies = useCallback(() => {
-    updateCookie("accepted", {expires: 60});
+  const allowCookies = useCallback((allowed : boolean) => {
+    Cookies.set('cookieConsent', `${allowed? "accepted" : "denied"}`, {expires: 60});
     setCookiesAccepted(true);
-  }, [updateCookie])
+    setValue("accepted");
+  }, [])
 
   return { value, cookiesAccepted, deleteCookie, updateCookie, allowCookies };
 }

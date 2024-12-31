@@ -51,9 +51,11 @@ export default function Calculator({
     return function handleCalculation (result : ResultParams) {
       if (ref.current) {
         if (result.saveDegrees)  {
-          allowCookies();
+          allowCookies(true);
           const resultOptions = formOptionsFromResult(result);
           updateCookie(JSON.stringify({degrees: resultOptions}), {expires: 180});
+        }else {
+          updateCookie(JSON.stringify(initialSessionCookie), {expires: 1});
         }
         ref.current.scrollIntoView({ behavior: 'smooth' });
       } else {
@@ -109,7 +111,7 @@ export default function Calculator({
           vocational={vocational}
           helperCalculators={helperCalculators}
         />
-        <div className='w-full' ref={ref}>
+        <div ref={ref}>
           <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
         </div>
         <InfoViewContextProvider>
