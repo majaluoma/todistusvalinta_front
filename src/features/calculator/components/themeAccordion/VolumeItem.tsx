@@ -8,7 +8,7 @@ import {
 
 import { VolumeItemProps } from './types';
 
-export default function DegreeItem({
+export default function VolumeItem({
   volume,
   degree,
 }: Readonly<VolumeItemProps>) {
