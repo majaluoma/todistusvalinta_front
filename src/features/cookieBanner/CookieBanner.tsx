@@ -20,11 +20,10 @@ export default function CookieBanner() {
     if (!cookiesAccepted) {
       pauseLoading();
     }
-    console.log(value)
     if (value === "pending") {
       setShowBanner(true);
     }
-  }, [pauseLoading, setShowBanner, cookiesAccepted]);
+  }, [pauseLoading, setShowBanner, cookiesAccepted, value]);
 
   const acceptAll = () => {
     allowCookies(true)
