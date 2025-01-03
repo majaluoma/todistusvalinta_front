@@ -6,11 +6,12 @@ import {
 } from '@/components/ui/accordion';
 import { firstUpper } from '@/lib/utils';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
-import { DegreeObject } from '@/types/apiTypes';
+import { DegreeObject, ThemeObject } from '@/types/apiTypes';
 import { AccordionAds } from '@/data/adsData';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
 import VirtualizedDegreeList from './VirtualizedDegreeList';
+import Searchbar from './SearchBar';
 
 const degreesAndAds = (degrees: DegreeObject[]) => {
   const degreesAndAds = degrees.map((degree) => {
@@ -26,10 +27,11 @@ const degreesAndAds = (degrees: DegreeObject[]) => {
 
 export default function ThemeAccordion() {
   const { degrees } = useResultContext();
+  const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>(degrees);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   useEffect(() => {
     const passedAmountPerTheme = () => {
-      return degrees.map(function filterPassed(theme): [string, number] {
+      return filteredDegrees.map(function filterPassed(theme): [string, number] {
         const passedDegrees = theme.hakukohteet.filter((e) => {
           return (
             e.vuosikerrat[0].laskumalli.summa.pisteet >=
@@ -40,12 +42,27 @@ export default function ThemeAccordion() {
       });
     };
     setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
-  }, [degrees]);
+  }, [filteredDegrees]);
+
+  const searchDegrees = (searchValue : string | null) => {
+    if (searchValue === null) {
+      setFilteredDegrees(degrees);
+      return;
+    }
+    const filterDegree = (degree: DegreeObject) => {
+      return degree.hakukohde.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase());
+    };
+    const mapFilteredThemes = (theme : ThemeObject) => {
+      return {...theme, hakukohteet: theme.hakukohteet.filter(filterDegree)}
+    }
+    setFilteredDegrees(degrees.map(mapFilteredThemes));
+  }
 
   return degrees.length > 0 ? (
     <div>
-      <div className="flex flex-row justify-between w-full pr-6">
         <h2 className="text-2xl font-bold">Tulokset</h2>
+      <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
+        <Searchbar searchFunction={searchDegrees}/>
         <div className="flex flex-row gap-1 mr-8">
           <NumberBall
             text={'✓'}
@@ -57,13 +74,15 @@ export default function ThemeAccordion() {
           />
         </div>
       </div>
+      {filteredDegrees.length > 0 ? 
       <Accordion type="single" collapsible className="w-full">
-        {degrees.map((theme, index) => {
+        {filteredDegrees.map((theme, index) => {
           return (
             <AccordionItem
-              key={`theme_${theme.AiheID}`}
-              value={`item-${index}`}
+            key={`theme_${theme.AiheID}`}
+            value={`item-${index}`}
             >
+              {theme.hakukohteet.length > 0 ? 
               <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mb-2 ">
                 <span className="group-hover:underline text-start text-xl">
                   {firstUpper(theme.aihe)}
@@ -82,6 +101,7 @@ export default function ThemeAccordion() {
                   />
                 </div>
               </AccordionTrigger>
+               : <></>}
               <AccordionContent className="">
                 <VirtualizedDegreeList
                   degreesAndAds={degreesAndAds(theme.hakukohteet)}
@@ -91,6 +111,7 @@ export default function ThemeAccordion() {
           );
         })}
       </Accordion>
+      : <p className='mt-6'>Hakukohteita ei löytynyt</p>}
     </div>
   ) : (
     <></>

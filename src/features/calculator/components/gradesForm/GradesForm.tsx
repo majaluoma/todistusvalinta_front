@@ -190,14 +190,16 @@ export default function GradeForm({
                       )}
                   </div>
                 </FormControl>
-                <FormMessage />
-                <FormField
+                <div className=' flex flex-row mr-4'>
+                <FormMessage className="w-3/5"/>
+                <FormField 
                   control={form.control}
                   name={`grades.${index}.grade`}
                   render={({ fieldState }) => (
-                    <FormMessage>{fieldState.error?.message}</FormMessage>
+                    <FormMessage className="w-2/5 mr-4">{fieldState.error?.message}</FormMessage>
                   )}
                   />
+                </div>
               </FormItem>
             )}
           />

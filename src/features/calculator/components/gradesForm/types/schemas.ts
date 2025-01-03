@@ -12,13 +12,13 @@ export const formSchema = z
       .array(
         z.object({
           subject: z.string().min(1, 'Syötä oppiaine').nonempty('Syötä oppiaine'),
-          grade: z.string().min(1, 'Syötä arvosana').nonempty('Syötä oppiaine'),
+          grade: z.string().min(1, 'Syötä arvosana').nonempty('Syötä arvosana'),
         })
       )
       .min(4, "Lisää oppiaineita")
       .refine(
         (grades) => {
-          const subjects = grades.map((grade) => grade.subject);
+          const subjects = grades.filter(g=> {return g.subject !== ''}).map((grade) => grade.subject);
           const uniqueSubjects = new Set(subjects);
           return uniqueSubjects.size === subjects.length;
         },
