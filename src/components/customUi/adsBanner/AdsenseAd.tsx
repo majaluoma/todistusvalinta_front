@@ -26,7 +26,7 @@ export default function AdsenseAd() {
   }, []);
 
   return (
-    <div>
+    <div className='w-[21rem] sm:w-[24rem] md:w-[32rem] lg:w-[35rem]'>
       <ins
         className="adsbygoogle block h-[250px]"
         data-ad-client={VITE_ADSENSE_CLIENT}
