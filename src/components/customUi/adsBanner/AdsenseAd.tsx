@@ -4,7 +4,6 @@ const VITE_ADSENSE_SLOT = import.meta.env.VITE_ADSENSE_SLOT;
 export default function AdsenseAd() {
   
   useEffect(() => {
-     // Ensure the script is loaded only once
      const scriptId = 'adsbygoogle-script';
      if (!document.getElementById(scriptId)) {
        const script = document.createElement('script');
@@ -15,7 +14,7 @@ export default function AdsenseAd() {
        script.crossOrigin="anonymous"
        document.body.appendChild(script);
      }
-     
+
     if (window.adsbygoogle) {
       try {
         window.adsbygoogle.push({});
