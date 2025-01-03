@@ -1,5 +1,7 @@
+import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { BannerAdsVocational } from '@/data/adsData';
 import Calculator from '@/features/calculator/Calculator';
 import { MeanCalculator } from '@/features/calculator/types/types';
 import { useState } from 'react';
@@ -103,7 +105,9 @@ export default function VocationalDegree() {
           addableOptions={false}
           vocational={true}
           helperCalculators={helperCalculator3}
-        />
+        >
+           <AdsBanner ads={BannerAdsVocational}/>
+        </Calculator>
       )}
     </div>
   );

@@ -1,8 +1,6 @@
 import ResultContextProvider from '@/features/calculator/context/resultContext/ResultContext';
-import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 import GradesForm from '@/features/calculator/components/gradesForm/GradesForm';
 import { useEffect, useRef, useState } from 'react';
-import { BannerAdsMatriculation } from '@/data/adsData';
 import InfoViewContextProvider from '@/features/calculator/context/infoViewContext/InfoViewContext';
 import ThemeAccordion from './components/themeAccordion/ThemeAccordion';
 import DegreeFullInfo from './components/degreeFullInfo/DegreeFullInfo';
@@ -23,12 +21,14 @@ type CalculatorProps = {
   addableOptions: boolean;
   vocational : boolean;
   helperCalculators? : MeanCalculator [];
+  children? : JSX.Element;
 };
 export default function Calculator({
   optionTypes,
   addableOptions,
   vocational,
-  helperCalculators
+  helperCalculators,
+  children
 }: Readonly<CalculatorProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const [readyOptions, setReadyOptions] = useState(
@@ -112,7 +112,7 @@ export default function Calculator({
           helperCalculators={helperCalculators}
         />
         <div ref={ref}>
-          <AdsBanner ads={BannerAdsMatriculation}></AdsBanner>
+          {children}
         </div>
         <InfoViewContextProvider>
           <ThemeAccordion />
