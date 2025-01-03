@@ -26,7 +26,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build mode --testserver
+        run: npm run buildForTestServer
 
       #build folder is uploaded as an artifact. This service is provided by github.
       #We need the artifact to use it in deploy phase
