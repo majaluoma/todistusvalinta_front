@@ -19,6 +19,8 @@ export default function CookieBanner() {
   useEffect(() => {
     if (!cookiesAccepted) {
       pauseLoading();
+    } else {
+      continueLoading();
     }
     if (value === "pending") {
       setShowBanner(true);

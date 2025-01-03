@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 const VITE_ADSENSE_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT;
 const VITE_ADSENSE_SLOT = import.meta.env.VITE_ADSENSE_SLOT;
 export default function AdsenseAd() {
+  
   useEffect(() => {
     // Ensure the script is loaded only once
     const scriptId = 'adsbygoogle-script';
@@ -11,6 +12,7 @@ export default function AdsenseAd() {
       script.async = true;
       script.src =
         'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+      script.crossOrigin="anonymous"
       document.body.appendChild(script);
     }
 

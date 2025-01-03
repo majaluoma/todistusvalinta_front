@@ -6,18 +6,18 @@ import {
 } from '@/components/ui/accordion';
 import { firstUpper } from '@/lib/utils';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
-import { DegreeObject, ThemeObject } from '@/types/apiTypes';
-import { AccordionAds } from '@/data/adsData';
+import { AdsArray, DegreeObject, ThemeObject } from '@/types/apiTypes';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
 import VirtualizedDegreeList from './VirtualizedDegreeList';
 import Searchbar from './SearchBar';
+import useAds from '@/hooks/useAds';
 
-const degreesAndAds = (degrees: DegreeObject[]) => {
+const degreesAndAds = (degrees: DegreeObject[], ads : AdsArray) => {
   const degreesAndAds = degrees.map((degree) => {
     return {
       degree: degree,
-      ad: AccordionAds.find((ad) => {
+      ad: ads.find((ad) => {
         return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
       }),
     };
@@ -29,6 +29,7 @@ export default function ThemeAccordion() {
   const { degrees } = useResultContext();
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
+  const {accordionAds} = useAds();
   useEffect(() => {
     const passedAmountPerTheme = () => {
       return filteredDegrees.map(function filterPassed(
@@ -114,7 +115,7 @@ export default function ThemeAccordion() {
                 )}
                 <AccordionContent className="">
                   <VirtualizedDegreeList
-                    degreesAndAds={degreesAndAds(theme.hakukohteet)}
+                    degreesAndAds={degreesAndAds(theme.hakukohteet, accordionAds)}
                   />
                 </AccordionContent>
               </AccordionItem>
