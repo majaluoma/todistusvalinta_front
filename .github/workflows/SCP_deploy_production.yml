@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - deployment
 
 # after the trigger, it will build application using Github's actions in a github's ubuntu virtual machine.
 jobs:
