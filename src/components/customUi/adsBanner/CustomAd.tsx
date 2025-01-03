@@ -19,7 +19,7 @@ export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
 
   return (
     <div ref={ref}>
-      <a onClick={handleClick} href={ad.osoite}>
+      <a onClick={handleClick} href={"https://www."+ad.osoite}>
         <img src={`assets/ads/${ad.kuva}`} alt={ad.kuvaus} />
       </a>
     </div>
