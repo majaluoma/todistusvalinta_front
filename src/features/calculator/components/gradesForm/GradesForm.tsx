@@ -94,7 +94,8 @@ export default function GradeForm({
       handleCalculation(values);
       setInterval(() => setIsLoading(false), 500);
     } catch (error: unknown) {
-      console.log(error);
+      console.log(error)
+      handleCalculation(null);
     }
   };
 

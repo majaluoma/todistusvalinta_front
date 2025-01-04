@@ -12,7 +12,7 @@ import PointsInfo from './PointsInfo';
 import { useInfoViewContext } from '../../context/infoViewContext/useResultContext';
 
 export default function DegreeFullInfo() {
-  const { degrees, infoViewOpen, setInfoViewOpen } = useInfoViewContext();
+  const {degrees, infoViewOpen, setInfoViewOpen } = useInfoViewContext();
   return (
     <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
       <SheetContent side={'left'}>

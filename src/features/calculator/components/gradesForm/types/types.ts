@@ -20,7 +20,7 @@ export type Subject = {
 
 export type GradeFormProps = {
   readyOptions : EvaluationOptions[]
-  handleCalculation : (values : ResultParams) => void;
+  handleCalculation : (values : ResultParams | null) => void;
   addableOptions : boolean;
   vocational : boolean;
   saveDegreesByDefault : boolean;
