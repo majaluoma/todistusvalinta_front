@@ -7,9 +7,15 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 
+/** Shows advertisements
+ *  Registers interactions with the server
+ *  AUTOPLAY NOT IMPLEMENTED
+ * */
 export default function AdsBanner({ ads }: Readonly<AdsBannerProps>) {
+  // AUTOPLAY NOT IMPLEMENTED
+  
   return (
-    <Carousel className='shadow-sm shadow-secondary' >
+    <Carousel className="shadow-sm shadow-secondary">
       <CarouselContent>
         {ads.map((ad) => {
           const parsedCustomAd = CustomAdSchema.safeParse(ad).data;

@@ -5,15 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ReactElement } from 'react';
+import { InfoCardProps } from './types';
 
-type InfoCardProps = {
-  header: string;
-  children: ReactElement;
-  subheader?: string;
-  className?: string;
-};
-
+/** Custom UI -component to show large amount of information
+ */
 export default function InfoCard({
   header,
   children,

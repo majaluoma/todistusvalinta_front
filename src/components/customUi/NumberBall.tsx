@@ -3,14 +3,16 @@ type NumberBallProps = {
   className?: string;
 };
 
+/** Custom UI -component to show small amount of information
+ */
 export default function NumberBall({
   text,
   className = '',
 }: Readonly<NumberBallProps>) {
   return (
     <div
-      className={`ml-2 mr-2 text-sm rounded-full w-7 h-7 text-center flex align-middle items-center justify-center 
-        ${text && text?.toString().length > 2 && "text-[0.75em]"}
+      className={`mx-2 text-base rounded-full w-7 h-7 text-center flex items-center justify-center 
+        ${text && text?.toString().length > 2 && 'text-sm'}
         ${className}`}
     >
       {text ?? '?'}

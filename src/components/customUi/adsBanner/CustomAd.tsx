@@ -3,6 +3,10 @@ import { postClick } from './api/postClick';
 import { postView } from './api/postView';
 import { CustomAdProps } from './types';
 import useOnScreen from '@/hooks/useOnScreen';
+
+/** Shows custom defined advertisements
+ *  Registers interactions with the server
+ * */
 export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -19,7 +23,7 @@ export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
 
   return (
     <div ref={ref}>
-      <a onClick={handleClick} href={"https://www."+ad.osoite}>
+      <a onClick={handleClick} href={'https://www.' + ad.osoite}>
         <img src={`assets/ads/${ad.kuva}`} alt={ad.kuvaus} />
       </a>
     </div>
