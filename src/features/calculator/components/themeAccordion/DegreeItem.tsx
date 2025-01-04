@@ -75,6 +75,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
         {degree.vuosikerrat.map((volume) => {
           return (
             <TabsContent 
+              onClick={handleClick}
               value={`${volume.vuosi}`}
               key={`volume_${degree.HakukohdeID}_${volume.vuosi}`}
             >

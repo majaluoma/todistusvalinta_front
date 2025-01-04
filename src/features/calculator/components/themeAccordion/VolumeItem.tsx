@@ -17,8 +17,8 @@ export default function VolumeItem({
 
   return (
     <Card>
-      <CardHeader className='pl-8 pb-2'>
-        <CardTitle className='text-base h-[3.5rem]'>{degree.hakukohde}</CardTitle>
+      <CardHeader className='pl-8 pb-2 pt-5'>
+        <CardTitle className='text-base h-[3.5rem] overflow-hidden'>{degree.hakukohde}</CardTitle>
         <CardDescription className='text-sm'>{degree.korkeakoulu}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-row justify-between pt-0">
