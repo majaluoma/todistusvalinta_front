@@ -3,23 +3,10 @@ import { DegreeObject } from '@/types/apiTypes';
 import { AccordionContent } from '@radix-ui/react-accordion';
 import { FixedSizeList as List } from 'react-window';
 import DegreeItem from './DegreeItem';
+import { Ad, AdSchema, CustomAd, CustomAdSchema } from '@/components/customUi/adsBanner/types';
 
 type VirtualizedDegreeListProps = {
-    degreesAndAds : DegreeAndAd[]
-}
-
-type DegreeAndAd = {
-    degree: DegreeObject;
-    ad: {
-        id: string;
-        mainospalvelu: "custom" | "adsense";
-    } | {
-        id: string;
-        mainospalvelu: "custom" | "adsense";
-        kuva: string;
-        kuvaus: string;
-        osoite: string;
-    } | undefined;
+    degreesAndAds : (DegreeObject | CustomAd | Ad)[] 
 }
 
 export default function VirtualizedDegreeList ({degreesAndAds} : Readonly<VirtualizedDegreeListProps>) {
@@ -31,17 +18,19 @@ export default function VirtualizedDegreeList ({degreesAndAds} : Readonly<Virtua
       width="100%"
     >
       {({ index, style }) => {
-        const { degree, ad } = degreesAndAds[index];
+        const item = degreesAndAds[index];
+        const ad = CustomAdSchema.safeParse(item).data || AdSchema.safeParse(item).data;
         return (
           <div style={style}>
-            {ad && (
+            {ad ? (
               <AccordionContent className='h-[220px] overflow-hidden flex align-center justify-center items-center z-20'>
                 <AdsBanner ads={[ad]} />
               </AccordionContent>
-            )}
+            ):
             <AccordionContent>
-              <DegreeItem degree={degree} />
+              <DegreeItem degree={item as DegreeObject} />
             </AccordionContent>
+            }
           </div>
         );
       }}

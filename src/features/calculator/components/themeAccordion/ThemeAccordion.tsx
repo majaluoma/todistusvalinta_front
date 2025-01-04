@@ -12,16 +12,20 @@ import { useEffect, useState } from 'react';
 import VirtualizedDegreeList from './VirtualizedDegreeList';
 import Searchbar from './SearchBar';
 import useAds from '@/hooks/useAds';
+import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
 
-const degreesAndAds = (degrees: DegreeObject[], ads : AdsArray) => {
-  const degreesAndAds = degrees.map((degree) => {
-    return {
-      degree: degree,
-      ad: ads.find((ad) => {
-        return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
-      }),
-    };
-  });
+const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : AdsArray) => {
+  const degreesAndAds : (DegreeObject | CustomAd | Ad)[] = []
+   degrees.forEach((degree) => {
+    degreesAndAds.push(degree);
+    const ad = ads.find((ad) => {
+      return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
+    })
+    if (ad) {
+      degreesAndAds.push(ad);
+    }
+  }
+  );
   return degreesAndAds;
 };
 
@@ -115,7 +119,7 @@ export default function ThemeAccordion() {
                 )}
                 <AccordionContent className="">
                   <VirtualizedDegreeList
-                    degreesAndAds={degreesAndAds(theme.hakukohteet, accordionAds)}
+                    degreesAndAds={degreesAndAdsOrdered(theme.hakukohteet, accordionAds)}
                   />
                 </AccordionContent>
               </AccordionItem>
