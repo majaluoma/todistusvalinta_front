@@ -18,21 +18,30 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
       hakukohdeId: number,
       laskumalliID: number,
     ) => {
-      setDegreesAndOpen([]);
-      const degreeInfo = await getDegreeAndModel(
-        resultParams,
-        hakukohdeId,
-        laskumalliID,
-      );
-      setResultParams(resultParams);
-      setDegreesAndOpen([degreeInfo]);
+      try {
+        setDegreesAndOpen([]);
+        const degreeInfo = await getDegreeAndModel(
+          resultParams,
+          hakukohdeId,
+          laskumalliID,
+        );
+        setResultParams(resultParams);
+        setDegreesAndOpen([degreeInfo]);
+      } catch (error: unknown) {
+        setResultParams(null);
+        console.log(error);
+      }
     };
-    if (resultParams)
+    if (resultParams) {
       fetchDegreeInfo(
         resultParams,
         degree.HakukohdeID,
         degree.vuosikerrat[0].LaskumalliID,
       );
+    } else {
+      setDegreesAndOpen([]);
+      setResultParams(null);
+    }
   };
 
   return (
@@ -62,11 +71,8 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
                     text="✓"
                     className="bg-primary text-primary-foreground w-[16px] h-[16px]"
                   />
-                ): (
-                  <NumberBall
-                    text="𐄂"
-                    className="w-[16px] h-[16px]"
-                  />
+                ) : (
+                  <NumberBall text="𐄂" className="w-[16px] h-[16px]" />
                 )}
               </TabsTrigger>
             );
@@ -74,7 +80,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
         </TabsList>
         {degree.vuosikerrat.map((volume) => {
           return (
-            <TabsContent 
+            <TabsContent
               onClick={handleClick}
               value={`${volume.vuosi}`}
               key={`volume_${degree.HakukohdeID}_${volume.vuosi}`}

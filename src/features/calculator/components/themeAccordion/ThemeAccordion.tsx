@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/accordion';
 import { firstUpper } from '@/lib/utils';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
-import { AdsArray, DegreeObject, ThemeObject } from '@/types/apiTypes';
+import { DegreeObject, ThemeObject } from '@/types/apiTypes';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
 import VirtualizedDegreeList from './VirtualizedDegreeList';
@@ -14,7 +14,7 @@ import Searchbar from './SearchBar';
 import useAds from '@/hooks/useAds';
 import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
 
-const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : AdsArray) => {
+const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : (Ad | CustomAd) []) => {
   const degreesAndAds : (DegreeObject | CustomAd | Ad)[] = []
    degrees.forEach((degree) => {
     degreesAndAds.push(degree);

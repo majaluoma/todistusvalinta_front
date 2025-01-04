@@ -23,3 +23,6 @@ export const CustomAdSchema = AdSchema.merge(
 );
 
 export type CustomAd = z.infer<typeof CustomAdSchema>;
+
+export const AdsArraySchema = z.array(z.union([AdSchema, CustomAdSchema]));
+export type AdsArray = z.infer<typeof AdsArraySchema>;

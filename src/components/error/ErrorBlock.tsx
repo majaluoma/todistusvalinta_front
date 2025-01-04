@@ -6,6 +6,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '../ui/accordion';
 
 /**
  * Errors as a nice Card instead of a whole page
@@ -15,8 +21,14 @@ import { useEffect, useState } from 'react';
  */
 type ErrorBlockProps = {
   error: unknown;
+  className?: string;
+  moreInformation?: string;
 };
-export default function ErrorBlock({ error }: ErrorBlockProps) {
+export default function ErrorBlock({
+  error,
+  className,
+  moreInformation,
+}: ErrorBlockProps) {
   //This console.error is left here for purpose so that errors are shown in the console as well.
   console.error(error);
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,18 +46,24 @@ export default function ErrorBlock({ error }: ErrorBlockProps) {
   }, [error]);
 
   return (
-    <div>
-      <Card id="error-page">
-        <CardHeader>
-          <CardTitle>Oops!</CardTitle>
-        </CardHeader>
-        <CardDescription>
-          Pahoittelut, odottamaton virhe pääsi sattumaan.
-        </CardDescription>
-        <CardContent>
-          <p>{errorMessage}</p>
-        </CardContent>
-      </Card>
-    </div>
+    <Card id="error-page" className={`${className}`}>
+      <CardHeader>
+        <CardTitle>Oops!</CardTitle>
+      </CardHeader>
+      <CardDescription className="m-6">
+        Pahoittelut, odottamaton virhe pääsi sattumaan.
+      </CardDescription>
+      <CardContent>
+        <p>{errorMessage}</p>
+        {moreInformation && (
+          <Accordion type="single">
+            <AccordionItem value="moreInfo">
+              <AccordionTrigger>Lisätiedot</AccordionTrigger>
+              <AccordionContent></AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )}
+      </CardContent>
+    </Card>
   );
 }

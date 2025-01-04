@@ -1,11 +1,11 @@
+import { Ad, CustomAd } from "@/components/customUi/adsBanner/types";
 import { AccordionAds } from "@/data/adsData";
-import { AdsArray } from "@/types/apiTypes";
 import { useEffect, useState } from "react";
 
 export default function useAds () {
     const [loadingEnabled, setLoadingEnabled] = useState(true);
     const [personalizedAdsAllowed, setPersonalizedAdsAllowed] = useState(true);
-    const [accordionAds, setAccordionAds] = useState<AdsArray>([]);
+    const [accordionAds, setAccordionAds] = useState<(Ad | CustomAd)[]>([]);
 
     useEffect (() => {
         if (loadingEnabled) {

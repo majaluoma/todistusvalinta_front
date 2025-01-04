@@ -1,4 +1,4 @@
-import { AdsArray } from '../types/apiTypes';
+import { AdsArray } from "@/components/customUi/adsBanner/types";
 
 export const BannerAdsVocational: AdsArray = [
   {

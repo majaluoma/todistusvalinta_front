@@ -15,7 +15,7 @@ export type InfoViewContextType = {
     degrees : FullDegreeInfo []
     setDegreesAndOpen : (degrees: FullDegreeInfo[]) => void;
     resultParams : ResultParams | null,
-    setResultParams: (resultParams: ResultParams) => void;
+    setResultParams: (resultParams: ResultParams | null) => void;
     infoViewOpen : boolean;
     setInfoViewOpen: (infoViewOpen : boolean) => void
   };

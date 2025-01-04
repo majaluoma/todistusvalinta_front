@@ -10,9 +10,11 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import VolumeInfo from './VolumeInfo';
 import PointsInfo from './PointsInfo';
 import { useInfoViewContext } from '../../context/infoViewContext/useResultContext';
+import ErrorBlock from '@/components/error/ErrorBlock';
 
 export default function DegreeFullInfo() {
-  const {degrees, infoViewOpen, setInfoViewOpen } = useInfoViewContext();
+  const { degrees, infoViewOpen, setInfoViewOpen, resultParams } =
+    useInfoViewContext();
   return (
     <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
       <SheetContent side={'left'}>
@@ -49,7 +51,7 @@ export default function DegreeFullInfo() {
                     <PointsInfo degree={degree.hakukohteet[0]} />
                   </SheetDescription>
                   <SheetDescription>
-                   {/**Calculation model not implemented*/}
+                    {/**Calculation model not implemented*/}
                   </SheetDescription>
                 </ScrollArea>
               </div>
@@ -62,12 +64,13 @@ export default function DegreeFullInfo() {
                 Ladataan tietoja
               </SheetTitle>
             </SheetHeader>
-            <SheetDescription className="relative flex flex-col gap-4 bottom-7 left-4 ">
+            <div className="relative flex flex-col gap-4 bottom-7 left-4 ">
+            {!resultParams && <ErrorBlock error="Tapahtui virhe, kokeile myöhemmin uudestaan" className="w-6em m-6"/>}
               <Skeleton className="h-[50px] w-6em m-6" />
               <Skeleton className="h-[50px] w-6em m-6" />
               <Skeleton className="h-[50px] w-6em m-6" />
               <Skeleton className="h-[50px] w-6em m-6" />
-            </SheetDescription>
+            </div>
           </div>
         )}
       </SheetContent>
