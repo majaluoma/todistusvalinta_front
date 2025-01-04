@@ -21,7 +21,7 @@ export default function VirtualizedDegreeList ({degreesAndAds} : Readonly<Virtua
         const item = degreesAndAds[index];
         const ad = CustomAdSchema.safeParse(item).data || AdSchema.safeParse(item).data;
         return (
-          <div style={style}>
+          <div style={style} className='bg-background'>
             {ad ? (
               <AccordionContent className='h-[220px] overflow-hidden flex align-center justify-center items-center z-20'>
                 <AdsBanner ads={[ad]} />
