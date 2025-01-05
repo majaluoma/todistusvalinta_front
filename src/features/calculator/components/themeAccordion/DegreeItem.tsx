@@ -48,36 +48,38 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
     <div className="relative">
       <Button
         onClick={handleClick}
-        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-2 top-6 shadow-lg
+        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-4 top-2 shadow-lg
           ${!degree.vuosikerrat[0].kynnysehtoOK && 'bg-destructive'}`}
       >
         ?
       </Button>
-      <Tabs defaultValue={year.toString()} className="w-auto p-0">
-      <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
-          {degree.vuosikerrat.map((volume) => {
-            const passed =
-              volume.laskumalli.summa.pisteet >= volume.pisteRaja &&
-              volume.kynnysehtoOK;
-            return (
-              <TabsTrigger
-                key={`volumeTab_${degree.HakukohdeID}_${volume.vuosi}`}
-                value={`${volume.vuosi}`}
-                className={`text-sm w-24 rounded-b-none bg-card data-[state=active]:bg-card`}
-              >
-                {volume.vuosi}
-                {passed ? (
-                  <NumberBall
-                    text="✓"
-                    className="bg-primary text-primary-foreground w-[16px] h-[16px]"
-                  />
-                ) : (
-                  <NumberBall text="𐄂" className="w-[16px] h-[16px]" />
-                )}
-              </TabsTrigger>
-            );
-          })}
-        </TabsList>
+      <Tabs defaultValue={(year || 1994).toString()} className="w-auto p-0">
+        {degree.vuosikerrat.length > 1 && (
+          <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
+            {degree.vuosikerrat.map((volume) => {
+              const passed =
+                volume.laskumalli.summa.pisteet >= volume.pisteRaja &&
+                volume.kynnysehtoOK;
+              return (
+                <TabsTrigger
+                  key={`volumeTab_${degree.HakukohdeID}_${volume.vuosi}`}
+                  value={`${volume.vuosi}`}
+                  className={`text-sm w-24 rounded-b-none bg-card data-[state=active]:bg-card`}
+                >
+                  {volume.vuosi}
+                  {passed ? (
+                    <NumberBall
+                      text="✓"
+                      className="bg-primary text-primary-foreground w-[16px] h-[16px]"
+                    />
+                  ) : (
+                    <NumberBall text="𐄂" className="w-[16px] h-[16px]" />
+                  )}
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+        )}
         {degree.vuosikerrat.map((volume) => {
           return (
             <TabsContent

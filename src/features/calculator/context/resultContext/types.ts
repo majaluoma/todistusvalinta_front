@@ -18,5 +18,5 @@ export type ResultContextType = {
     setThemes: (themes: Theme[]) => void;
     themes: Theme[];
     resultParams : ResultParams | null;
-    year : number
+    year : number | undefined;
   };

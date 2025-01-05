@@ -26,7 +26,7 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-xl mb-8 text-wrap">
+                  <SheetTitle className="text-xl mb-8 mr-5 text-wrap">
                     {degree.hakukohteet[0].hakukohde}
                   </SheetTitle>
                 </SheetHeader>

@@ -17,7 +17,7 @@ export default function ResultContextProvider({
   const [degrees, setDegrees] = useState<ThemeObject[]>([]);
   const [themes, setThemes] = useState<Theme[]>([]);
   const [resultParams, setResultParams] = useState<ResultParams | null>(null);
-  const [year, setYear] = useState<number>(1994);
+  const [year, setYear] = useState<number | undefined>(undefined);
   
   useEffect(() => {
     const initialThemes = async () => {

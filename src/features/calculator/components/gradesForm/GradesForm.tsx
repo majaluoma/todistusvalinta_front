@@ -47,7 +47,7 @@ export default function GradeForm({
     },
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { setDegreesAndThemes } = useResultContext();
+  const { setDegreesAndThemes, year } = useResultContext();
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
     control: form.control,
@@ -89,7 +89,7 @@ export default function GradeForm({
   const onSubmit = async (values: ResultParams) => {
     try {
       setIsLoading(true);
-      const result = await getResult(values);
+      const result = await getResult(values, year);
       setDegreesAndThemes(result, values);
       handleCalculation(values);
       setInterval(() => setIsLoading(false), 500);
