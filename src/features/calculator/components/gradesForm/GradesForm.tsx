@@ -229,13 +229,13 @@ export default function GradeForm({
           ></OptionCheckBox>
           <OptionCheckBox
             formcontrol={form.control}
-            label="Vain paikat, joihin pääsisin"
+            label="Näytä vain paikat, joihin pääsisin"
             name="onlyPassed"
             tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
           ></OptionCheckBox>
           <OptionCheckBox
             formcontrol={form.control}
-            label="Muista minut"
+            label="Muista arvosanani"
             name="saveDegrees"
             tooltip="Arvosanasi tallennetaan evästeelle."
           ></OptionCheckBox>

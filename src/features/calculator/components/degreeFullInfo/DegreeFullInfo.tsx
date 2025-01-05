@@ -26,34 +26,36 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
+                  <SheetTitle className="text-xl mb-8 text-wrap">
                     {degree.hakukohteet[0].hakukohde}
                   </SheetTitle>
                 </SheetHeader>
-                <SheetDescription className="relative flex flex-col gap-4 bottom-7 left-4 ">
-                  <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
-                </SheetDescription>
-                <ScrollArea className="h-full sw-auto rounded-md border">
-                  <SheetDescription className="flex flex-col gap-4 ">
+                <SheetDescription className="flex flex-col h-screen pb-40">
+                  <div className="flex flex-col items-center mb-8 left-4 ">
+                    <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
+                  </div>
+                  <ScrollArea type="always"  className="h-full sw-auto rounded-md mb-5">
                     {degree.hakukohteet[0].vuosikerrat.map((vuosikerta) => {
                       return (
-                        <VolumeInfo
-                          key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}
-                          volume={vuosikerta}
-                          kaikkienPisteet={
-                            degree.hakukohteet[1]?.vuosikerrat.find((v) => {
-                              return v.vuosi === vuosikerta.vuosi;
-                            })?.pisteRaja
-                          }
-                        ></VolumeInfo>
+                        <div 
+                        key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}
+                        className='mb-3'>
+                          <VolumeInfo
+                            
+                            volume={vuosikerta}
+                            kaikkienPisteet={
+                              degree.hakukohteet[1]?.vuosikerrat.find((v) => {
+                                return v.vuosi === vuosikerta.vuosi;
+                              })?.pisteRaja
+                            }
+                          ></VolumeInfo>
+                        </div>
                       );
                     })}
                     <PointsInfo degree={degree.hakukohteet[0]} />
-                  </SheetDescription>
-                  <SheetDescription>
-                    {/**Calculation model not implemented*/}
-                  </SheetDescription>
-                </ScrollArea>
+                    {/* <CalculationModelTable calculationModel={degree.laskumalli}></CalculationModelTable> */}
+                  </ScrollArea>
+                </SheetDescription>
               </div>
             );
           })
@@ -64,13 +66,20 @@ export default function DegreeFullInfo() {
                 Ladataan tietoja
               </SheetTitle>
             </SheetHeader>
-            <div className="relative flex flex-col gap-4 bottom-7 left-4 ">
-            {!resultParams && <ErrorBlock error="Tapahtui virhe, kokeile myöhemmin uudestaan" className="w-6em m-6"/>}
-              <Skeleton className="h-[50px] w-6em m-6" />
-              <Skeleton className="h-[50px] w-6em m-6" />
-              <Skeleton className="h-[50px] w-6em m-6" />
-              <Skeleton className="h-[50px] w-6em m-6" />
-            </div>
+            <SheetDescription>
+              <div className="relative flex flex-col gap-4 bottom-7 left-4 ">
+                {!resultParams && (
+                  <ErrorBlock
+                    error="Tapahtui virhe, kokeile myöhemmin uudestaan"
+                    className="w-6em m-6"
+                  />
+                )}
+                <Skeleton className="h-[50px] w-6em m-6" />
+                <Skeleton className="h-[50px] w-6em m-6" />
+                <Skeleton className="h-[50px] w-6em m-6" />
+                <Skeleton className="h-[50px] w-6em m-6" />
+              </div>
+            </SheetDescription>
           </div>
         )}
       </SheetContent>

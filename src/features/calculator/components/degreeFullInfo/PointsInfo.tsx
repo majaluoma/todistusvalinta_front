@@ -1,7 +1,11 @@
-import InfoCard from "@/components/customUi/InfoCard";
-import { Hakukohde } from "./types";
+import InfoCard from '@/components/customUi/InfoCard';
+import { Hakukohde } from './types';
 
-export default function PointsInfo({degree} : Readonly<{degree : Hakukohde}>) {
+type PointsInfoProps = {
+  degree: Hakukohde;
+};
+
+export default function PointsInfo({ degree }: Readonly<PointsInfoProps>) {
   return (
     <InfoCard
       header="Kuinka pisteeni laskettiin?"

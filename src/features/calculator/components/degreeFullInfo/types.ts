@@ -1,34 +1,26 @@
 // Define the type for 'Aine'
-type Aine = {
+export type Aine = {
     nimi?: string;
     pisteet?: number;
     arvosana?: string;
   };
   
-  // Define the type for 'Alajoukko'
-  type Alajoukko = {
-    LaskumalliID?: number;
-    maxValinnat?: number;
-    JoukkoID?: number;
-    oppiaineet?: Aine[];
-  };
-  
   // Define the type for 'YlaJoukko'
-  type YlaJoukko = {
+  export type Joukko = {
     LaskumalliID?: number;
     maxValinnat?: number;
     JoukkoID?: number;
     oppiaineet?: Aine[];
-    alajoukot?: Alajoukko;
+    alajoukot?: Joukko [];
   };
   
   // Define the type for 'LaskumalliRakenne'
   export type LaskumalliRakenne = {
     LaskumalliID: number;
-    laskumalliNimi?: string;
-    maxPiste?: number;
-    maxAine?: number;
-    joukot?: YlaJoukko[];
+    laskumalliNimi : string;
+    maxPiste: number;
+    maxAine: number;
+    joukot: Joukko[];
   };
   
   // Define the type for 'Hakukohde'

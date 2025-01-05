@@ -54,7 +54,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
         ?
       </Button>
       <Tabs defaultValue={year.toString()} className="w-auto p-0">
-        <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
+      <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
           {degree.vuosikerrat.map((volume) => {
             const passed =
               volume.laskumalli.summa.pisteet >= volume.pisteRaja &&

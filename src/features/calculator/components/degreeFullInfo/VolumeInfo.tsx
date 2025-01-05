@@ -1,5 +1,6 @@
 import InfoCard from "@/components/customUi/InfoCard";
 import { Kynnysehto, Vuosikerta } from "./types";
+import NumberBall from "@/components/customUi/NumberBall";
 
 export default function VolumeInfo({volume: vuosikerta, kaikkienPisteet} : Readonly<{volume : Vuosikerta, kaikkienPisteet? : number}>) {
 
@@ -25,12 +26,21 @@ export default function VolumeInfo({volume: vuosikerta, kaikkienPisteet} : Reado
       
   return (
     <InfoCard
-      header={vuosikerta.vuosi.toString()}
+      header={vuosikerta.vuosi.toString()
+      }
     >
       <div>
-        <p>
+        <p className="flex flex-row">
           Pisteesi: {vuosikerta.laskumalli.summa.pisteet} /{' '}
           {vuosikerta.pisteRaja}
+          {vuosikerta.kynnysehtoOK && vuosikerta.pisteRaja < vuosikerta.laskumalli.summa.pisteet ? (
+                        <NumberBall
+                          text="✓"
+                          className="self-center bg-primary text-primary-foreground w-[16px] h-[16px]"
+                        />
+                      ) : (
+                        <NumberBall text="𐄂" className="w-[16px] h-[16px]" />
+                      )}
         </p>
         {kaikkienPisteet && <p>
           Pisteraja ei-ensikertalaisille: {kaikkienPisteet}
