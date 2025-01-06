@@ -59,7 +59,7 @@ jobs:
       #Use SSH-key and destination to transfer the artifact to server
       - name: SCP file to server
         run: |
-          scp -i ~/.ssh/id_rsa -P ${{ secrets.SSH_SERVER_PORT }} -r ./dist/* ${{ secrets.SSH_ACCOUNT }}@${{ secrets.SERVER_HOST }}:public_html
+          scp -i ~/.ssh/id_rsa -P ${{ secrets.SSH_SERVER_PORT }} -r ./dist/* ${{ secrets.SSH_ACCOUNT }}@${{ secrets.SERVER_HOST }}:public_html/todistusvalinta_front
 
       - name: Clean up SSH key
         run: |
