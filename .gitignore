@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+#Self added below
+public/robots.txt
+public/sitemap.xml
