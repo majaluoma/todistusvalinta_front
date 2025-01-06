@@ -9,8 +9,10 @@ import About from './pages/About';
 import RoutesToUniversities from './pages/RoutesToUniversities';
 import Help from './pages/Help';
 import VocationalDegree from './pages/VocationalDegree';
-
 function App() {
+
+
+
 
   const router = createBrowserRouter([
     {

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "buildForProduction": "tsc -b && vite build --mode production",
-    "buildForTestServer": "tsc -b && vite build --mode testserver",
+    "buildForProduction": "./production.sh && tsc -b && vite build --mode production",
+    "buildForTestServer": "./development.sh && tsc -b && vite build --mode testserver",
     "lint": "eslint .",
     "preview": "vite preview"
   },
