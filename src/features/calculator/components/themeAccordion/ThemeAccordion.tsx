@@ -30,7 +30,7 @@ const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : (Ad | CustomAd) [])
 };
 
 export default function ThemeAccordion() {
-  const { degrees } = useResultContext();
+  const { degrees, resultParams } = useResultContext();
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const {accordionAds} = useAds();
@@ -61,7 +61,7 @@ export default function ThemeAccordion() {
       return;
     }
     const filterDegree = (degree: DegreeObject) => {
-      return degree.hakukohde
+      return (degree.hakukohde + " " + degree.korkeakoulu)
         .toLocaleLowerCase()
         .includes(searchValue.toLocaleLowerCase());
     };
@@ -76,15 +76,15 @@ export default function ThemeAccordion() {
       <h2 className="text-2xl font-bold">Tulokset</h2>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
         <Searchbar searchFunction={searchDegrees} />
-        <div className="flex flex-row gap-1 mr-8">
+        <div className="flex flex-row mr-7">
           <NumberBall
             text={'✓'}
             className="bg-primary text-secondary-foreground text-xl font-bold"
           />
-          <NumberBall
+          {!resultParams?.onlyPassed && <NumberBall
             text={'𐄂'}
             className="border-2 bg-transparent border-black font-bold text-xl"
-          />
+          />}
         </div>
       </div>
       {filteredDegrees.length > 0 ? (
@@ -105,13 +105,13 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      <NumberBall
+                      {!resultParams?.onlyPassed && <NumberBall
                         text={
                           theme.hakukohteet.length -
                           (passedTotal.get(theme.aihe) ?? 0)
                         }
-                        className="mr-5 bg-transparent m-auto "
-                      />
+                        className="mr-3 bg-transparent m-auto "
+                      />}
                     </div>
                   </AccordionTrigger>
                 ) : (

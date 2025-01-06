@@ -19,7 +19,7 @@ import OptionCheckBox from './components/OptionCheckBox';
 import GradesSelect from './components/GradesSelect';
 import { getResult } from './api/getResult';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
-import { useEffect, useState } from 'react';
+import { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
@@ -48,6 +48,7 @@ export default function GradeForm({
   });
   const [isLoading, setIsLoading] = useState(false);
   const { setDegreesAndThemes, year } = useResultContext();
+  const ref = useRef<HTMLDivElement>(null);
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
     control: form.control,
@@ -86,7 +87,7 @@ export default function GradeForm({
     });
   }, [readyOptions, form]);
 
-  const onSubmit = async (values: ResultParams) => {
+  const fetchResult = async (values: ResultParams) => {
     try {
       setIsLoading(true);
       const result = await getResult(values, year);
@@ -120,10 +121,18 @@ export default function GradeForm({
     );
   };
 
+  const onSubmit = (handleSubmit : FormEventHandler<HTMLFormElement>) => {
+    if (form.formState.isDirty && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    return handleSubmit
+  }
+
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
+      <div ref={ref} className='absolute top-0'></div>
+      <form 
+        onSubmit={onSubmit(form.handleSubmit(fetchResult))}
         className="space-y-4 flex flex-col items-center w-full align-top"
       >
         {form.formState.errors.grades && (
@@ -241,7 +250,7 @@ export default function GradeForm({
           ></OptionCheckBox>
         </div>
         <div className="flex gap-4">
-          <SubmitButton text="Laske" isLoading={isLoading} />
+          <SubmitButton text="Laske" isLoading={isLoading} className={`${form.formState.isDirty && "hover:bg-destructive"}`}/>
           {VITE_ENVIRONMENT === 'development' && (
             <SubmitButton
               text="Testaa"

@@ -18,14 +18,14 @@ export default function VolumeItem({
   return (
     <Card>
       <CardHeader className='pl-8 pb-2 pt-1'>
-        <CardTitle className='flex items-center text-base h-[3.5rem] overflow-hidden'>{degree.hakukohde}</CardTitle>
+        <CardTitle className='flex items-center text-base h-[3.5rem] overflow-hidden mr-3'>{degree.hakukohde}</CardTitle>
         <CardDescription className='text-sm'>{degree.korkeakoulu}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-row justify-between pt-0">
         <div className='flex flex-row '>
-          <p className='text-sm ml-2 mr-4 text-muted-foreground'>2024: </p>
+          <p className='text-sm ml-2 mr-4 text-muted-foreground'>{volume.vuosi}: </p>
         <p className={`text-sm ${passed && "bg-primary text-primary-foreground"} rounded-lg pr-2 pl-2`}>
-          Pisteesi 2024: {volume.laskumalli.summa.pisteet} / {volume.pisteRaja}
+          Pisteesi: {volume.laskumalli.summa.pisteet} / {volume.pisteRaja}
         </p>
         {passed && <div className='relative top-1'></div>}
         </div>

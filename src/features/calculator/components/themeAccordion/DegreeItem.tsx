@@ -48,12 +48,12 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
     <div className="relative">
       <Button
         onClick={handleClick}
-        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-4 top-2 shadow-lg
+        className={`font-bold text-2xl rounded-full bg-secondary z-10 w-[35px] h-[35px] hover:bg-accent cursor-pointer absolute right-2 top-2 shadow-lg
           ${!degree.vuosikerrat[0].kynnysehtoOK && 'bg-destructive'}`}
       >
         ?
       </Button>
-      <Tabs defaultValue={(year || 1994).toString()} className="w-auto p-0">
+      <Tabs defaultValue={(year || 2024).toString()} className="w-auto p-0">
         {degree.vuosikerrat.length > 1 && (
           <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
             {degree.vuosikerrat.map((volume) => {
