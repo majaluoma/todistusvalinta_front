@@ -11,28 +11,35 @@ type VirtualizedDegreeListProps = {
     degreesAndAds : (DegreeObject | CustomAd | Ad)[] 
 }
 
+const heightWithTabs = 220;
+const normalHeight = 160;
+
 export default function VirtualizedDegreeList ({degreesAndAds} : Readonly<VirtualizedDegreeListProps>) {
   const {year} = useResultContext();
-  const [height, setHeight] = useState(160);
+  const [itemHeight, setItemHeight] = useState(normalHeight);
+  const [height, setHeight] = useState(540);
 
   useEffect (()=> {
     if (!year) {
-      setHeight(220)
+      setItemHeight(heightWithTabs)
     }
-  }, [year])
+    if (degreesAndAds.length < 4) {
+      setHeight(degreesAndAds.length * (year ? 160  : heightWithTabs))
+    }
+  }, [year, degreesAndAds])
 
   return (
     <List
-      height={540} // Adjust this value based on your needs
+      height={height} // Adjust this value based on your needs
       itemCount={degreesAndAds.length}
-      itemSize={height} // Adjust this value based on your DegreeItem height
+      itemSize={itemHeight} // Adjust this value based on your DegreeItem height
       width="100%"
     >
       {({ index, style }) => {
         const item = degreesAndAds[index];
         const ad = CustomAdSchema.safeParse(item).data || AdSchema.safeParse(item).data;
         return (
-          <div style={style} className='bg-background'>
+          <div style={style} className='bg-black/10'>
             {ad ? (
               <AccordionContent className='h-[160px] overflow-hidden flex align-center justify-center items-center z-20'>
                 <AdsBanner ads={[ad]} />

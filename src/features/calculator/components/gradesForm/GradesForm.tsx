@@ -94,6 +94,7 @@ export default function GradeForm({
       setDegreesAndThemes(result, values);
       handleCalculation(values);
       setInterval(() => setIsLoading(false), 500);
+      form.clearErrors();
     } catch (error: unknown) {
       console.log(error)
       handleCalculation(null);
@@ -121,18 +122,17 @@ export default function GradeForm({
     );
   };
 
-  const onSubmit = (handleSubmit : FormEventHandler<HTMLFormElement>) => {
-    if (form.formState.isDirty && ref.current) {
+  const handleError = () => {
+    if (!form.formState.isValid && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
-    return handleSubmit
   }
 
   return (
     <Form {...form}>
       <div ref={ref} className='absolute top-0'></div>
       <form 
-        onSubmit={onSubmit(form.handleSubmit(fetchResult))}
+        onSubmit={form.handleSubmit(fetchResult, handleError)}
         className="space-y-4 flex flex-col items-center w-full align-top"
       >
         {form.formState.errors.grades && (
@@ -250,7 +250,7 @@ export default function GradeForm({
           ></OptionCheckBox>
         </div>
         <div className="flex gap-4">
-          <SubmitButton text="Laske" isLoading={isLoading} className={`${form.formState.isDirty && "hover:bg-destructive"}`}/>
+          <SubmitButton text="Laske" isLoading={isLoading}/>
           {VITE_ENVIRONMENT === 'development' && (
             <SubmitButton
               text="Testaa"

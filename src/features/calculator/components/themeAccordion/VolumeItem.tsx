@@ -16,23 +16,25 @@ export default function VolumeItem({
     volume.laskumalli.summa.pisteet >= volume.pisteRaja && volume.kynnysehtoOK;
 
   return (
-    <Card>
-      <CardHeader className='pl-8 pb-2 pt-1'>
-        <CardTitle className='flex items-center text-base h-[3.5rem] overflow-hidden mr-3'>{degree.hakukohde}</CardTitle>
+    <Card className='h-[140px]'>
+      <CardHeader className='flex flex-col justify-center pl-6 pb-1 pt-1 h-[6.3rem]'>
+        <CardTitle className='flex text-base max-h-[3.5rem] overflow-hidden mr-3'>{degree.hakukohde}</CardTitle>
         <CardDescription className='text-sm'>{degree.korkeakoulu}</CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-row justify-between pt-0">
+      <div className="flex flex-col justify-end pt-0">
+      <CardContent className="flex flex-row">
         <div className='flex flex-row '>
-          <p className='text-sm ml-2 mr-4 text-muted-foreground'>{volume.vuosi}: </p>
-        <p className={`text-sm ${passed && "bg-primary text-primary-foreground"} rounded-lg pr-2 pl-2`}>
+          <p className='text-sm mr-0.5 text-muted-foreground'>{volume.vuosi}: </p>
+        <p className={`text-sm ${passed && "bg-primary text-primary-foreground"} text-nowrap rounded-lg pr-2 pl-2`}>
           Pisteesi: {volume.laskumalli.summa.pisteet} / {volume.pisteRaja}
         </p>
         {passed && <div className='relative top-1'></div>}
         </div>
         {!volume.kynnysehtoOK && (
-            <p className={`ml-4 text-sm`}>Kynnysehto ei täyty</p>
+            <p className={`relative left-0 text-sm text-nowrap`}>Kynnysehto ei täyty</p>
         )}
       </CardContent>
+      </div>
     </Card>
   );
 }

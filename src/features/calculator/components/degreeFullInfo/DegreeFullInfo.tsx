@@ -26,12 +26,12 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-xl mb-8 mr-[2rem] text-wrap">
+                  <SheetTitle className="text-xl mb-8 mr-[2rem] text-wrap text-start">
                     {degree.hakukohteet[0].hakukohde}
                   </SheetTitle>
                 </SheetHeader>
                 <SheetDescription className="flex flex-col h-screen pb-40">
-                  <div className="flex flex-col items-center mb-8 left-4 ">
+                  <div className="flex flex-col mb-8 left-4 ">
                     <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
                   </div>
                   <ScrollArea type="always"  className="h-full sw-auto rounded-md mb-5">

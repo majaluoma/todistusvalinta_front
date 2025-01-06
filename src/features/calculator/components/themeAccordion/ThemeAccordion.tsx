@@ -71,7 +71,7 @@ export default function ThemeAccordion() {
     setFilteredDegrees(degrees.map(mapFilteredThemes));
   };
 
-  return degrees.length > 0 ? (
+  return resultParams ? (
     <div>
       <h2 className="text-2xl font-bold">Tulokset</h2>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
@@ -117,7 +117,7 @@ export default function ThemeAccordion() {
                 ) : (
                   <></>
                 )}
-                <AccordionContent className="">
+                <AccordionContent>
                   <VirtualizedDegreeList
                     degreesAndAds={degreesAndAdsOrdered(theme.hakukohteet, accordionAds)}
                   />
