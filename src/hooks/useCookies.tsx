@@ -20,7 +20,7 @@ export default function useCookies({
     if (cookie !== undefined) {
       return cookie;
     } else if (cookiesAccepted) {
-      Cookies.set(name, initialValue, { expires: expireDays, path: '', sameSite:"strict" });
+      Cookies.set(name, initialValue, { expires: expireDays, path: '', sameSite:"None",  secure: true });
       setValue(initialValue);
       return initialValue;
     }
@@ -43,7 +43,7 @@ export default function useCookies({
   }, [name]);
 
   const allowCookies = useCallback((allowed : boolean) => {
-    Cookies.set('cookieConsent', `${allowed? "accepted" : "denied"}`, {expires: 90, sameSite:"strict"});
+    Cookies.set('cookieConsent', `${allowed? "accepted" : "denied"}`, {expires: 90, sameSite:"None",  secure: true});
     setCookiesAccepted(true);
     setValue("accepted");
   }, [])

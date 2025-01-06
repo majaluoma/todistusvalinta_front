@@ -16,7 +16,7 @@ export default function VolumeItem({
     volume.laskumalli.summa.pisteet >= volume.pisteRaja && volume.kynnysehtoOK;
 
   return (
-    <Card className='h-[140px]'>
+    <Card className='h-[140px] mx-2'>
       <CardHeader className='flex flex-col justify-center pl-6 pb-1 pt-1 h-[6.3rem]'>
         <CardTitle className='flex text-base max-h-[3.5rem] overflow-hidden mr-3'>{degree.hakukohde}</CardTitle>
         <CardDescription className='text-sm'>{degree.korkeakoulu}</CardDescription>

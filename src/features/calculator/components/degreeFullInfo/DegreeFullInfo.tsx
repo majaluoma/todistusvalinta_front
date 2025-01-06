@@ -30,7 +30,7 @@ export default function DegreeFullInfo() {
                     {degree.hakukohteet[0].hakukohde}
                   </SheetTitle>
                 </SheetHeader>
-                <SheetDescription className="flex flex-col h-screen pb-40">
+                <div className="flex flex-col h-screen pb-40">
                   <div className="flex flex-col mb-8 left-4 ">
                     <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
                   </div>
@@ -55,7 +55,7 @@ export default function DegreeFullInfo() {
                     <PointsInfo degree={degree.hakukohteet[0]} />
                     {/* <CalculationModelTable calculationModel={degree.laskumalli}></CalculationModelTable> */}
                   </ScrollArea>
-                </SheetDescription>
+                </div>
               </div>
             );
           })
@@ -68,7 +68,7 @@ export default function DegreeFullInfo() {
             </SheetHeader>
             <SheetDescription>
               <div className="relative flex flex-col gap-4 bottom-7 left-4 ">
-                {!resultParams && (
+                {resultParams && degrees.length < 1 && (
                   <ErrorBlock
                     error="Tapahtui virhe, kokeile myöhemmin uudestaan"
                     className="w-6em m-6"

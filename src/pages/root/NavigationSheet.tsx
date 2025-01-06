@@ -32,8 +32,8 @@ export default function NavigationSheet({
   };
   return (
     <Sheet>
-      <div className='fixed bg-transparent w-screen flex justify-end'>
-      <SheetTrigger className="fixed bg-none top-7 mr-10" asChild>
+      <div className='fixed bg-transparent w-screen flex justify-end z-50'>
+      <SheetTrigger className="fixed bg-none sm:top-6 md:top-7 lg:top-8 top-5 mr-8" asChild>
         {menuIcon()}
       </SheetTrigger>
       </div>

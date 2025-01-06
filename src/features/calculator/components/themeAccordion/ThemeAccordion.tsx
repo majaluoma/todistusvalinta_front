@@ -13,6 +13,8 @@ import VirtualizedDegreeList from './VirtualizedDegreeList';
 import Searchbar from './SearchBar';
 import useAds from '@/hooks/useAds';
 import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
+import crossIcon from '@/assets/crossIcon.svg';
+import checkIcon from '@/assets/checkIcon.svg';
 
 const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : (Ad | CustomAd) []) => {
   const degreesAndAds : (DegreeObject | CustomAd | Ad)[] = []
@@ -79,10 +81,12 @@ export default function ThemeAccordion() {
         <div className="flex flex-row mr-7">
           <NumberBall
             text={'✓'}
+            image={checkIcon}
             className="bg-primary text-secondary-foreground text-xl font-bold"
           />
           {!resultParams?.onlyPassed && <NumberBall
-            text={'𐄂'}
+            text = "x"
+            image = {crossIcon}
             className="border-2 bg-transparent border-black font-bold text-xl"
           />}
         </div>

@@ -40,7 +40,6 @@ export default function ErrorBlock({
     } else if (typeof error === 'string') {
       setErrorMessage(error);
     } else {
-      console.error(error);
       setErrorMessage('Tuntematon virhe, tutkimme asiaa');
     }
   }, [error]);

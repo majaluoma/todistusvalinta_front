@@ -19,7 +19,7 @@ type RootProps = {
  */
 export default function Layout({ titles }: Readonly<RootProps>) {
   return (
-    <div className="bg-background flex flex-col justify-center items-center gap-10 h-max overflow-x-hidden align-top">
+    <div className="bg-background flex flex-col justify-center items-center gap-10 h-max overflow-x-hidden align-top pt-32">
       <NavigationSheet titles={titles} />
       <Header/>
       <div className="flex flex-col bg-background w-[22rem] sm:w-[26rem] md:w-[34rem] lg:w-[42rem] justify-center items-center align-top">
