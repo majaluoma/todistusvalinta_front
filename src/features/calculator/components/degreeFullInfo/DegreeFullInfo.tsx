@@ -1,7 +1,6 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
@@ -66,7 +65,7 @@ export default function DegreeFullInfo() {
                 Ladataan tietoja
               </SheetTitle>
             </SheetHeader>
-            <SheetDescription>
+            <div>
               <div className="relative flex flex-col gap-4 bottom-7 left-4 ">
                 {resultParams && degrees.length < 1 && (
                   <ErrorBlock
@@ -79,7 +78,7 @@ export default function DegreeFullInfo() {
                 <Skeleton className="h-[50px] w-6em m-6" />
                 <Skeleton className="h-[50px] w-6em m-6" />
               </div>
-            </SheetDescription>
+            </div>
           </div>
         )}
       </SheetContent>

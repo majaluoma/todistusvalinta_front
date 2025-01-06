@@ -11,9 +11,8 @@ export default function NumberBall({
   image,
   className = '',
 }: Readonly<NumberBallProps>) {
-  console.log(image)
   return (
-    <div
+    <span
       className={`mx-2 text-base rounded-full w-7 h-7 text-center flex items-center justify-center 
         ${text && text?.toString().length > 2 && 'text-sm'}
         ${className}`}
@@ -22,6 +21,6 @@ export default function NumberBall({
       {image && 
       <img alt={text?.toString()} src={image} className="p-0.5">
       </img>}
-    </div>
+    </span>
   );
 }
