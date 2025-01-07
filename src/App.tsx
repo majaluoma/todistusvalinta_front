@@ -11,9 +11,6 @@ import Help from './pages/Help';
 import VocationalDegree from './pages/VocationalDegree';
 function App() {
 
-
-
-
   const router = createBrowserRouter([
     {
       path: '/',
