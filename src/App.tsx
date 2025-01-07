@@ -50,7 +50,7 @@ function App() {
         },
         {
           path: '/yo-laskuri',
-          element: <VocationalDegree />,
+          element: <MatriculationExamination />,
         },
         {
           path: '/ammatillinen-laskuri',
