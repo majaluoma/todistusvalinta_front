@@ -48,6 +48,14 @@ function App() {
           path: '/miten-kaytan-laskuria',
           element: <Help />,
         },
+        {
+          path: '/yo-laskuri',
+          element: <VocationalDegree />,
+        },
+        {
+          path: '/ammatillinen-laskuri',
+          element: <VocationalDegree />,
+        },
       ],
     }
   ]);
