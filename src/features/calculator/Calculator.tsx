@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import InfoViewContextProvider from '@/features/calculator/context/infoViewContext/InfoViewContext';
 import ThemeAccordion from './components/themeAccordion/ThemeAccordion';
 import DegreeFullInfo from './components/degreeFullInfo/DegreeFullInfo';
-import { getEvaluationOptions } from './api/getEvaluationOptions';
 import { EvaluationOptions, MeanCalculator } from './types/types';
 import { ResultParams } from './components/gradesForm/types/types';
 import useCookies from '@/hooks/useCookies';
@@ -17,14 +16,14 @@ const initialSessionCookie: { degrees: SavedDegree[] } = {
 type SavedDegree = { subjectValue: string; gradeValue: string };
 
 type CalculatorProps = {
-  optionTypes: { type: string }[];
+  evaluationOptions: EvaluationOptions[];
   addableOptions: boolean;
   vocational: boolean;
   helperCalculators?: MeanCalculator[];
   children?: JSX.Element;
 };
 export default function Calculator({
-  optionTypes,
+  evaluationOptions,
   addableOptions,
   vocational,
   helperCalculators,
@@ -88,26 +87,13 @@ export default function Calculator({
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const allOptions = await getEvaluationOptions();
-
-        const filteredOptions = optionTypes.map((type) => {
-          const option = allOptions.find((option) => {
-            return option.tyyppi === type.type;
-          });
-          if (option) {
-            return option;
-          }
-        });
-        function filterDefined<T>(array: (T | undefined)[]): T[] {
-          return array.filter((item): item is T => item !== undefined);
-        }
         const jsonCookieValue = JSON.parse(value) as { degrees: SavedDegree[] };
         if (jsonCookieValue.degrees.length === 0) {
-          setReadyOptions(filterDefined(filteredOptions));
+          setReadyOptions(evaluationOptions);
         } else {
           setReadyOptions(
             injectSavedDegrees(
-              filterDefined(filteredOptions),
+              evaluationOptions,
               jsonCookieValue.degrees,
             ),
           );
@@ -118,7 +104,7 @@ export default function Calculator({
       }
     };
     fetchOptions();
-  }, [optionTypes, value]);
+  }, [evaluationOptions, value]);
 
   return (
     <ResultContextProvider>

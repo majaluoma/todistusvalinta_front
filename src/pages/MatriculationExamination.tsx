@@ -1,33 +1,19 @@
 import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 import { BannerAdsMatriculation } from '@/data/adsData';
+import { evaluationOptionsMatriculation } from '@/data/evaluationOptions';
 import Calculator from '@/features/calculator/Calculator';
 
 export default function MatriculationExamination() {
-  const optionType = [
-    {
-      type: 'yo',
-      locked: false,
-    },
-    {
-      type: 'yo',
-      locked: false,
-    },
-    {
-      type: 'yo',
-      locked: false,
-    },
-    {
-      type: 'yo',
-      locked: false,
-    },
-    {
-      type: 'yo',
-      locked: false,
-    },
+  const evaluationOptions = [
+    evaluationOptionsMatriculation,
+    evaluationOptionsMatriculation,
+    evaluationOptionsMatriculation,
+    evaluationOptionsMatriculation,
+    evaluationOptionsMatriculation,
   ];
   return (
     <Calculator
-      optionTypes={optionType}
+      evaluationOptions={evaluationOptions}
       addableOptions={true}
       vocational={false}
     >

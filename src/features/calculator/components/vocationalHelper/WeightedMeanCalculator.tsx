@@ -97,6 +97,8 @@ export default function WeightedMeanCalculator({
                 <p>Arvosana</p>
               </div>
               <div className="flex flex-row justify-between">
+                <div className='flex flex-row items-baseline'>
+                  <span>laajuus:</span>
                 <FormField
                   control={form.control}
                   key={`meanPoints_${field.id}`}
@@ -113,10 +115,12 @@ export default function WeightedMeanCalculator({
                             : toValueLabelPair(pointsOptions)
                         }
                         className="w-[60px]"
-                      ></GradesSelect>
+                      ></GradesSelect> 
                     );
                   }}
-                ></FormField>
+                ></FormField> 
+                <span></span>
+                </div>
                 <FormField
                   control={form.control}
                   key={`meanGrade_${field.id}`}

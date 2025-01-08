@@ -2,30 +2,29 @@ import AdsBanner from '@/components/customUi/adsBanner/AdsBanner';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { BannerAdsVocational } from '@/data/adsData';
+import { evaluationOptionsVocational3Ka, evaluationOptionsVocational3Malu, evaluationOptionsVocational3Vivu, evaluationOptionsVocational3Yhty, evaluationOptionsVocational5Ka, evaluationOptionsVocational5Malu, evaluationOptionsVocational5Vivu, evaluationOptionsVocational5Yhty } from '@/data/evaluationOptions';
 import Calculator from '@/features/calculator/Calculator';
-import { MeanCalculator } from '@/features/calculator/types/types';
+import { EvaluationOptions, MeanCalculator } from '@/features/calculator/types/types';
 import { useState } from 'react';
 
 type ScaleOptions = {
   scale: string;
-  optionTypes: {
-    type: string;
-  }[];
+  evaluationOptions: EvaluationOptions[]
   gradeOptions : number [];
   helperCalculators : MeanCalculator[]
 };
 
-const optionType5 = [
-  { type: 'ammVivu1-5' },
-  { type: 'ammMalu1-5' },
-  { type: 'ammYhty1-5' },
-  { type: 'ammKa1-5' },
+const evaluationOptions3 = [
+  evaluationOptionsVocational3Vivu,
+  evaluationOptionsVocational3Malu,
+  evaluationOptionsVocational3Yhty,
+  evaluationOptionsVocational3Ka,
 ];
-const optionType3 = [
-  { type: 'ammVivu1-3' },
-  { type: 'ammMalu1-3' },
-  { type: 'ammYhty1-3' },
-  { type: 'ammKa1-3' },
+const evaluationOptions5 = [
+  evaluationOptionsVocational5Vivu,
+  evaluationOptionsVocational5Malu,
+  evaluationOptionsVocational5Yhty,
+  evaluationOptionsVocational5Ka,
 ];
 
 const gradeOptions5 = [1, 2, 3, 4, 5];
@@ -71,14 +70,35 @@ const helperCalculator5: MeanCalculator[] = [
   },
 ];
 
-const helperCalculator3 = helperCalculator5.map((calculator) => {
-  return { ...calculator, gradeOptions: gradeOptions3 };
-});
+const helperCalculator3 = 
+   [
+    {
+      subjects: [],
+      gradeOptions: gradeOptions5,
+      text: 'Aineen painotettu keskiarvo löytyy suoraan ammatillisen perustutkinnon todistuksesta. Sen löydät myös oma Opintopolku -palvelusta.',
+    },
+    {
+      subjects: [],
+      gradeOptions: gradeOptions5,
+      text: 'Aineen painotettu keskiarvo löytyy suoraan ammatillisen perustutkinnon todistuksesta. Sen löydät myös oma Opintopolku -palvelusta.',
+    },
+    {
+      subjects: [],
+      gradeOptions: gradeOptions5,
+      text: 'Aineen painotettu keskiarvo löytyy suoraan ammatillisen perustutkinnon todistuksesta. Sen löydät myös oma Opintopolku -palvelusta.',
+    },
+    {
+      subjects: [],
+      gradeOptions: gradeOptions5,
+      text: 'Tutkinnon painotettu keskiarvo löytyy suoraan ammatillisen perustutkinnon todistuksesta. Sen löydät myös oma Opintopolku -palvelusta.',
+    },
+  ]
+;
 
 export default function VocationalDegree() {
   const [degreeScale, setDegreeScale] = useState<ScaleOptions>({
     scale:'1-5',
-    optionTypes: optionType5,
+    evaluationOptions: evaluationOptions5,
     gradeOptions: gradeOptions5,
     helperCalculators: helperCalculator5
   });
@@ -87,14 +107,14 @@ export default function VocationalDegree() {
     if (value === '1-3') {
       setDegreeScale({
         scale:'1-3',
-        optionTypes: optionType3,
+        evaluationOptions: evaluationOptions3,
         gradeOptions: gradeOptions3,
         helperCalculators: helperCalculator3
       });
     }else {
       setDegreeScale({
         scale:'1-5',
-        optionTypes: optionType5,
+        evaluationOptions: evaluationOptions5,
         gradeOptions: gradeOptions5,
         helperCalculators: helperCalculator5
       });
@@ -121,7 +141,7 @@ export default function VocationalDegree() {
         </div>
       </RadioGroup>
         <Calculator
-          optionTypes={degreeScale.optionTypes}
+          evaluationOptions={degreeScale.evaluationOptions}
           addableOptions={false}
           vocational={true}
           helperCalculators={degreeScale.helperCalculators}
