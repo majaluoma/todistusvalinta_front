@@ -1,5 +1,9 @@
 import { EvaluationOptions } from '@/features/calculator/types/types';
 
+/** Configuration file for calculation models used in calculators
+ * 
+ */
+
 export const evaluationOptionsMatriculation: EvaluationOptions = {
   ArvosanaValikkoID: 1,
   tyyppi: 'yo',

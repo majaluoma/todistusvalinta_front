@@ -1,5 +1,10 @@
 import { AdsArray } from "@/components/customUi/adsBanner/types";
 
+
+/** Includes data about ads shown on the app
+ * 
+ */
+
 export const BannerAdsVocational: AdsArray = [
   {
     id: "banner_2",

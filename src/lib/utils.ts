@@ -1,14 +1,21 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+/** Combines css classes
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**  Shows text so that first letter is upperCase
+ */
 export function firstUpper(string: string) {
   return string[0].toLocaleUpperCase() + string.slice(1);
 }
 
+/**  Transforms grades from number to string type, which is recognized 
+ * by the server API
+ */
 export function numberGradeToString(num: number, type: string) {
   if (type.includes('1-5')) {
     switch (num) {
@@ -23,7 +30,7 @@ export function numberGradeToString(num: number, type: string) {
       case 5:
         return 'l';
       default:
-        return 'amis_numeron_muttamminen_epaonnistui';
+        return 'amis_numeron_muuttaminen_epaonnistui';
     }
   } else {
     switch (num) {
@@ -34,7 +41,7 @@ export function numberGradeToString(num: number, type: string) {
       case 3:
         return 'l';
       default:
-        return 'amis_numeron_muttamminen_epaonnistui';
+        return 'amis_numeron_muuttaminen_epaonnistui';
     }
   }
 }

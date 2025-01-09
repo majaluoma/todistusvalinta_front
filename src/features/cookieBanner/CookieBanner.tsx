@@ -11,6 +11,11 @@ import {
 import useAds from '@/hooks/useAds';
 import useCookies from '@/hooks/useCookies';
 
+/** Always shown on user at the start fo application
+ * if cookies were not accepted earlier. Allows
+ * user to control it's cookie settings.
+ *
+ */
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const { continueLoading, pauseLoading } = useAds();

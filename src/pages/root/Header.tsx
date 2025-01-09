@@ -1,3 +1,5 @@
+/** Shown to user at the top of site
+ */
 export default function Header() {
   return (
     <div className="fixed top-0 z-40 bg-primary w-screen flex justify-center lg:p-5 md:p-4 p-3 shadow-sm shadow-secondary overflow-hidden will-change-scroll:w-10">

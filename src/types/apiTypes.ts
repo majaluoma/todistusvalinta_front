@@ -12,18 +12,18 @@ export type ThemeObject = {
 
 export type Degree = {
   HakukohdeID: number;
-  korkeakoulu : string
-  AiheID : number;
+  korkeakoulu: string;
+  AiheID: number;
   hakukohde: string;
   nimiVipusessa: string;
 };
 
 export type Volume = {
-  VuosikertaID : number
+  VuosikertaID: number;
   LaskumalliID: number;
   vuosi: number;
   pisteRaja: number;
-  kynnysehtoOK : boolean;
+  kynnysehtoOK: boolean;
 };
 
 export type CalculationModel = {
@@ -36,5 +36,5 @@ export type Theme = {
 };
 
 export type ApiData<T> = {
-  data : T
-}
+  data: T;
+};

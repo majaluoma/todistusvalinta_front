@@ -1,14 +1,13 @@
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
 export type InfoCardProps = {
-    header: string;
-    children: ReactElement;
-    subheader?: string;
-    className?: string;
-  };
-
+  header: string;
+  children: ReactElement;
+  subheader?: string;
+  className?: string;
+};
 
 export type HoverInfoProps = {
-    text: string;
-    children: React.ReactNode;
-  }
+  text: string;
+  children: React.ReactNode;
+};

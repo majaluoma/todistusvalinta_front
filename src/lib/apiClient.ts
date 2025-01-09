@@ -2,6 +2,9 @@ type GraphqlData<T> = {
   data: T;
 };
 
+/** Make request to server
+ * 
+ */
 const makeRequest = async (
   method: string,
   url: string,
@@ -23,6 +26,9 @@ const makeRequest = async (
   }
 };
 
+/** Make a POST request to server GraphQl API
+ * 
+ */
 export async function postApi<T>(body: object): Promise<GraphqlData<T>> {
   return makeRequest(
     'POST',
@@ -32,6 +38,9 @@ export async function postApi<T>(body: object): Promise<GraphqlData<T>> {
   ) as Promise<GraphqlData<T>>;
 }
 
+/** Make a POST request to server and dont user GraphQL -API 
+ * 
+ */
 export async function postServer<T>(
   body: object,
   path: string,

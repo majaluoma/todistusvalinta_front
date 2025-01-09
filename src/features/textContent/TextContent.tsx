@@ -1,20 +1,21 @@
 import Markdown from 'react-markdown';
 import { useEffect, useState } from 'react';
 import './markdown.css';
-/**
- * Made for "Meistä" -site .
- * It should include description of the company and it's products
+
+/** Used in text-based sites to show markdown files as html
+ * @param markdownFile path to md-file
  */
-export default function TextContent({markdownFile} : Readonly<{markdownFile : string}>) {
+export default function TextContent({
+  markdownFile,
+}: Readonly<{ markdownFile: string }>) {
   const [text, setText] = useState('');
-  
+
   useEffect(() => {
     const componentWillMount = async () => {
-      // Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
       const res = await fetch(markdownFile);
       setText(await res.text());
     };
-  
+
     componentWillMount();
   }, []);
 
