@@ -8,6 +8,10 @@ import {
 
 import { VolumeItemProps } from './types';
 
+/** VolumeItem potrays one volume from a degree like year first-goer's
+ * information from year 2025.
+ *
+ */
 export default function VolumeItem({
   volume,
   degree,

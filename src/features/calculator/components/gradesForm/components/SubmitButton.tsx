@@ -1,14 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import laskin from '@/assets/laskin.svg';
+import { SubmitButtonProps } from '../types/types';
 
-type SubmitButtonProps = {
-  text: string;
-  isLoading: boolean;
-  onClick?: () => void;
-  className?: string;
-};
-
+/** Submit button used in calculator form.
+ * Can be setup to have a animation with async handler functions
+ *
+ */
 export default function SubmitButton({
   text,
   isLoading,
@@ -23,7 +21,7 @@ export default function SubmitButton({
 
   return (
     <Button
-      type='submit'
+      type="submit"
       onClick={onClick}
       className={`${
         isAnimating ? 'bg-primary' : 'bg-secondary'

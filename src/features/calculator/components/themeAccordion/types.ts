@@ -9,3 +9,6 @@ export type VolumeItemProps = {
     degree : Degree
 }
 
+export type SearchbarProps = {
+    searchFunction: (string: string | null) => void;
+  };

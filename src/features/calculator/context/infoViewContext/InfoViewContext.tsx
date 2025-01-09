@@ -4,8 +4,18 @@ import { ResultParams } from '@/features/calculator/components/gradesForm/types/
 import { InfoViewContextProps, InfoViewContextType } from './types';
 import { FullDegreeInfo } from '../../components/degreeFullInfo/types';
 
-export const InfoViewContext = createContext<InfoViewContextType>({} as InfoViewContextType);
+/** If user fetches more information on a specific degree
+ * the degree is saved in InfoViewContext and the show on
+ * user in a another component
+ */
+export const InfoViewContext = createContext<InfoViewContextType>(
+  {} as InfoViewContextType,
+);
 
+/** If user fetches more information on a specific degree
+ * the degree is saved in InfoViewContext and the show on
+ * user in a another component
+ */
 export default function InfoViewContextProvider({
   children,
 }: Readonly<InfoViewContextProps>) {
@@ -13,10 +23,10 @@ export default function InfoViewContextProvider({
   const [resultParams, setResultParams] = useState<ResultParams | null>(null);
   const [infoViewOpen, setInfoViewOpen] = useState(false);
 
-  const setDegreesAndOpen = (degree : FullDegreeInfo[]) => {
+  const setDegreesAndOpen = (degree: FullDegreeInfo[]) => {
     setInfoViewOpen(true);
     setDegrees(degree);
-  }
+  };
 
   const values = useMemo(
     () => ({
@@ -31,6 +41,8 @@ export default function InfoViewContextProvider({
   );
 
   return (
-    <InfoViewContext.Provider value={values}>{children}</InfoViewContext.Provider>
+    <InfoViewContext.Provider value={values}>
+      {children}
+    </InfoViewContext.Provider>
   );
 }

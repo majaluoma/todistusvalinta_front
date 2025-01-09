@@ -16,26 +16,33 @@ import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
 import crossIcon from '@/assets/crossIcon.svg';
 import checkIcon from '@/assets/checkIcon.svg';
 
-const degreesAndAdsOrdered = (degrees: DegreeObject[], ads : (Ad | CustomAd) []) => {
-  const degreesAndAds : (DegreeObject | CustomAd | Ad)[] = []
-   degrees.forEach((degree) => {
+const degreesAndAdsOrdered = (
+  degrees: DegreeObject[],
+  ads: (Ad | CustomAd)[],
+) => {
+  const degreesAndAds: (DegreeObject | CustomAd | Ad)[] = [];
+  degrees.forEach((degree) => {
     degreesAndAds.push(degree);
     const ad = ads.find((ad) => {
       return parseInt(ad.id.split('_')[1]) === degree.HakukohdeID;
-    })
+    });
     if (ad) {
       degreesAndAds.push(ad);
     }
-  }
-  );
+  });
   return degreesAndAds;
 };
 
+/** With provided degree list ThemeAccordion will show them all
+ * sorted by themes. It will also show additional information to
+ * user about all degrees in a specific theme.
+ *
+ */
 export default function ThemeAccordion() {
   const { degrees, resultParams } = useResultContext();
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
-  const {accordionAds} = useAds();
+  const { accordionAds } = useAds();
   useEffect(() => {
     const passedAmountPerTheme = () => {
       return filteredDegrees.map(function filterPassed(
@@ -63,7 +70,7 @@ export default function ThemeAccordion() {
       return;
     }
     const filterDegree = (degree: DegreeObject) => {
-      return (degree.hakukohde + " " + degree.korkeakoulu)
+      return (degree.hakukohde + ' ' + degree.korkeakoulu)
         .toLocaleLowerCase()
         .includes(searchValue.toLocaleLowerCase());
     };
@@ -84,11 +91,13 @@ export default function ThemeAccordion() {
             image={checkIcon}
             className="bg-primary text-secondary-foreground text-xl font-bold"
           />
-          {!resultParams?.onlyPassed && <NumberBall
-            text = "x"
-            image = {crossIcon}
-            className="border-2 bg-transparent border-black font-bold text-xl"
-          />}
+          {!resultParams?.onlyPassed && (
+            <NumberBall
+              text="x"
+              image={crossIcon}
+              className="border-2 bg-transparent border-black font-bold text-xl"
+            />
+          )}
         </div>
       </div>
       {filteredDegrees.length > 0 ? (
@@ -100,7 +109,7 @@ export default function ThemeAccordion() {
                 value={`item-${index}`}
               >
                 {theme.hakukohteet.length > 0 ? (
-                  <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mb-2 ">
+                  <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mt-2 ">
                     <span className="group-hover:underline text-start text-xl">
                       {firstUpper(theme.aihe)}
                     </span>
@@ -109,13 +118,15 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      {!resultParams?.onlyPassed && <NumberBall
-                        text={
-                          theme.hakukohteet.length -
-                          (passedTotal.get(theme.aihe) ?? 0)
-                        }
-                        className="mr-3 bg-transparent m-auto "
-                      />}
+                      {!resultParams?.onlyPassed && (
+                        <NumberBall
+                          text={
+                            theme.hakukohteet.length -
+                            (passedTotal.get(theme.aihe) ?? 0)
+                          }
+                          className="mr-3 bg-transparent m-auto "
+                        />
+                      )}
                     </div>
                   </AccordionTrigger>
                 ) : (
@@ -123,7 +134,10 @@ export default function ThemeAccordion() {
                 )}
                 <AccordionContent>
                   <VirtualizedDegreeList
-                    degreesAndAds={degreesAndAdsOrdered(theme.hakukohteet, accordionAds)}
+                    degreesAndAds={degreesAndAdsOrdered(
+                      theme.hakukohteet,
+                      accordionAds,
+                    )}
                   />
                 </AccordionContent>
               </AccordionItem>

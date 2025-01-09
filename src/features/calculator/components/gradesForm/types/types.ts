@@ -6,7 +6,10 @@ import {
 } from 'react-hook-form';
 import { z } from 'zod';
 import { formSchema } from './schemas';
-import { EvaluationOptions, MeanCalculator } from '@/features/calculator/types/types';
+import {
+  EvaluationOptions,
+  MeanCalculator,
+} from '@/features/calculator/types/types';
 
 export type Grade = {
   value: string;
@@ -19,12 +22,12 @@ export type Subject = {
 };
 
 export type GradeFormProps = {
-  readyOptions : EvaluationOptions[]
-  handleCalculation : (values : ResultParams | null) => void;
-  addableOptions : boolean;
-  vocational : boolean;
-  saveDegreesByDefault : boolean;
-  helperCalculators? : MeanCalculator [];
+  readyOptions: EvaluationOptions[];
+  handleCalculation: (values: ResultParams | null) => void;
+  addableOptions: boolean;
+  vocational: boolean;
+  saveDegreesByDefault: boolean;
+  helperCalculators?: MeanCalculator[];
 };
 
 export type FormData = {
@@ -36,7 +39,7 @@ export type FormData = {
   }[];
 };
 
-export type ResultParams = z.infer<typeof formSchema>
+export type ResultParams = z.infer<typeof formSchema>;
 
 export type OptionCheckBoxProps<T extends FieldValues> = {
   formcontrol: Control<T>;
@@ -44,6 +47,7 @@ export type OptionCheckBoxProps<T extends FieldValues> = {
   name: Path<T>;
   tooltip: string;
 };
+
 export type GradesSelectProps<T extends FieldValues> = {
   id: number;
   placeholder: string;
@@ -51,5 +55,12 @@ export type GradesSelectProps<T extends FieldValues> = {
   options: { label: string; value: string }[];
   fieldValue?: string;
   onValueChange?: (value: string) => void;
-  className? : string
+  className?: string;
+};
+
+export type SubmitButtonProps = {
+  text: string;
+  isLoading: boolean;
+  onClick?: () => void;
+  className?: string;
 };

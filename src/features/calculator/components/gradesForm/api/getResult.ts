@@ -4,19 +4,25 @@ import { DegreeObject } from '@/types/apiTypes';
 
 type ResultResponse = { laskentatulosKaikki: DegreeObject[] };
 
-export async function getResult(resultParams: ResultParams, year? : number) {
+/** Gets list of degrees from server based on user's evaluation
+ * information (subjects and grades)
+ *
+ */
+export async function getResult(resultParams: ResultParams, year?: number) {
   const gradesOnly = resultParams.grades.map((param) => {
     return param.grade;
   });
   const subjectsOnly = resultParams.grades.map((param) => {
     return param.subject;
   });
-  const yearIfExists = () =>  {
+
+  //If year is present, will fetch only volumes from specific year.
+  const yearIfExists = () => {
     if (year !== undefined) {
-      return `vuosi: ${year} ,`
+      return `vuosi: ${year} ,`;
     }
-    return " "
-  }
+    return ' ';
+  };
   const query = {
     query: `{
     laskentatulosKaikki(

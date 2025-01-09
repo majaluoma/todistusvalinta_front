@@ -8,10 +8,16 @@ import { getDegreeAndModel } from '../gradesForm/api/getDegreeAndModel';
 import { Button } from '@/components/ui/button';
 import NumberBall from '@/components/customUi/NumberBall';
 
+/** Shows information on a degree
+ * If there is only one Volume, information is shows on one page. Otherwise
+ * it is shown as a tabs with each volume present
+ *
+ */
 export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
   const { resultParams, year } = useResultContext();
   const { setDegreesAndOpen, setResultParams } = useInfoViewContext();
 
+  //Opens a side window with more information on a degree
   const handleClick = () => {
     const fetchDegreeInfo = async (
       resultParams: ResultParams,

@@ -1,10 +1,11 @@
 import { Input } from '@/components/ui/input';
 import { FormEvent } from 'react';
 import searchIcon from '@/assets/searchIcon.svg';
+import { SearchbarProps } from './types';
 
-type SearchbarProps = {
-  searchFunction: (string: string | null) => void;
-};
+/** Allows user to input strings which will trigger a search function
+ *
+ */
 export default function Searchbar({
   searchFunction,
 }: Readonly<SearchbarProps>) {

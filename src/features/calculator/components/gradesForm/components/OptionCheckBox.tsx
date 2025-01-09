@@ -9,6 +9,10 @@ import { FieldValues } from 'react-hook-form';
 import { Checkbox } from '@/components/ui/checkbox';
 import HoverInfo from '@/components/customUi/HoverInfo';
 
+/** Allows user to input boolean-type data to form
+ * 
+ *  
+*/
 export default function OptionCheckBox<T extends FieldValues>({
   formcontrol,
   label,

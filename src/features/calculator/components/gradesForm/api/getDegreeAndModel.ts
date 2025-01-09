@@ -2,14 +2,15 @@ import { ResultParams } from '@/features/calculator/components/gradesForm/types/
 import { postApi } from '@/lib/apiClient';
 import { FullDegreeInfo } from '../../degreeFullInfo/types';
 
+type ResultResponse = { kaikkiTiedotHakukohteesta: FullDegreeInfo };
 
-type ResultResponse = {kaikkiTiedotHakukohteesta: FullDegreeInfo};
-
-
+/** Gets full information about one degree based on user's evaluation
+ * information
+ */
 export async function getDegreeAndModel(
   resultParams: ResultParams,
   hakukohdeId: number,
-  laskumalliId : number
+  laskumalliId: number,
 ) {
   const gradesOnly = resultParams.grades.map((param) => {
     return param.grade;

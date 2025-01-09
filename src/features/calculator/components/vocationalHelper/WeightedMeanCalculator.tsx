@@ -7,29 +7,44 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
 import { useState } from 'react';
+import { WeightedMeanCalculatorProps } from './types';
+import { meanFormSchema } from './schemas';
 
-type WeightedMeanCalculatorProps = {
-  subjects: { subject: string; points: number }[];
-  gradeOptions: number[];
-  callback: (weightedMean: number) => void;
-  saveAndClose: (weightedMean: number) => void;
+const pointsOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const calculateMean = (values: z.infer<typeof meanFormSchema>) => {
+  const gradesAsNumValues = values.grades.map((grade) => {
+    return {
+      points: Number.parseInt(grade.points),
+      grade: Number.parseInt(grade.grade),
+    };
+  });
+  const average =
+    gradesAsNumValues.reduce((average, num) => {
+      return average + num.grade * num.points;
+    }, 0) /
+    gradesAsNumValues.reduce((sum, num) => {
+      return sum + num.points;
+    }, 0);
+
+  return Math.round(average);
 };
 
-const meanFormSchema = z.object({
-  grades: z.array(
-    z.object({
-      subject: z.string(),
-      points: z.string(),
-      grade: z.string(),
-    }),
-  ),
-});
+const toValueLabelPair = (numbers: number[]) => {
+  return numbers.map((num) => {
+    return { label: num.toString(), value: num.toString() };
+  });
+};
 
+/** will help user to define a weighted mean based on
+ * input.
+ *
+ */
 export default function WeightedMeanCalculator({
   subjects,
   gradeOptions,
   callback,
-  saveAndClose
+  saveAndClose,
 }: Readonly<WeightedMeanCalculatorProps>) {
   const form = useForm<z.infer<typeof meanFormSchema>>({
     resolver: zodResolver(meanFormSchema),
@@ -46,38 +61,12 @@ export default function WeightedMeanCalculator({
     control: form.control,
   });
 
-  const toValueLabelPair = (numbers: number[]) => {
-    return numbers.map((num) => {
-      return { label: num.toString(), value: num.toString() };
-    });
-  };
-
-  const pointsOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   const handleSubmit = (values: z.infer<typeof meanFormSchema>) => {
     saveAndClose(calculateMean(values));
   };
 
-  const calculateMean = (values: z.infer<typeof meanFormSchema>) => {
-    const gradesAsNumValues = values.grades.map((grade) => {
-      return {
-        points: Number.parseInt(grade.points),
-        grade: Number.parseInt(grade.grade),
-      };
-    });
-    const average =
-      gradesAsNumValues.reduce((average, num) => {
-        return average + num.grade * num.points;
-      }, 0) /
-      gradesAsNumValues.reduce((sum, num) => {
-        return sum + num.points;
-      }, 0);
-
-    return Math.round(average);
-  };
-
   const handeChange = () => {
-    const mean = calculateMean(form.getValues())
+    const mean = calculateMean(form.getValues());
     setWeightedMean(mean);
     callback(mean);
   };
@@ -92,34 +81,34 @@ export default function WeightedMeanCalculator({
         {fields.map((field, index) => {
           return (
             <div key={`meanGrade_${field.id}`}>
-              <div className='flex flex-row justify-between'>
+              <div className="flex flex-row justify-between">
                 <Label>{field.subject}</Label>
                 <p>Arvosana</p>
               </div>
               <div className="flex flex-row justify-between">
-                <div className='flex flex-row items-baseline'>
+                <div className="flex flex-row items-baseline">
                   <span>laajuus:</span>
-                <FormField
-                  control={form.control}
-                  key={`meanPoints_${field.id}`}
-                  name={`grades.${index}.points`}
-                  render={({ field }) => {
-                    return (
-                      <GradesSelect
-                        id={index}
-                        field={field}
-                        placeholder={'1'}
-                        options={
-                          subjects[index]
-                            ? toValueLabelPair([subjects[index].points])
-                            : toValueLabelPair(pointsOptions)
-                        }
-                        className="w-[60px]"
-                      ></GradesSelect> 
-                    );
-                  }}
-                ></FormField> 
-                <span></span>
+                  <FormField
+                    control={form.control}
+                    key={`meanPoints_${field.id}`}
+                    name={`grades.${index}.points`}
+                    render={({ field }) => {
+                      return (
+                        <GradesSelect
+                          id={index}
+                          field={field}
+                          placeholder={'1'}
+                          options={
+                            subjects[index]
+                              ? toValueLabelPair([subjects[index].points])
+                              : toValueLabelPair(pointsOptions)
+                          }
+                          className="w-[60px]"
+                        ></GradesSelect>
+                      );
+                    }}
+                  ></FormField>
+                  <span></span>
                 </div>
                 <FormField
                   control={form.control}

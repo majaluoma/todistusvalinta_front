@@ -9,6 +9,10 @@ import {
 } from './types';
 import { ResultParams } from '@/features/calculator/components/gradesForm/types/types';
 
+
+/** When user submits the calculation, the result and all degrees based on that 
+ * calculation are stored in resultContext and the shown elsewhere
+ */
 export const ResultContext = createContext<ResultContextType | null>(null);
 
 export default function ResultContextProvider({

@@ -9,6 +9,9 @@ import { GradesSelectProps } from '../types/types';
 import { FieldValues } from 'react-hook-form';
 import HoverInfo from '@/components/customUi/HoverInfo';
 
+/** Allows user to select subjects and grades
+ *
+ */
 export default function GradesSelect<T extends FieldValues>({
   id,
   placeholder,
@@ -19,14 +22,22 @@ export default function GradesSelect<T extends FieldValues>({
   className,
 }: Readonly<GradesSelectProps<T>>) {
   return (
-    <Select 
+    <Select
       value={fieldValue}
       onValueChange={onValueChange}
       disabled={options.length <= 1}
     >
-      <HoverInfo text={`${options.find(option => {return option.value === fieldValue})?.label}`}>
+      <HoverInfo
+        text={`${
+          options.find((option) => {
+            return option.value === fieldValue;
+          })?.label
+        }`}
+      >
         <SelectTrigger
-          className={`bg-input break-all disabled:opacity-80 ${options.length <=1 && `[&>svg]:invisible`} ${className}`}
+          className={`bg-input break-all disabled:opacity-80 ${
+            options.length <= 1 && `[&>svg]:invisible`
+          } ${className}`}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import { ResultContext } from './ResultContext';
 
+/** When user submits the calculation, the result and all degrees based on that 
+ * calculation are stored in resultContext and the shown elsewhere
+ */
 export function useResultContext() {
   const context = useContext(ResultContext);
   if (!context) {

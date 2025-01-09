@@ -27,6 +27,10 @@ import SubmitButton from './components/SubmitButton';
 
 const VITE_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
+/** Allows user to input it's evaluation information to be
+ * posted to the server. Can be set up differently to align to
+ * vocational schools and high-school.
+ */
 export default function GradeForm({
   readyOptions,
   addableOptions,
@@ -53,17 +57,19 @@ export default function GradeForm({
     name: 'grades',
     control: form.control,
   });
-  const subjectOptions = (options: EvaluationOptions) => {
+
+  const toSubjectOptions = (options: EvaluationOptions) => {
     return options.oppiaineet.map((option) => {
       return { value: option.oppiaine, label: option.oppiaineTeksti };
     });
   };
-  const gradeOptions = (options: EvaluationOptions) => {
+  const toGradeOptions = (options: EvaluationOptions) => {
     return options.arvosanat.map((option) => {
       return { value: option.arvosana, label: option.arvosanaTeksti };
     });
   };
 
+  //Initializes default options that appear to user at the start of render
   useEffect(() => {
     const defaultOptions = readyOptions.map((options) => {
       if (options.oppiaineet.length > 1) {
@@ -96,8 +102,9 @@ export default function GradeForm({
       setInterval(() => setIsLoading(false), 500);
       form.clearErrors();
     } catch (error: unknown) {
-      console.log(error)
+      console.log(error);
       handleCalculation(null);
+      setInterval(() => setIsLoading(false), 3000);
     }
   };
 
@@ -115,7 +122,7 @@ export default function GradeForm({
     form.setValue('grades', testData);
   }
 
-  const helperFunction = (result: number, fieldIndex: number) => {
+  const handleHelperCalculator = (result: number, fieldIndex: number) => {
     form.setValue(
       `grades.${fieldIndex}.grade`,
       numberGradeToString(result, readyOptions[0].tyyppi),
@@ -126,12 +133,12 @@ export default function GradeForm({
     if (!form.formState.isValid && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  };
 
   return (
     <Form {...form}>
-      <div ref={ref} className='absolute top-0'></div>
-      <form 
+      <div ref={ref} className="absolute top-0"></div>
+      <form
         onSubmit={form.handleSubmit(fetchResult, handleError)}
         className="space-y-4 flex flex-col items-center w-full align-top"
       >
@@ -140,88 +147,90 @@ export default function GradeForm({
             {form.formState.errors.grades.root?.message}
           </div>
         )}
-        <div className='flex space-y-4 flex-col items-center w-full align-top min-h-[21rem]'>
-        {fields.map((field, index) => (
-          <FormField
-          control={form.control}
-            key={`field_${field.id}`}
-            name={`grades.${index}.subject`}
-            render={({ field }) => (
-              <FormItem className='w-full'>
-                <FormLabel
-                  className={`${index !== 0 ? 'sr-only' : ''} text-xl`}
+        <div className="flex space-y-4 flex-col items-center w-full align-top min-h-[21rem]">
+          {fields.map((field, index) => (
+            <FormField
+              control={form.control}
+              key={`field_${field.id}`}
+              name={`grades.${index}.subject`}
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel
+                    className={`${index !== 0 ? 'sr-only' : ''} text-xl`}
                   >
-                  Oppiaineet ja arvosanat
-                </FormLabel>
-                <FormControl >
-                  <div className="flex items-center space-x-2">
-                    <GradesSelect
-                      className="w-3/5"
-                      id={index}
-                      placeholder={'Oppiaine'}
-                      field={field}
-                      options={
-                        readyOptions[index]
-                        ? subjectOptions(readyOptions[index])
-                        : subjectOptions(readyOptions[0])
-                      }
+                    Oppiaineet ja arvosanat
+                  </FormLabel>
+                  <FormControl>
+                    <div className="flex items-center space-x-2">
+                      <GradesSelect
+                        className="w-3/5"
+                        id={index}
+                        placeholder={'Oppiaine'}
+                        field={field}
+                        options={
+                          readyOptions[index]
+                            ? toSubjectOptions(readyOptions[index])
+                            : toSubjectOptions(readyOptions[0])
+                        }
                       />
-                    <GradesSelect
-                      className="w-2/5"
-                      id={index}
-                      placeholder={'Arvosana'}
-                      field={field}
-                      options={
-                        readyOptions[index]
-                        ? gradeOptions(readyOptions[index])
-                        : gradeOptions(readyOptions[0])
-                      }
-                      fieldValue={form.watch(`grades.${index}.grade`)}
-                      onValueChange={(value) =>
-                        form.setValue(`grades.${index}.grade`, value || '')
-                      }
+                      <GradesSelect
+                        className="w-2/5"
+                        id={index}
+                        placeholder={'Arvosana'}
+                        field={field}
+                        options={
+                          readyOptions[index]
+                            ? toGradeOptions(readyOptions[index])
+                            : toGradeOptions(readyOptions[0])
+                        }
+                        fieldValue={form.watch(`grades.${index}.grade`)}
+                        onValueChange={(value) =>
+                          form.setValue(`grades.${index}.grade`, value || '')
+                        }
                       />
-                    {addableOptions && (
-                      <Button
-                      type="button"
-                      variant="ghost"
-                      className="hover:bg-card"
-                      size="icon"
-                      onClick={() => remove(index)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
-                    )}
-                    {helperCalculators && helperCalculators[index] && (
-                      <VocationalHelper
-                        calculator={helperCalculators[index]}
-                        callback={(num) => helperFunction(num, index)}
+                      {addableOptions && (
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          className="hover:bg-card"
+                          size="icon"
+                          onClick={() => remove(index)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      )}
+                      {helperCalculators && helperCalculators[index] && (
+                        <VocationalHelper
+                          calculator={helperCalculators[index]}
+                          callback={(num) => handleHelperCalculator(num, index)}
                         />
                       )}
+                    </div>
+                  </FormControl>
+                  <div className=" flex flex-row mr-4">
+                    <FormMessage className="w-3/5" />
+                    <FormField
+                      control={form.control}
+                      name={`grades.${index}.grade`}
+                      render={({ fieldState }) => (
+                        <FormMessage className="w-2/5 mr-4">
+                          {fieldState.error?.message}
+                        </FormMessage>
+                      )}
+                    />
                   </div>
-                </FormControl>
-                <div className=' flex flex-row mr-4'>
-                <FormMessage className="w-3/5"/>
-                <FormField 
-                  control={form.control}
-                  name={`grades.${index}.grade`}
-                  render={({ fieldState }) => (
-                    <FormMessage className="w-2/5 mr-4">{fieldState.error?.message}</FormMessage>
-                  )}
-                  />
-                </div>
-              </FormItem>
-            )}
-          />
-        ))}
+                </FormItem>
+              )}
+            />
+          ))}
         </div>
         {addableOptions ? (
           <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="mt-2 text-base hover:bg-card"
-          onClick={() => append({ subject: '', grade: '' })}
+            type="button"
+            variant="outline"
+            size="sm"
+            className="mt-2 text-base hover:bg-card"
+            onClick={() => append({ subject: '', grade: '' })}
           >
             <PlusCircle className="mr-2 h-4 w-4" />
             Lisää arvosana
@@ -250,7 +259,7 @@ export default function GradeForm({
           ></OptionCheckBox>
         </div>
         <div className="flex gap-4">
-          <SubmitButton text="Laske" isLoading={isLoading}/>
+          <SubmitButton text="Laske" isLoading={isLoading} />
           {VITE_ENVIRONMENT === 'development' && (
             <SubmitButton
               text="Testaa"
