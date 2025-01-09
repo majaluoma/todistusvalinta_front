@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-muted text-muted-foreground mt-auto w-full shadow-lg shadow-secondary overflow-hidden">
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center gap-4">
-        <h2 className="text-2xl font-bold text-primary">Todistusvalinta.fi</h2>
+        <h2 className="text-2xl font-bold text-primary">todistusvalinta.fi</h2>
 
         <nav className="flex flex-wrap gap-4">
           <a href={privacyPolicy} className="text-blue-900 underline text-base">

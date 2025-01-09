@@ -125,12 +125,14 @@ export default function VocationalDegree() {
 
   return (
     <div className="flex flex-col items-center">
+      <div className='flex flex-wrap flex-row items-baseline gap-2'>
+      <p>Valitse todistuksesi arviointiasteikko:</p>
+
       <RadioGroup
         defaultValue="1-5"
         onValueChange={handleChange}
-        className="flex flex-row gap-3 mb-4 flex-wrap mx-4"
-      >
-        <p>Valitse todistuksesi arviointiasteikko:</p>
+        className="flex flex-row gap-3 mb-4 flex-wrap "
+        >
         <div className="flex items-center">
           <RadioGroupItem value="1-5" id="1-5" />
           <Label htmlFor="1-5">1-5</Label>
@@ -140,6 +142,7 @@ export default function VocationalDegree() {
           <Label htmlFor="1-3">1-3</Label>
         </div>
       </RadioGroup>
+      </div>
         <Calculator
           evaluationOptions={degreeScale.evaluationOptions}
           addableOptions={false}
