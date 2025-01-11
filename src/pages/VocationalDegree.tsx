@@ -46,7 +46,7 @@ const helperCalculator5: MeanCalculator[] = [
   {
     subjects: [
       { subject: 'Matematiikka', points: 4 },
-      { subject: 'Fysikaaliset ja kemialliset ilmiöt', points: 1 },
+      { subject: 'Fysikaaliset ja kemialliset ilmiöt', points: 2 },
     ],
     gradeOptions: gradeOptions5,
     text: 'Löydät tarvitsemasi tarkemmat arvosanat todistuksestasi esimerkiksi opintopolusta',
@@ -57,7 +57,7 @@ const helperCalculator5: MeanCalculator[] = [
       { subject: 'Työelämässä toimiminen', points: 2 },
       { subject: 'Opiskelu- ja urasuunnitteluvalmiudet', points: 1 },
       { subject: 'Yrittäjyys ja yrittäjämäinen toiminta', points: 1 },
-      { subject: 'Työkyvyn ja hyvinvoinnin ylläpitäminen', points: 1 },
+      { subject: 'Työkyvyn ja hyvinvoinnin ylläpitäminen', points: 2 },
       { subject: 'Kestävän kehityksen edistäminen', points: 1 },
     ],
     gradeOptions: gradeOptions5,
