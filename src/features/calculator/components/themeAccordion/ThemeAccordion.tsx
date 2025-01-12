@@ -69,10 +69,18 @@ export default function ThemeAccordion() {
       setFilteredDegrees(degrees);
       return;
     }
+    const searchWords = searchValue.split(' ');
     const filterDegree = (degree: DegreeObject) => {
-      return (degree.hakukohde + ' ' + degree.korkeakoulu)
-        .toLocaleLowerCase()
-        .includes(searchValue.toLocaleLowerCase());
+      for (let i = 0; i < searchWords.length; i++) {
+        const searchWord = searchWords[i];
+        if (
+          !((degree.hakukohde + ' ' + degree.korkeakoulu)
+          .toLocaleLowerCase()
+          .includes(searchWord.toLocaleLowerCase()))) {
+            return false;
+          }
+      }
+      return true;
     };
     const mapFilteredThemes = (theme: ThemeObject) => {
       return { ...theme, hakukohteet: theme.hakukohteet.filter(filterDegree) };
