@@ -117,7 +117,7 @@ export default function ThemeAccordion() {
                 value={`item-${index}`}
               >
                 {theme.hakukohteet.length > 0 ? (
-                  <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mt-2 ">
+                  <AccordionTrigger className="flex flex-row justify-between px-6 rounded-md group py-3 bg-card hover:bg-background mt-2 w-full">
                     <span className="group-hover:underline text-start text-xl">
                       {firstUpper(theme.aihe)}
                     </span>
