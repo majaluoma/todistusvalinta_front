@@ -10,10 +10,21 @@ import VolumeInfo from './VolumeInfo';
 import PointsInfo from './PointsInfo';
 import { useInfoViewContext } from '../../context/infoViewContext/useResultContext';
 import ErrorBlock from '@/components/error/ErrorBlock';
+import { getDegreeUrl } from './opintopolkuApi/getDegreeUrl';
+import { Button } from '@/components/ui/button';
+import { FullDegreeInfo } from './types';
 
 export default function DegreeFullInfo() {
   const { degrees, infoViewOpen, setInfoViewOpen, resultParams } =
     useInfoViewContext();
+
+  const handleTitleClick = async (degree: FullDegreeInfo) => {
+    const redirectUrl = await getDegreeUrl(
+      degree.hakukohteet[0].hakukohde + ' ' + degree.hakukohteet[0].korkeakoulu,
+    );
+    window.location.href = redirectUrl;
+  };
+
   return (
     <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
       <SheetContent side={'left'}>
@@ -26,21 +37,29 @@ export default function DegreeFullInfo() {
               >
                 <SheetHeader>
                   <SheetTitle className="text-xl mb-8 mr-[2rem] text-wrap text-start">
-                    {degree.hakukohteet[0].hakukohde}
+                    <Button
+                      variant="link"
+                      onClick={() => handleTitleClick(degree)}
+                    >
+                      {degree.hakukohteet[0].hakukohde}
+                    </Button>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col h-screen pb-40">
                   <div className="flex flex-col mb-8 left-4 ">
                     <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
                   </div>
-                  <ScrollArea type="always"  className="h-full sw-auto rounded-md mb-5">
+                  <ScrollArea
+                    type="always"
+                    className="h-full sw-auto rounded-md mb-5"
+                  >
                     {degree.hakukohteet[0].vuosikerrat.map((vuosikerta) => {
                       return (
-                        <div 
-                        key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}
-                        className='mb-3'>
+                        <div
+                          key={`moreInfo_volume_${vuosikerta.VuosikertaID}`}
+                          className="mb-3"
+                        >
                           <VolumeInfo
-                            
                             volume={vuosikerta}
                             kaikkienPisteet={
                               degree.hakukohteet[1]?.vuosikerrat.find((v) => {

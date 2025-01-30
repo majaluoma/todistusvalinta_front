@@ -23,16 +23,15 @@ export default function Searchbar({
   };
 
   const clearInput = () => {
-    console.log("MOikka")
     setInputValue('');
     searchFunction(null);
   };
 
   return (
-    <div className="relative flex w-full mr-12 justify-between">
+    <div className="relative flex w-full mr-4 justify-between">
       <Input
         onInput={handleInput}
-        type="search"
+        type="text"
         value={inputValue}
         placeholder="Etsi hakukohdetta..."
         className="peer bg-input placeholder:text-sm md:text-base lg:text-base"
