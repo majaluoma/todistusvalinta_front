@@ -22,7 +22,11 @@ export default function DegreeFullInfo() {
     const redirectUrl = await getDegreeUrl(
       degree.hakukohteet[0].hakukohde + ' ' + degree.hakukohteet[0].korkeakoulu,
     );
-    window.location.href = redirectUrl;
+   
+    window.open(
+      redirectUrl,
+      '_blank' // <- This is what makes it open in a new window.
+    );
   };
 
   return (
@@ -36,10 +40,11 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-xl mb-8 mr-[2rem] text-wrap text-start">
+                  <SheetTitle className="text-xl mb-8 mr-[2rem]">
                     <Button
                       variant="link"
                       onClick={() => handleTitleClick(degree)}
+                      className="text-wrap text-start text-xl"
                     >
                       {degree.hakukohteet[0].hakukohde}
                     </Button>
