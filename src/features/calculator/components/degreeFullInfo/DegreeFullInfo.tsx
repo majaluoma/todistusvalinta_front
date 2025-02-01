@@ -40,7 +40,7 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="text-xl mb-8 mr-[2rem]">
+                  <SheetTitle className="mb-8 mr-[2rem]">
                     <Button
                       variant="link"
                       onClick={() => handleTitleClick(degree)}
