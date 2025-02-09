@@ -20,7 +20,7 @@ export default function DegreeFullInfo() {
 
   const handleTitleClick = async (degree: FullDegreeInfo) => {
     const redirectUrl = await getDegreeUrl(
-      degree.hakukohteet[0].hakukohde + ' ' + degree.hakukohteet[0].korkeakoulu,
+      degree.hakukohteet[0].hakukohde, degree.hakukohteet[0].korkeakoulu,
     );
    
     window.open(
