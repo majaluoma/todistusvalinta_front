@@ -103,33 +103,5 @@ export const AccordionAds: AdsArray = [
     osoite:
       'valmennuskeskus.fi/amk-tekniikan-alan-valmennuskurssi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=amk',
     mainospalvelu: 'custom',
-  },
-  {
-    id: "acc_256",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_997",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_1027",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_907",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_674",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_646",
-    mainospalvelu: 'adsense',
-  },
-  {
-    id: "acc_935",
-    mainospalvelu: 'adsense',
-  },
+  }
 ];
