@@ -39,6 +39,7 @@ query {
         pisteRaja
         VuosikertaID
         vuosi
+        haku 
         LaskumalliID
         kynnysehtoOK
         kynnysehdot {

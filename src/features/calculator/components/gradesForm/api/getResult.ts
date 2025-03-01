@@ -41,6 +41,7 @@ export async function getResult(resultParams: ResultParams, year?: number) {
           VuosikertaID 
           kynnysehtoOK 
           vuosi 
+          haku 
           LaskumalliID 
           laskumalli {
             summa {

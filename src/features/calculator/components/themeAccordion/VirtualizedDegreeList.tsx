@@ -43,9 +43,9 @@ export default function VirtualizedDegreeList({
 
   return (
     <List
-      height={height} // Adjust this value based on your needs
+      height={height}
       itemCount={degreesAndAds.length}
-      itemSize={itemHeight} // Adjust this value based on your DegreeItem height
+      itemSize={itemHeight}
       width="100%"
     >
       {({ index, style }) => {

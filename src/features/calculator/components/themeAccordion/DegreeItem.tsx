@@ -59,8 +59,8 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
       >
         ?
       </Button>
-      <Tabs defaultValue={(year || 2024).toString()} className="w-auto p-0">
-        {degree.vuosikerrat.length > 1 && (
+      <Tabs defaultValue={degree.vuosikerrat[0].VuosikertaID.toString()} className="w-auto p-0">
+        {!year && (
           <TabsList className="flex flex-row relative items-start align-bottom justify-start ">
             {degree.vuosikerrat.map((volume) => {
               const passed =
@@ -69,10 +69,10 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
               return (
                 <TabsTrigger
                   key={`volumeTab_${degree.HakukohdeID}_${volume.vuosi}`}
-                  value={`${volume.vuosi}`}
+                  value={`${volume.VuosikertaID}`}
                   className={`text-sm w-24 rounded-b-none bg-card data-[state=active]:bg-card`}
                 >
-                  {volume.vuosi}
+                  {volume.vuosi} 
                   {passed ? (
                     <NumberBall
                       text="✓"
@@ -90,7 +90,7 @@ export default function DegreeItem({ degree }: Readonly<DegreeItemProps>) {
           return (
             <TabsContent
               onClick={handleClick}
-              value={`${volume.vuosi}`}
+              value={`${volume.VuosikertaID}`}
               key={`volume_${degree.HakukohdeID}_${volume.vuosi}`}
             >
               <VolumeItem volume={volume} degree={degree}></VolumeItem>

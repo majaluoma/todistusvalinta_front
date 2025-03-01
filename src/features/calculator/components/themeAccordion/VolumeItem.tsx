@@ -33,7 +33,9 @@ export default function VolumeItem({
         <CardContent className="flex flex-row justify-between">
           <div className="flex flex-row ">
             <p className="text-sm mr-0.5 text-muted-foreground">
-              {volume.vuosi}:{' '}
+              {volume.vuosi} 
+              {volume.haku === "Kevään yhteishaku"? " kevät" : " syksy" }
+              :{' '}
             </p>
             <p
               className={`text-sm ${

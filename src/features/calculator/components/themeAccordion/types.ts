@@ -1,4 +1,4 @@
-import { Degree, DegreeObject, VolumeObject } from "@/types/apiTypes";
+import { DegreeObject, VolumeObject } from "@/types/apiTypes";
 
 export type DegreeItemProps = {
     degree : DegreeObject;
@@ -6,7 +6,7 @@ export type DegreeItemProps = {
 
 export type VolumeItemProps = {
     volume : VolumeObject;
-    degree : Degree
+    degree : DegreeObject
 }
 
 export type SearchbarProps = {

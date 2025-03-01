@@ -24,6 +24,7 @@ export type Volume = {
   vuosi: number;
   pisteRaja: number;
   kynnysehtoOK: boolean;
+  haku : string;
 };
 
 export type CalculationModel = {
