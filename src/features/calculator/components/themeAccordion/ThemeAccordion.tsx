@@ -89,7 +89,7 @@ export default function ThemeAccordion() {
   };
 
   return resultParams ? (
-    <div>
+    <div className='w-full'>
       <h2 className="text-2xl font-bold">Tulokset</h2>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
         <Searchbar searchFunction={searchDegrees} />

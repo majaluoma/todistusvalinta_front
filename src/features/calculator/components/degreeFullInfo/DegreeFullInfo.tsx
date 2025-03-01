@@ -13,6 +13,7 @@ import ErrorBlock from '@/components/error/ErrorBlock';
 import { getDegreeUrl } from './opintopolkuApi/getDegreeUrl';
 import { Button } from '@/components/ui/button';
 import { FullDegreeInfo } from './types';
+import locationIcon from '@/assets/location.svg';
 
 export default function DegreeFullInfo() {
   const { degrees, infoViewOpen, setInfoViewOpen, resultParams } =
@@ -20,15 +21,15 @@ export default function DegreeFullInfo() {
 
   const handleTitleClick = async (degree: FullDegreeInfo) => {
     const redirectUrl = await getDegreeUrl(
-      degree.hakukohteet[0].hakukohde, degree.hakukohteet[0].korkeakoulu,
+      degree.hakukohteet[0].hakukohde,
+      degree.hakukohteet[0].korkeakoulu,
     );
-   
+
     window.open(
       redirectUrl,
-      '_blank' // <- This is what makes it open in a new window.
+      '_blank', // <- This is what makes it open in a new window.
     );
   };
-
   return (
     <Sheet open={infoViewOpen} onOpenChange={setInfoViewOpen}>
       <SheetContent side={'left'}>
@@ -40,18 +41,19 @@ export default function DegreeFullInfo() {
                 className="h-full pb-28"
               >
                 <SheetHeader>
-                  <SheetTitle className="mb-8 mr-[2rem]">
+                  <SheetTitle className="mb-8 mr-[1rem] mt-3 flex justify-start items-start">
                     <Button
                       variant="link"
                       onClick={() => handleTitleClick(degree)}
-                      className="text-wrap text-start text-xl"
+                      className="text-wrap text-start text-xl right-3.5 relative"
                     >
                       {degree.hakukohteet[0].hakukohde}
                     </Button>
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col h-screen pb-40">
-                  <div className="flex flex-col mb-8 left-4 ">
+                  <div className="flex mb-8 left-4 ">
+                    <img className="size-5 mr-1" src={locationIcon} alt={'etsi'} />
                     <h2>{degree.hakukohteet[0].korkeakoulu}</h2>
                   </div>
                   <ScrollArea
