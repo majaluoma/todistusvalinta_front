@@ -31,7 +31,7 @@ export default function VolumeInfo({
   };
 
   return (
-    <InfoCard header={vuosikerta.vuosi.toString()}>
+    <InfoCard header={`${vuosikerta.vuosi.toString()} ${vuosikerta.haku === "Kevään yhteishaku"? "kevät" : "syksy"}`}>
       <div>
         <p className="flex flex-row">
           Pisteesi: {vuosikerta.laskumalli.summa.pisteet} /{' '}

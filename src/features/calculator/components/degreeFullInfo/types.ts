@@ -67,6 +67,7 @@ export type Aine = {
     kynnysehtoOK: boolean;
     LaskumalliID: number;
     vuosi: number;
+    haku: string;
   };
   
   // First is the ensikertalaiset, second the other
