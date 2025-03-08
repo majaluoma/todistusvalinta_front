@@ -24,8 +24,7 @@ import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
 import SubmitButton from './components/SubmitButton';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+import SeasonsRadioGroup from './components/SeasonsRadioGroup';
 
 const VITE_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
@@ -260,45 +259,7 @@ export default function GradeForm({
             name="saveDegrees"
             tooltip="Arvosanasi tallennetaan evästeelle."
           ></OptionCheckBox>
-          <FormField
-            control={form.control}
-            name="isSpring"
-            key={`isSpring`}
-            render={(field) => (
-              <FormItem>
-                <div className="flex flex-wrap flex-row items-baseline gap-2">
-                  <RadioGroup
-                    name="isSpring"
-                    className="flex flex-row gap-3 mb-4 flex-wrap "
-                    value={field.field.value.toString()}
-                  >
-                    <div className="flex items-center gap-3">
-                      <FormControl>
-                        <RadioGroupItem
-                          value="true"
-                          id="isSpring"
-                          className="size-6"
-                          onChange={field.field.onChange}
-                        />
-                      </FormControl>
-                      <Label htmlFor="true">Kevään yhteishaku</Label>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <FormControl>
-                        <RadioGroupItem
-                          value="false"
-                          id="notSpring"
-                          className="size-6"
-                          onChange={field.field.onChange}
-                        />
-                      </FormControl>
-                      <Label htmlFor="false">Syksyn yhteishaku</Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-              </FormItem>
-            )}
-          />
+          <SeasonsRadioGroup name="isSpring" formcontrol={form.control}/>
         </div>
         <div className="flex gap-4">
           <SubmitButton text="Laske" isLoading={isLoading} />

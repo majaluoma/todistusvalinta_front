@@ -64,3 +64,8 @@ export type SubmitButtonProps = {
   onClick?: () => void;
   className?: string;
 };
+
+export type SeasonsRadioGroupProps <T extends FieldValues> ={
+  formcontrol : Control<T>,
+  name : Path<T>
+}
