@@ -5,6 +5,7 @@ export const formSchema = z.object({
   onlyPassed: z.boolean().default(false),
   vocational: z.boolean().default(false),
   test: z.boolean().default(false),
+  isSpring: z.boolean().default(true),
   saveDegrees: z.boolean().default(false),
   grades: z
     .array(

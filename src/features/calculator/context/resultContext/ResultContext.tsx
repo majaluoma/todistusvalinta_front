@@ -46,14 +46,17 @@ export default function ResultContextProvider({
 
   const setDegreesAndThemes = (degrees: DegreeObject[], resultParams : ResultParams) => {
     setResultParams(resultParams);
+    let degreesList = [];
+
     if (resultParams.onlyPassed) {
-      const onlyPassedDegrees = degrees.filter(degree => {
+      degreesList = degrees.filter(degree => {
         return degree.vuosikerrat[0].kynnysehtoOK && degree.vuosikerrat[0].pisteRaja <= degree.vuosikerrat[0].laskumalli.summa.pisteet
       })
-      setDegrees(formThemesFromDegrees(onlyPassedDegrees));
-    }else {
-      setDegrees(formThemesFromDegrees(degrees));
+    }else  {
+      degreesList = degrees;
     }
+    setDegrees(formThemesFromDegrees(degreesList));
+    
   };
 
   const formThemesFromDegrees = (degrees: DegreeObject[]): ThemeObject[] => {

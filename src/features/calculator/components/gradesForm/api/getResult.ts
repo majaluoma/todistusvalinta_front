@@ -26,6 +26,7 @@ export async function getResult(resultParams: ResultParams, year?: number) {
   const query = {
     query: `{
     laskentatulosKaikki(
+    haku: ${resultParams.isSpring? `"Kevään yhteishaku"` : `"Syksyn yhteishaku"`},
     ensikertalainen: ${resultParams.firstTimer}, 
     ${yearIfExists()}
     arviointitiedot: {
