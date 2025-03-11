@@ -11,3 +11,11 @@ export type HoverInfoProps = {
   text: string;
   children: React.ReactNode;
 };
+
+export type CheckboxWithHoverProps =  {
+    tooltip: string;
+    onChange: React.Dispatch<React.SetStateAction<boolean>>;
+    value: boolean;
+    label?: string
+
+}

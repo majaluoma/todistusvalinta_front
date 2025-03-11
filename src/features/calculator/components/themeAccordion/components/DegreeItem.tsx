@@ -1,10 +1,10 @@
-import { DegreeItemProps } from './types';
+import { DegreeItemProps } from '../types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import VolumeItem from './VolumeItem';
 import { useResultContext } from '@/features/calculator/context/resultContext/useResultContext';
 import { useInfoViewContext } from '@/features/calculator/context/infoViewContext/useResultContext';
-import { ResultParams } from '../gradesForm/types/types';
-import { getDegreeAndModel } from '../gradesForm/api/getDegreeAndModel';
+import { ResultParams } from '../../gradesForm/types/types';
+import { getDegreeAndModel } from '../../gradesForm/api/getDegreeAndModel';
 import { Button } from '@/components/ui/button';
 import NumberBall from '@/components/customUi/NumberBall';
 

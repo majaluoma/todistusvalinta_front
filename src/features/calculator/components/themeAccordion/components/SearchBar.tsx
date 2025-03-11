@@ -2,7 +2,7 @@ import { Input } from '@/components/ui/input';
 import { FormEvent, useState } from 'react';
 import searchIcon from '@/assets/searchIcon.svg';
 import crossIcon from '@/assets/crossIcon.svg';
-import { SearchbarProps } from './types';
+import { SearchbarProps } from '../types';
 import { Button } from '@/components/ui/button';
 
 /** Allows user to input strings which will trigger a search function

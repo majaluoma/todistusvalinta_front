@@ -45,7 +45,6 @@ export default function GradeForm({
     defaultValues: {
       vocational: vocational,
       firstTimer: true,
-      onlyPassed: false,
       test: false,
       isSpring: true,
       saveDegrees: saveDegreesByDefault,
@@ -246,12 +245,6 @@ export default function GradeForm({
             label="Olen ensikertalainen"
             name="firstTimer"
             tooltip="Jos et ole ottanut paikkaa vastaan suomalaisesta korkeakoulusta"
-          ></OptionCheckBox>
-          <OptionCheckBox
-            formcontrol={form.control}
-            label="Näytä vain paikat, joihin pääsisin"
-            name="onlyPassed"
-            tooltip="Näytä vain paikat joihin olisit viime vuonna päässyt sisään"
           ></OptionCheckBox>
           <OptionCheckBox
             formcontrol={form.control}

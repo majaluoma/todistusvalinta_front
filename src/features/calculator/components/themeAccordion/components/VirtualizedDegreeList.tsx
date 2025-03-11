@@ -9,7 +9,7 @@ import {
   CustomAd,
   CustomAdSchema,
 } from '@/components/customUi/adsBanner/types';
-import { useResultContext } from '../../context/resultContext/useResultContext';
+import { useResultContext } from '../../../context/resultContext/useResultContext';
 import { useEffect, useState } from 'react';
 
 type VirtualizedDegreeListProps = {

@@ -9,12 +9,19 @@ import { useResultContext } from '@/features/calculator/context/resultContext/us
 import { DegreeObject, ThemeObject } from '@/types/apiTypes';
 import NumberBall from '@/components/customUi/NumberBall';
 import { useEffect, useState } from 'react';
-import VirtualizedDegreeList from './VirtualizedDegreeList';
-import Searchbar from './SearchBar';
+import VirtualizedDegreeList from './components/VirtualizedDegreeList';
+import Searchbar from './components/SearchBar';
 import useAds from '@/hooks/useAds';
 import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
 import crossIcon from '@/assets/crossIcon.svg';
 import checkIcon from '@/assets/checkIcon.svg';
+import CheckboxWithHover from '@/components/customUi/CheckboxWithHover';
+import filterDegreeByNameAndSchool, {
+  filterPassed,
+  passedAmountPerTheme,
+} from './lib/utils';
+import { Button } from '@/components/ui/button';
+import { getResult } from '../gradesForm/api/getResult';
 
 const degreesAndAdsOrdered = (
   degrees: DegreeObject[],
@@ -39,30 +46,27 @@ const degreesAndAdsOrdered = (
  *
  */
 export default function ThemeAccordion() {
-  const { degrees, resultParams } = useResultContext();
+  const { degrees, resultParams, setDegreesAndThemes } = useResultContext();
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const { accordionAds } = useAds();
-  useEffect(() => {
-    const passedAmountPerTheme = () => {
-      return filteredDegrees.map(function filterPassed(
-        theme,
-      ): [string, number] {
-        const passedDegrees = theme.hakukohteet.filter((e) => {
-          return (
-            e.vuosikerrat[0].laskumalli.summa.pisteet >=
-              e.vuosikerrat[0].pisteRaja && e.vuosikerrat[0].kynnysehtoOK
-          );
-        });
-        return [theme.aihe, passedDegrees.length];
-      });
-    };
-    setPassedTotal(new Map<string, number>(passedAmountPerTheme()));
-  }, [filteredDegrees]);
+  const [onlyPassed, setOnlyPassed] = useState(false);
+  const [isSpring, setIsSpring] = useState(true);
 
   useEffect(() => {
-    setFilteredDegrees(degrees);
-  }, [degrees]);
+    setPassedTotal(
+      new Map<string, number>(passedAmountPerTheme(filteredDegrees)),
+    );
+  }, [filteredDegrees]);
+
+
+  useEffect(() => {
+    if (onlyPassed) {
+      setFilteredDegrees(filterPassed(degrees));
+    } else {
+      setFilteredDegrees(degrees);
+    }
+  }, [degrees, onlyPassed]);
 
   const searchDegrees = (searchValue: string | null) => {
     if (searchValue === null) {
@@ -70,32 +74,40 @@ export default function ThemeAccordion() {
       return;
     }
     const searchWords = searchValue.split(' ');
-    const filterDegree = (degree: DegreeObject) => {
-      for (let i = 0; i < searchWords.length; i++) {
-        const searchWord = searchWords[i];
-        if (
-          !(degree.hakukohde + ' ' + degree.korkeakoulu)
-            .toLocaleLowerCase()
-            .includes(searchWord.toLocaleLowerCase())
-        ) {
-          return false;
-        }
-      }
-      return true;
+    const filterByKeyword = (degree: DegreeObject) => {
+      return filterDegreeByNameAndSchool(degree, searchWords);
     };
     const mapFilteredThemes = (theme: ThemeObject) => {
-      return { ...theme, hakukohteet: theme.hakukohteet.filter(filterDegree) };
+      return {
+        ...theme,
+        hakukohteet: theme.hakukohteet.filter(filterByKeyword),
+      };
     };
     setFilteredDegrees(degrees.map(mapFilteredThemes));
   };
 
+  const handleSeasonClick = async () => {
+    const oppositeSeason = !isSpring;
+    setIsSpring(oppositeSeason)
+    if (resultParams) {
+      const result =  await getResult({...resultParams, isSpring: oppositeSeason})
+      setDegreesAndThemes(result , {...resultParams, isSpring: oppositeSeason})
+    } 
+  }
+
   return resultParams ? (
     <div className="w-full">
-      <h2 className="text-2xl font-bold">
-        {resultParams.isSpring ? 'Kevään ' : 'Syksyn '}
-         yhteishaun tulokset
-      </h2>
-      <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
+      <div className='flex flex-row gap-2'>
+        <h2 className="text-2xl font-bold flex flex-row">
+          {isSpring ? 'Kevään ' : 'Syksyn '} yhteishaun tulokset{' '}
+        </h2>
+        <Button variant={"ghost"} className="text-sm font-light text-gray-600"
+        onClick={handleSeasonClick}>
+          {' '}
+          näytä {!isSpring ? 'kevään ' : 'syksyn '} tulosket{' '}
+        </Button>
+      </div>
+      <div className="flex flex-row justify-between w-full pr-6 my-3">
         <Searchbar searchFunction={searchDegrees} />
         <div className="flex flex-row mr-7">
           <NumberBall
@@ -103,7 +115,7 @@ export default function ThemeAccordion() {
             image={checkIcon}
             className="bg-primary text-secondary-foreground text-xl font-bold"
           />
-          {!resultParams?.onlyPassed && (
+          {!onlyPassed && (
             <NumberBall
               text="x"
               image={crossIcon}
@@ -112,8 +124,14 @@ export default function ThemeAccordion() {
           )}
         </div>
       </div>
+      <CheckboxWithHover
+        label="Näytä vain paikat, joihin pääsisin"
+        value={onlyPassed}
+        onChange={setOnlyPassed}
+        tooltip="Näytä vain paikat joihin viime vuonna olisit päässyt"
+      />
       {filteredDegrees.length > 0 ? (
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full mt-7">
           {filteredDegrees.map((theme, index) => {
             return (
               <AccordionItem
@@ -130,7 +148,7 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      {!resultParams?.onlyPassed && (
+                      {!onlyPassed && (
                         <NumberBall
                           text={
                             theme.hakukohteet.length -

@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-import { VolumeItemProps } from './types';
+import { VolumeItemProps } from '../types';
 
 /** VolumeItem potrays one volume from a degree like year first-goer's
  * information from year 2025.
