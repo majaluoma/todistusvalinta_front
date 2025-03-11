@@ -15,10 +15,10 @@ export const BannerAdsVocational: AdsArray = [
 export const BannerAdsMatriculation: AdsArray = [
   {
     id: "banner_3",
-    kuva: 'yleismainos2025.png',
+    kuva: 'Yhteishakukampanja2025.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=yleismainos_2025',
+      'valmennuskeskus.fi/yhteishakukampanja/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=yhteishakukampanja_2025',
     mainospalvelu: 'custom',
   },
 ];
