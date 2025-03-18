@@ -24,12 +24,17 @@ export default function Footer() {
             className="align-baseline ml-2 w-auto h-max relative "
           />
         </p>
-      <p>
-        &copy; {new Date().getFullYear()} Todistusvalinta.fi All rights
-        reserved.
-      </p>
+        <p className="justify-center text-center">
+          Tämän sivuston pisterajat sisältävät myös varasijoilta hyväksytyt
+          hakijat. Todistusvalinta.fi -sivuston tietolähde on virallinen
+          opetushallituksen Vipunen.fi -palvelu. Huomioi että korkeakoulut usein
+          ilmoittavat sivustoillaan pisterajat ilman varasijoilta hyväksyttyjä.
+        </p>
+        <p>
+          &copy; {new Date().getFullYear()} Todistusvalinta.fi All rights
+          reserved.
+        </p>
       </div>
-
     </footer>
   );
 }
