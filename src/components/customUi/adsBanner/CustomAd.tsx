@@ -22,9 +22,9 @@ export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} >
       <a onClick={handleClick} href={'https://www.' + ad.osoite}>
-        <img src={`assets/ads/${ad.kuva}`} alt={ad.kuvaus} />
+        <img src={`assets/ads/${ad.kuva}`} alt={ad.kuvaus} className='max-w-full max-h-80' />
       </a>
     </div>
   );

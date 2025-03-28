@@ -17,9 +17,12 @@ export default function Layout({ titles }: Readonly<RootProps>) {
     <div className="bg-background flex flex-col justify-center items-center gap-10 h-max overflow-x-hidden align-top pt-[4.5rem] sm:pt-20 md:pt-24 lg:pt-[6.5rem]">
       <NavigationSheet titles={titles} />
       <Header />
-      <NewsHeader news=''/>
+      <NewsHeader news="" />
+      {/* Parent container for Outlet with fixed responsive widths */}
       <div className="flex flex-col bg-background w-[22rem] sm:w-[26rem] md:w-[34rem] lg:w-[42rem] justify-center items-center align-top">
-        <Outlet />
+        <div className="w-full">
+          <Outlet />
+        </div>
       </div>
       <CookieBanner />
       <Footer />
