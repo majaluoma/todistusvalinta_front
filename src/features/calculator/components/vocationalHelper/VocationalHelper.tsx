@@ -6,6 +6,7 @@ import {
 import WeightedMeanCalculator from './WeightedMeanCalculator';
 import { useState } from 'react';
 import { VocationalHelperProps } from './types';
+import { Button } from '@/components/ui/button';
 
 /** Only present in vocational degrees and helps user to
  * calculate it's weighted means on each subject. Alternatively
@@ -22,6 +23,10 @@ export default function VocationalHelper({
     setOpen(false);
     callback(result);
   };
+  const handleInteractOutside = (event: Event) => {
+    event.preventDefault();
+  };
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger>
@@ -31,21 +36,31 @@ export default function VocationalHelper({
           ?
         </div>
       </PopoverTrigger>
-      {subjects.length < 1 ? (
-        <PopoverContent className="w-[21rem] md:w-[33rem] p-9">
-          {text}
-        </PopoverContent>
-      ) : (
-        <PopoverContent className="w-[24rem] md:w-[33rem] p-9 flex flex-col gap-5 mx-3">
-          <p>{text}</p>
-          <WeightedMeanCalculator
-            gradeOptions={gradeOptions}
-            subjects={subjects}
-            callback={callback}
-            saveAndClose={saveAndClose}
-          />
-        </PopoverContent>
-      )}
+      <PopoverContent
+        className="w-[21rem] md:w-[33rem] p-9 flex-col gap-5 mx-3"
+        onInteractOutside={handleInteractOutside}
+      >
+        <Button
+        type="button"
+        variant="secondary"
+        size="sm"
+        className="absolute text-base top-2 right-5"
+        onClick={function handleClick() {setOpen(false)}}
+        >X</Button>
+        {subjects.length < 1 ? (
+          <>{text}</>
+        ) : (
+          <>
+            <p>{text}</p>
+            <WeightedMeanCalculator
+              gradeOptions={gradeOptions}
+              subjects={subjects}
+              callback={callback}
+              saveAndClose={saveAndClose}
+            />
+          </>
+        )}
+      </PopoverContent>
     </Popover>
   );
 }
