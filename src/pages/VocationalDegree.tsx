@@ -156,7 +156,7 @@ export default function VocationalDegree() {
         vocational={true}
         helperCalculators={degreeScale.helperCalculators}
       >
-        <div className="w-screen px-6 sm:px-12 md:px-6 lg:px-8 xl:px-16 flex justify-center gap-4">
+        <div className="w-screen px-0 sm:px-1 md:px-6 lg:px-8 xl:px-16 flex justify-center gap-4">
           <AdsBanner ads={BannerAdsVocational} className="block lg:hidden" />
           <AdsBanner
             ads={BannerAdsVocational.slice(0, 1)}
