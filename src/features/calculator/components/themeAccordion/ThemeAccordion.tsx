@@ -43,6 +43,7 @@ export default function ThemeAccordion() {
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const { accordionAds } = useAds();
+  const [searchValue, setSearchValue] = useState<string | null>(null);
   useEffect(() => {
     const passedAmountPerTheme = () => {
       return filteredDegrees.map(function filterPassed(
@@ -61,7 +62,7 @@ export default function ThemeAccordion() {
   }, [filteredDegrees]);
 
   useEffect(() => {
-    setFilteredDegrees(degrees);
+    searchDegrees(searchValue);
   }, [degrees]);
 
   const searchDegrees = (searchValue: string | null) => {
@@ -69,16 +70,18 @@ export default function ThemeAccordion() {
       setFilteredDegrees(degrees);
       return;
     }
+    setSearchValue(searchValue);
     const searchWords = searchValue.split(' ');
     const filterDegree = (degree: DegreeObject) => {
       for (let i = 0; i < searchWords.length; i++) {
         const searchWord = searchWords[i];
         if (
-          !((degree.hakukohde + ' ' + degree.korkeakoulu)
-          .toLocaleLowerCase()
-          .includes(searchWord.toLocaleLowerCase()))) {
-            return false;
-          }
+          !(degree.hakukohde + ' ' + degree.korkeakoulu)
+            .toLocaleLowerCase()
+            .includes(searchWord.toLocaleLowerCase())
+        ) {
+          return false;
+        }
       }
       return true;
     };
@@ -89,7 +92,7 @@ export default function ThemeAccordion() {
   };
 
   return resultParams ? (
-    <div className='w-full'>
+    <div className="w-full">
       <h2 className="text-2xl font-bold">Tulokset</h2>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
         <Searchbar searchFunction={searchDegrees} />
