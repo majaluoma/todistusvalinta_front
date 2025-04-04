@@ -45,7 +45,7 @@ export default function DegreeFullInfo() {
                     <Button
                       variant="link"
                       onClick={() => handleTitleClick(degree)}
-                      className="text-wrap text-start text-xl right-3.5 relative"
+                      className="text-wrap text-start text-xl right-3.5 relative underline"
                     >
                       {degree.hakukohteet[0].hakukohde}
                     </Button>

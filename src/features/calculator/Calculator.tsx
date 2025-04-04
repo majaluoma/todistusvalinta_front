@@ -123,7 +123,14 @@ export default function Calculator({
         ) : (
           <ErrorBlock error={'Tapahtui virhe, koita myöhemmin uudestaan'} />
         )}{' '}
-        <div ref={ref}>{children}</div>
+        <div ref={ref} className="align-top flex flex-col gap-8 items-center">
+        {/* Isolate AdsBanner */}
+          <div className="w-screen bg-background">
+            <div className="flex justify-center gap-4 px-6 sm:px-12 md:px-6 lg:px-8 xl:px-16">
+              {children}
+            </div>
+          </div>
+        </div>
         <InfoViewContextProvider>
           <ThemeAccordion />
           <DegreeFullInfo />

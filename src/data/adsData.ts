@@ -21,14 +21,6 @@ export const BannerAdsMatriculation: AdsArray = [
       'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=yleismainos_2025',
     mainospalvelu: 'custom',
   },
-  {
-    id: "banner_3_2",
-    kuva: 'Yhteishakukampanja2025.png',
-    kuvaus: 'Valmennuskeskuksen mainos',
-    osoite:
-      'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=yleismainos_2025',
-    mainospalvelu: 'custom',
-  },
 ];
 
 export const AccordionAds: AdsArray = [

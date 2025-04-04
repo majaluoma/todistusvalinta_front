@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { postClick } from './api/postClick';
 import { postView } from './api/postView';
 import { CustomAdProps } from './types';
@@ -10,12 +10,13 @@ import useOnScreen from '@/hooks/useOnScreen';
 export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
-
+  const [viewed, setViewed] = useState(false);
   useEffect(() => {
-    if (isVisible) {
+    if (isVisible && !viewed) {
       postView(ad.id);
+      setViewed(true);
     }
-  }, [isVisible, ad.id]);
+  }, [isVisible, ad.id, viewed]);
 
   const handleClick = () => {
     postClick(ad.id);
