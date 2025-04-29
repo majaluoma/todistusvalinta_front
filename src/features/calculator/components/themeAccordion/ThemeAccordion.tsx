@@ -104,7 +104,7 @@ export default function ThemeAccordion() {
         <Button variant={"ghost"} className="text-sm font-light text-gray-600"
         onClick={handleSeasonClick}>
           {' '}
-          näytä {!isSpring ? 'kevään ' : 'syksyn '} tulosket{' '}
+          näytä {!isSpring ? 'kevään ' : 'syksyn '} tulokset{' '}
         </Button>
       </div>
       <div className="flex flex-row justify-between w-full pr-6 my-3">
