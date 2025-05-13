@@ -7,6 +7,7 @@ import { RootProps } from './types';
 import NewsHeader from './NewsHeader';
 import { useEffect } from 'react';
 import useTitle from '@/hooks/useTitle';
+import { mainNews } from '@/data/news';
 
 /**
  * Root component includes all other components.
@@ -29,7 +30,7 @@ export default function Layout({ titles }: Readonly<RootProps>) {
     <div className="bg-background flex flex-col justify-center items-center gap-10 h-max overflow-x-hidden align-top pt-[4.5rem] sm:pt-20 md:pt-24 lg:pt-[6.5rem]">
       <NavigationSheet titles={titles} />
       <Header />
-      <NewsHeader news="" />
+      <NewsHeader news={mainNews} />
       <div className="flex flex-col bg-background w-[22rem] sm:w-[26rem] md:w-[34rem] lg:w-[42rem] justify-center items-center align-top">
         <div className="w-full">
           <Outlet />
