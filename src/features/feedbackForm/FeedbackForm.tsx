@@ -113,13 +113,13 @@ export default function FeedbackForm() {
           {status === 'sending' ? 'Sending...' : 'Send Feedback'}
         </Button>
         {status === 'sent' && (
-          <div className="text-green-600 mt-2">
-            Thank you for your feedback!
+          <div className="text-primary mt-2">
+            Kiitos palautteestasi, vastaamme siihen mahdollisimman pian.
           </div>
         )}
         {status === 'error' && (
-          <div className="text-red-600 mt-2">
-            There was an error. Please try again.
+          <div className="text-destructive mt-2">
+            Tapahtui virhe. Lähetä palautteesi sähköpostilla tai kokeile myöhemmin uudestaan.
           </div>
         )}
       </form>
