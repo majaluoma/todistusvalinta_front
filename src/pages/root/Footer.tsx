@@ -1,10 +1,18 @@
 import privacyPolicy from '@/assets/privacyPolicy.pdf';
+import { Button } from '@/components/ui/button';
+import FeedbackForm from '@/features/feedbackForm/FeedbackForm';
+import { useState } from 'react';
 
 /**  Footer shows in the bottom of every page.
  * It includes some information that customer might want to navigate
  * from every site. Base is copied from Vercel AI-chat and modified from there
  */
 export default function Footer() {
+  const [givingFeedback, setGivingFeedback] = useState(false);
+
+  const handleFeedBackButton = () => {
+    setGivingFeedback(!givingFeedback);
+  };
   return (
     <footer className="bg-muted text-muted-foreground mt-auto w-full shadow-lg shadow-secondary overflow-hidden">
       <div className="container mx-auto px-4 py-8 flex flex-col items-center justify-center gap-4">
@@ -30,6 +38,16 @@ export default function Footer() {
           opetushallituksen Vipunen.fi -palvelu. Huomioi että korkeakoulut usein
           ilmoittavat sivustoillaan pisterajat ilman varasijoilta hyväksyttyjä.
         </p>
+        {givingFeedback ? (
+          <FeedbackForm />
+        ) : (
+          <Button
+            onClick={handleFeedBackButton}
+            className="text-xl hover:text-primary"
+          >
+            Anna palautetta
+          </Button>
+        )}
         <p>
           &copy; {new Date().getFullYear()} Todistusvalinta.fi All rights
           reserved.
