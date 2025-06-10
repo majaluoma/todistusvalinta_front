@@ -22,8 +22,7 @@ export default function FeedbackForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
-      message: `Hei,
-`,
+      message: "",
     },
   });
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -74,7 +73,8 @@ export default function FeedbackForm() {
                   value={field.value}
                   onChange={field.onChange}
                   required
-                  placeholder="you@example.com"
+                  placeholder="nimi@sahkoposti.fi"
+                   className="bg-card"
                 />
               </FormControl>
               <FormMessage />
@@ -87,15 +87,16 @@ export default function FeedbackForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>Viesti</FormLabel>
               <FormControl>
                 <Textarea
                   name="message"
                   value={field.value}
                   onChange={field.onChange}
                   required
-                  placeholder="Palaute"
+                  placeholder="Hei,"
                   rows={4}
+                  className="bg-card"
                 />
               </FormControl>
               <FormMessage />
@@ -110,7 +111,7 @@ export default function FeedbackForm() {
           disabled={status === 'sending'}
           className="w-full hover:text-primary"
         >
-          {status === 'sending' ? 'Sending...' : 'Send Feedback'}
+          {status === 'sending' ? 'Lahetetaan...' : 'Laheta'}
         </Button>
         {status === 'sent' && (
           <div className="text-primary mt-2">
