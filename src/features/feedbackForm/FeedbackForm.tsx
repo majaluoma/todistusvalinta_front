@@ -111,7 +111,7 @@ export default function FeedbackForm() {
           disabled={status === 'sending'}
           className="w-full hover:text-primary"
         >
-          {status === 'sending' ? 'Lahetetaan...' : 'Laheta'}
+          {status === 'sending' ? 'Lahetetaan...' : 'Lähetä'}
         </Button>
         {status === 'sent' && (
           <div className="text-primary mt-2">
