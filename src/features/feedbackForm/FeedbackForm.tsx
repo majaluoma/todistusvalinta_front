@@ -22,7 +22,7 @@ export default function FeedbackForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
-      message: "",
+      message: '',
     },
   });
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -44,86 +44,91 @@ export default function FeedbackForm() {
         console.error('Recaptcha token is missing');
         return;
       }
-      await postFeedback(
-        form.getValues('email'),
-        form.getValues('message'),
-      );
+      await postFeedback(form.getValues('email'), form.getValues('message'));
       setStatus('sent');
       form.reset();
       setRecaptchaToken(null);
     } catch (error) {
       setStatus('error');
-      console.log (error);
+      console.log(error);
     }
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Sähköposti</FormLabel>
-              <FormControl>
-                <Input
-                  name="email"
-                  type="email"
-                  value={field.value}
-                  onChange={field.onChange}
-                  required
-                  placeholder="nimi@sahkoposti.fi"
-                   className="bg-card"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Viesti</FormLabel>
-              <FormControl>
-                <Textarea
-                  name="message"
-                  value={field.value}
-                  onChange={field.onChange}
-                  required
-                  placeholder="Hei,"
-                  rows={4}
-                  className="bg-card"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <div className='w-full flex justify-center'>
-          <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
+    <div>
+      {status === 'sent' && (
+        <div className="text-primary mt-2">
+          Kiitos palautteestasi, vastaamme siihen mahdollisimman pian.
         </div>
-        <Button
-          type="submit"
-          disabled={status === 'sending'}
-          className="w-full hover:text-primary"
-        >
-          {status === 'sending' ? 'Lahetetaan...' : 'Lähetä'}
-        </Button>
-        {status === 'sent' && (
-          <div className="text-primary mt-2">
-            Kiitos palautteestasi, vastaamme siihen mahdollisimman pian.
-          </div>
-        )}
-        {status === 'error' && (
-          <div className="text-destructive mt-2">
-            Tapahtui virhe. Lähetä palautteesi sähköpostilla tai kokeile myöhemmin uudestaan.
-          </div>
-        )}
-      </form>
-    </Form>
+      )}
+      {status === 'error' && (
+        <div className="text-destructive mt-2">
+          Tapahtui virhe. Lähetä palautteesi sähköpostilla tai kokeile myöhemmin
+          uudestaan.
+        </div>
+      )}
+      {status !== 'sent' && status !== 'error' && (
+        <Form {...form}>
+          <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Sähköposti</FormLabel>
+                  <FormControl>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={field.value}
+                      onChange={field.onChange}
+                      required
+                      placeholder="nimi@sahkoposti.fi"
+                      className="bg-card"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Viesti</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      name="message"
+                      value={field.value}
+                      onChange={field.onChange}
+                      required
+                      placeholder="Hei,"
+                      rows={4}
+                      className="bg-card"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="w-full flex justify-center">
+              <ReCAPTCHA
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                onChange={handleRecaptcha}
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={status === 'sending'}
+              className="w-full hover:text-primary"
+            >
+              {status === 'sending' ? 'Lahetetaan...' : 'Lähetä'}
+            </Button>
+          </form>
+        </Form>
+      )}
+    </div>
   );
 }
