@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export type AdsBannerProps = {
   ads: Ad[] | CustomAd[];
+  className? : string;
 };
 
 export type CustomAdProps = {

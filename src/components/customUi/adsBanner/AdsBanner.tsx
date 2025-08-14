@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import AdsenseAd from './AdsenseAd';
 import CustomAd from './CustomAd';
 import { AdsBannerProps, CustomAdSchema } from './types';
@@ -6,21 +7,27 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import Fade from 'embla-carousel-fade';
 
 /** Shows advertisements
  *  Registers interactions with the server
- *  AUTOPLAY NOT IMPLEMENTED
  * */
-export default function AdsBanner({ ads }: Readonly<AdsBannerProps>) {
-  // AUTOPLAY NOT IMPLEMENTED
-  
+export default function AdsBanner({ ads, className = "" }: Readonly<AdsBannerProps>) {
+  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })); 
+  const fadeIn = useRef(Fade({})); 
+  console.log(ads.length)
   return (
-    <Carousel className="shadow-sm shadow-secondary">
-      <CarouselContent>
+    <Carousel plugins={[fadeIn.current, autoplay.current]} opts={{
+        align: 'center',
+        containScroll: false
+      }}
+    >
+      <CarouselContent >
         {ads.map((ad) => {
           const parsedCustomAd = CustomAdSchema.safeParse(ad).data;
           return (
-            <CarouselItem key={`ad_${ad.id}`}>
+            <CarouselItem className={`basis-full max-w-[40rem]  ${className}`} key={`ad_${ad.id}`}>
               {parsedCustomAd ? (
                 <CustomAd ad={parsedCustomAd}></CustomAd>
               ) : (

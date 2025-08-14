@@ -1,0 +1,1 @@
+export const mainNews = "Kevään pisterajat muuttuvat vielä 5.8.2025 asti kun varapaikkoja jaetaan. Lopulliset pisterajat julkaistaan syksyllä."

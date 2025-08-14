@@ -55,7 +55,7 @@ export default function VirtualizedDegreeList({
         return (
           <div style={style} className="bg-black/10 pt-4">
             {ad ? (
-              <AccordionContent className="h-[160px] overflow-hidden flex align-center justify-center items-center z-20">
+              <AccordionContent className="h-[150px] overflow-hidden flex align-center justify-center items-center z-20">
                 <AdsBanner ads={[ad]} />
               </AccordionContent>
             ) : (

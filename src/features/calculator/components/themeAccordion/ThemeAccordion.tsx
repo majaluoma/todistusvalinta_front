@@ -107,7 +107,7 @@ export default function ThemeAccordion() {
           näytä {!isSpring ? 'kevään ' : 'syksyn '} tulokset{' '}
         </Button>
       </div>
-      <div className="flex flex-row justify-between w-full pr-6 my-3">
+      <div className="flex flex-row justify-between w-full pr-6 my-3" mb-7>
         <Searchbar searchFunction={searchDegrees} />
         <div className="flex flex-row mr-7">
           <NumberBall

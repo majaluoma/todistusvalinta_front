@@ -131,8 +131,8 @@ export default function VocationalDegree() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-wrap flex-row items-baseline gap-2">
+    <div className=" flex flex-col">
+      <div className="justify-center flex flex-wrap flex-row items-baseline gap-2">
         <p>Valitse todistuksesi arviointiasteikko:</p>
 
         <RadioGroup
@@ -156,7 +156,17 @@ export default function VocationalDegree() {
         vocational={true}
         helperCalculators={degreeScale.helperCalculators}
       >
-        <AdsBanner ads={BannerAdsVocational} />
+        <div className="w-screen px-0 sm:px-1 md:px-6 lg:px-8 xl:px-16 flex justify-center gap-4">
+          <AdsBanner ads={BannerAdsVocational} className="block lg:hidden" />
+          <AdsBanner
+            ads={BannerAdsVocational.slice(0, 1)}
+            className="hidden lg:block"
+          />
+          <AdsBanner
+            ads={BannerAdsVocational.slice(1)}
+            className="hidden lg:block"
+          />
+        </div>
       </Calculator>
     </div>
   );

@@ -14,7 +14,7 @@ export const BannerAdsVocational: AdsArray = [
 
 export const BannerAdsMatriculation: AdsArray = [
   {
-    id: "banner_3",
+    id: "banner_3_1",
     kuva: 'etubanneri.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
@@ -25,7 +25,7 @@ export const BannerAdsMatriculation: AdsArray = [
 
 export const AccordionAds: AdsArray = [
   {
-    id: "acc_681",
+    id: "acc_678",
     kuva: 'kauppis 1140x284.png',
     kuvaus: 'kauppis',
     osoite:
