@@ -1,1 +1,1 @@
-export const mainNews = "Kevään pisterajat muuttuvat vielä 5.8.2025 asti kun varapaikkoja jaetaan. Lopulliset pisterajat julkaistaan syksyllä."
+export const mainNews = "Sivustolle on päivitetty kevään 2025 ja syksyn 2024 yhteishaun tulokset varasijat huomioiden."
