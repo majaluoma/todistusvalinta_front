@@ -24,7 +24,6 @@ import { EvaluationOptions } from '../../types/types';
 import VocationalHelper from '../vocationalHelper/VocationalHelper';
 import { numberGradeToString } from '@/lib/utils';
 import SubmitButton from './components/SubmitButton';
-import SeasonsRadioGroup from './components/SeasonsRadioGroup';
 
 const VITE_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 
@@ -252,7 +251,6 @@ export default function GradeForm({
             name="saveDegrees"
             tooltip="Arvosanasi tallennetaan evästeelle."
           ></OptionCheckBox>
-          <SeasonsRadioGroup name="isSpring" formcontrol={form.control}/>
         </div>
         <div className="flex gap-4">
           <SubmitButton text="Laske" isLoading={isLoading} />
