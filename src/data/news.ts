@@ -1,1 +1,1 @@
-export const mainNews = "Sivustolle on päivitetty kevään 2025 ja syksyn 2024 yhteishaun tulokset. Myös varasijat on huomioitu."
+export const mainNews = "Sivustolle on päivitetty kevään 2025 pisterajat. Päivitykseen myötä sivustolla esiintyy katkoksia, asiaa korjataan."
