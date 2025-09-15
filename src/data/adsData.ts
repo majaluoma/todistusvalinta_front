@@ -15,10 +15,10 @@ export const BannerAdsVocational: AdsArray = [
 export const BannerAdsMatriculation: AdsArray = [
   {
     id: "banner_3_1",
-    kuva: 'etubanneri.png',
+    kuva: 'yleismainos2025.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      'valmennuskeskus.fi/ennakkovaraajan-etu/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=ennakkovaraajan_etu_2025&utm_content=20_prosenttia',
+      'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=yleismainos_2025',
     mainospalvelu: 'custom',
   },
 ];
