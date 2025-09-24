@@ -26,4 +26,8 @@ export const titles = [
     path: '/muut-reitit-korkeakouluun',
     title: 'Muut reitit korkeakouluun',
   },
+  {
+    path: '/ib-tutkinto',
+    title: 'IB -tutkinto',
+  },
 ];

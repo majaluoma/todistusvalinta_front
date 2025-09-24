@@ -42,3 +42,37 @@
   color: blue;
   border-bottom: 20, solid,black; 
 }
+
+
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  overflow-x: auto;
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.markdown thead tr {
+  background-color: hsl(159, 20%, 42%); /* Example primary color, adjust as needed */
+  color: #fff;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid #444;
+  padding: 0.2rem 0.75rem;
+  text-align: left;
+  font-size: 0.7rem;
+}
+
+.markdown tbody tr:nth-child(even) {
+  background-color: #f7f7f7; /* Light background for even rows */
+  color: #222;
+}
+
+.markdown tbody tr:nth-child(odd) {
+  background-color: #22222200; /* Slightly darker for odd rows */
+  color: #222;
+}
