@@ -17,7 +17,7 @@ Voit arvioida mahdollisuutesi todistusvalinnassa tämän sivuston avulla myös j
 
 ## Aineiden vastaavuus
 
-IB-tutkinnon reaaliaineet, joilla on vastaavuus suomalaisessa ylioppilastutkinnossa pisteytetää ylioppilastutkinnon vastaavana aineena.
+IB-tutkinnon reaaliaineet, joilla on vastaavuus suomalaisessa ylioppilastutkinnossa pisteytetään ylioppilastutkinnon vastaavana aineena.
 
 IB-tutkinnon kielet ja matematiikka vastaavat todistusvalinnan pisteytyksessä suomalaisen ylioppilastutkinnon aineita seuraavasti:
 

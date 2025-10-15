@@ -35,8 +35,9 @@ export default function Footer() {
         <p className="justify-center text-center">
           Tämän sivuston pisterajat sisältävät myös varasijoilta hyväksytyt
           hakijat. Todistusvalinta.fi -sivuston tietolähde on virallinen
-          opetushallituksen Vipunen.fi -palvelu. Huomioi että korkeakoulut usein
-          ilmoittavat sivustoillaan pisterajat ilman varasijoilta hyväksyttyjä.
+          opetushallituksen Vipunen.fi -palvelu. Huomioi että korkeakoulujen
+          ilmoittamat pisterajat voivat olla korkeampia, jos varasijamenettelyä
+          ei ole huomioitu.
         </p>
         {givingFeedback ? (
           <FeedbackForm />

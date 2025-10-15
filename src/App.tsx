@@ -10,6 +10,7 @@ import RoutesToUniversities from './pages/RoutesToUniversities';
 import Help from './pages/Help';
 import VocationalDegree from './pages/VocationalDegree';
 import IbDegree from './pages/IbDegree';
+import Cooperation from './pages/Cooperation';
 function App() {
 
   const router = createBrowserRouter([
@@ -57,6 +58,10 @@ function App() {
         {
           path: '/ib-tutkinto',
           element: <IbDegree />,
+        },
+        {
+          path: '/yhteistyo',
+          element: <Cooperation />,
         },
       ],
     }

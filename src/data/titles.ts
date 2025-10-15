@@ -11,23 +11,27 @@ export const titles = [
     title: 'Ammatillinen perustutkinto',
   },
   {
-    path: '/yhteys',
-    title: 'Yhteys',
-  },
-  {
-    path: '/sivustosta',
-    title: 'Sivustosta',
-  },
-  {
-    path: '/miten-kaytan-laskuria',
-    title: 'Miten käytän laskuria',
+    path: '/ib-tutkinto',
+    title: 'IB -tutkinto',
   },
   {
     path: '/muut-reitit-korkeakouluun',
     title: 'Muut reitit korkeakouluun',
   },
   {
-    path: '/ib-tutkinto',
-    title: 'IB -tutkinto',
+    path: '/miten-kaytan-laskuria',
+    title: 'Miten käytän laskuria',
+  },
+  {
+    path: '/sivustosta',
+    title: 'Sivustosta',
+  },
+  {
+    path: '/yhteistyo',
+    title: 'Yhteistyö',
+  },
+  {
+    path: '/yhteys',
+    title: 'Yhteys',
   },
 ];

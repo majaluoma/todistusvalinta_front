@@ -2,7 +2,7 @@
   color: #333;
   font-size: 1.125rem;
   line-height: 1.75;
-  margin-bottom: 2em;
+  margin-top: 1em;
 }
 
 .markdown h1 {
@@ -27,8 +27,11 @@
 }
 
 .markdown ul {
+  color: #333;
   list-style-type: disc;
   margin-left: 2rem; 
+  margin-bottom: 1em;
+  font-size: 1.125rem;
 }
 
 .markdown a {

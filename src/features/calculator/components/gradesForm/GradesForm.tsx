@@ -99,7 +99,7 @@ export default function GradeForm({
       const result = await getResult(values, year);
       setDegreesAndThemes(result, values);
       handleCalculation(values);
-      setInterval(() => setIsLoading(false), 500);
+      setInterval(() => setIsLoading(false), 2000);
       form.clearErrors();
     } catch (error: unknown) {
       console.log(error);
