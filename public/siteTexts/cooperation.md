@@ -29,6 +29,12 @@ Laskuri hakee aina ajankohtaiset tiedot suoraan todistusvalinta.fi:n palvelimelt
 
 ---
 
+## Muu yhteistyö
+
+Onko sinulla mielessä jokin muu tapa tehdä yhteistyötä esimerkiksi Suomen opiskelijavalinta- tai koulutustilastoja hyödyntäen?
+
+Ota yhteyttä ja katsotaan sitä yhdessä.
+
 ## Ota yhteyttä
 
 Laita meille sähköpostia ja kerro ajatuksesi.

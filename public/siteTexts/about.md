@@ -21,5 +21,3 @@ Vuonna 2020 todistusvalinta rykäistiin kuitenkin täysillä käyntiin Suomessa 
 - 2022 ammattikouluja koskeva laskuri
 - 2023 muiden kuin ensikertalaisten pisterajat ja rajapinta. 
 - 2025 syksyn yhteishaun tulokset 
-
-Julkisilla toimijoilla ei ole ollut mahdollisuutta tukea sivuston kehitystä, joten sivustolla näytetään mainoksia mm. serverikustannusten kattamiseksi.
