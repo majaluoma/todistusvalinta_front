@@ -42,10 +42,10 @@ export const AccordionAds: AdsArray = [
   },
   {
     id: "acc_560",
-    kuva: 'psyka 1140x284.png',
+    kuva: 'psyka_kamppis.png',
     kuvaus: 'psyka',
     osoite:
-      'valmennuskeskus.fi/psykologian-valmennuskurssi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=psyka',
+      'valmennuskeskus.fi/tarjous-valintakokeeseen-d/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=tarjous_valintakokeeseen_d_2025',
     mainospalvelu: 'custom',
   },
   {
