@@ -5,7 +5,7 @@ Todistusvalinnassa huomioidaan 1.8.2015 alkaen suoritetut toisen asteen ammatill
 
 Kun olet syöttänyt arvosanasi, paina "Laske" -painiketta. Hetken päästä sivuston alalaitaan ilmestyy taulukko, jossa ovat tuloksesi. Voit selata näitä tuloksia aiheittain ja suosittelemmekin tutustumaan laajasti vaihtoehtoihisi.
 
-Voit tarkastella tuloksia joko ensikertalaisena tai jo korkeakoulussa opiskelleena. Ensikertalainen on hakija, joka ei ole ottanut suomalaista korkeakoulupaikkaa vastaan.
+Voit tarkastella tuloksia joko ensikertalaisena tai jo korkeakoulussa opiskelleena. Ensikertalainen on hakija, joka ei ole ottanut suomalaista korkeakoulupaikkaa vastaan 2014 tai sen jälkeen. Jos sinulla on Suomen koulutusjärjestelmän mukainen korkeakoulututkinto, et myöskään ole ensikertalainen.
 
 ## Ylioppilastutkinnon laskuri
 Aloita syöttämällä laskuriin kaikki ylioppilastutkintotodistuksesi aineet. Syötä näiden viereen saamasi arvosana kyseisestä oppiaineesta. Jos olet kirjoittanut yli viisi ainetta, voit lisätä oppiaineita plus -painikkeesta.
