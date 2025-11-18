@@ -97,11 +97,11 @@ export default function ThemeAccordion() {
 
   return resultParams ? (
     <div className="w-full">
-      <div className='flex flex-row gap-2'>
+      <div className='flex flex-row gap-2 items-center'>
         <h2 className="text-2xl font-bold flex flex-row">
           {isSpring ? 'Kevään ' : 'Syksyn '} yhteishaun tulokset{' '}
         </h2>
-        <Button variant={"ghost"} className="text-sm font-light text-gray-600"
+        <Button variant={"ghost"} className="text-sm font-light text-gray-600 w-1/2 text-wrap m-0 p-0"
         onClick={handleSeasonClick}>
           {' '}
           näytä {!isSpring ? 'kevään ' : 'syksyn '} tulokset{' '}
