@@ -47,6 +47,7 @@ export default function Calculator({
     });
   };
 
+
   const handleCalculation = (ref: React.RefObject<HTMLDivElement>) => {
     return function handleCalculation(result: ResultParams | null) {
       if (!result) {

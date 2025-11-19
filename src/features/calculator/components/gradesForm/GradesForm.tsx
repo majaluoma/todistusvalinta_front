@@ -51,7 +51,7 @@ export default function GradeForm({
     },
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { setDegreesAndThemes, year } = useResultContext();
+  const { setDegreesAndThemes, year, themes } = useResultContext();
   const ref = useRef<HTMLDivElement>(null);
   const { fields, append, remove } = useFieldArray({
     name: 'grades',
@@ -92,6 +92,41 @@ export default function GradeForm({
       grades: defaultOptions,
     });
   }, [readyOptions, form]);
+
+
+    useEffect(() => {
+      if (!themes || themes.length === 0) return;
+      const initialAccordion = async () => {
+        
+          const values: {
+            vocational: boolean;
+            firstTimer: boolean;
+            test: boolean;
+            isSpring: boolean;
+            saveDegrees: boolean;
+            grades: {
+                subject: string;
+                grade: string;
+            }[]
+          }
+            = {
+              vocational: false,
+              firstTimer: true,
+              test: false,
+              isSpring: true,
+              saveDegrees: false,
+              grades: [{
+                subject: "ai",
+                grade: "i"
+            }],
+            }
+            ;
+        const result = await getResult(values, year);
+        setDegreesAndThemes(result, values);
+  
+      };
+      initialAccordion();
+    }, [year, themes]);
 
   const fetchResult = async (values: ResultParams) => {
     try {
