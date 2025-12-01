@@ -15,10 +15,10 @@ export const BannerAdsVocational: AdsArray = [
 export const BannerAdsMatriculation: AdsArray = [
   {
     id: "banner_3_1",
-    kuva: 'Blackweek25_todistusvalinta_punainen.jpg',
+    kuva: 'Hakuoppaat2026.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      'valmennuskeskus.fi/black-week/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=blackweek_2025',
+      ' valmennuskeskus.fi/ilmaiset-palvelut/hakuoppaat/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=hakuoppaat_2026',
     mainospalvelu: 'custom',
   },
 ];
