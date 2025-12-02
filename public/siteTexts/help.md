@@ -14,3 +14,6 @@ Aloita syöttämällä laskuriin kaikki ylioppilastutkintotodistuksesi aineet. S
 Aloita valitsemalla ammattikoulussasi käytetty arviointiskaala eli joko 1-3 tai 1-5. Seuraavaksi syötä kolmen yhteisen tutkinnon osan arvosanat. Päättötodistuksen yhteisten tutkinnon osien arvosanat on voitu antaa arvioinnilla hyväksytty-hylätty. Tällöin arvosana saadaan laskemalla keskiarvo tutkinnon osien sisältämien osa-alueiden numeroarvosanoista. Osa-alueiden arvosanat löydät oma Opintopolku -palvelusta tai ammattikoulusi antamasta suoritusotteesta. Painamalla laskurin kysymysmerkkinäppäintä saat esiin apuvalikon, johon voit myös suoraan syöttää arvosanasi todistuksesta. Silloin apuvalikko laskee painotetun keskiarvon puolestasi.
 
 Lopuksi syötä koko tutkintosi painotettu keskiarvo. Tämä löytyy suoraan ammatillisen perustutkintosi todistuksesta.
+
+## Vastuu sivuston tiedoista
+Todistusvalinta.fi ei voi taata täyttä varmuutta sivustolla olevista tiedoista. Hakijan tulee aina tarkistaa oman hakukohteensa tiedot yhteisvalinnan, yliopistovalinnat.fi, yliopistojen omilta tai Opintopolun sivuilta.
