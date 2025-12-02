@@ -18,7 +18,7 @@ export const BannerAdsMatriculation: AdsArray = [
     kuva: 'Hakuoppaat2026.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      ' valmennuskeskus.fi/ilmaiset-palvelut/hakuoppaat/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=hakuoppaat_2026',
+      'valmennuskeskus.fi/ilmaiset-palvelut/hakuoppaat/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=hakuoppaat_2026',
     mainospalvelu: 'custom',
   },
 ];
