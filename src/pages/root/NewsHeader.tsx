@@ -2,7 +2,7 @@
  */
 type NewsHeaderProps = {
   classname?: string;
-  news : string;
+  news : React.ReactNode;
 };
 
 export default function NewsHeader({ classname, news }: Readonly<NewsHeaderProps>) {

@@ -1,1 +1,0 @@
-export const mainNews = "Sivustolle on päivitetty kevään 2025 ja syksyn 2024 pisterajat. Varasijat on huomioitu tuloksissa."

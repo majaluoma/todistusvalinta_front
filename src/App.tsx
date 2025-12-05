@@ -11,6 +11,7 @@ import Help from './pages/Help';
 import VocationalDegree from './pages/VocationalDegree';
 import IbDegree from './pages/IbDegree';
 import Cooperation from './pages/Cooperation';
+import Reform2026 from './pages/Reform2026';
 function App() {
 
   const router = createBrowserRouter([
@@ -62,6 +63,10 @@ function App() {
         {
           path: '/yhteistyo',
           element: <Cooperation />,
+        },
+        {
+          path: '/reform2026',
+          element: <Reform2026 />,
         },
       ],
     }
