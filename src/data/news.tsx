@@ -1,5 +1,11 @@
 export const mainNews: React.ReactNode = (
   <>
+    Sivustolla toimitetaan huoltotöitä 25.12, pahoittelut häiriöstä.
+  </>
+);
+
+export const oldNews2: React.ReactNode = (
+  <>
     Yliopistojen todistusvalintaan on tulossa muutoksia 2026, lue lisää {' '}
     <a
       href="/reform2026"
