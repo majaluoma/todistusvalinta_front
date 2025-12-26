@@ -1,6 +1,6 @@
 export const mainNews: React.ReactNode = (
   <>
-    Sivustolla toimitetaan huoltotöitä 25.12, pahoittelut häiriöstä.
+    Sivustolla toimitetaan huoltotöitä 26.12, pahoittelut häiriöstä.
   </>
 );
 
