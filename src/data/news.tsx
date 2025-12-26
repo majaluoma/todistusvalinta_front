@@ -1,10 +1,10 @@
-export const mainNews: React.ReactNode = (
+export const oldnews2: React.ReactNode = (
   <>
     Sivustolla toimitetaan huoltotöitä 26.12, pahoittelut häiriöstä.
   </>
 );
 
-export const oldNews2: React.ReactNode = (
+export const mainNews: React.ReactNode = (
   <>
     Yliopistojen todistusvalintaan on tulossa muutoksia 2026, lue lisää {' '}
     <a
