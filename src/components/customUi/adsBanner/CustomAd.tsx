@@ -18,13 +18,20 @@ export default function CustomAd({ ad }: Readonly<CustomAdProps>) {
     }
   }, [isVisible, ad.id, viewed]);
 
-  const handleClick = () => {
-    postClick(ad.id);
+  const  handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    await postClick(ad.id);
+
+    globalThis.location.href = 'https://www.' + ad.osoite;
   };
 
   return (
     <div ref={ref} >
-      <a onClick={handleClick} href={'https://www.' + ad.osoite}>
+      <a 
+      className='cursor-pointer'
+      onClick={handleClick}
+       >
         <img src={`assets/ads/${ad.kuva}`} alt={ad.kuvaus} className='max-w-full max-h-80' />
       </a>
     </div>
