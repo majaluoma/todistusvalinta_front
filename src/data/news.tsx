@@ -4,7 +4,25 @@ export const oldnews2: React.ReactNode = (
   </>
 );
 
+
 export const mainNews: React.ReactNode = (
+  <>
+    Lopulliset kevään pisterajat tulevat viimeistään syyskuussa, lue {' '}
+    <a
+      href="/reform2026"
+      className="underline text-blue-500"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      täältä.
+    </a>
+    {' '} miksi
+  </>
+);
+
+
+
+export const oldnews3: React.ReactNode = (
   <>
     Yliopistojen todistusvalintaan on tulossa muutoksia 2026, lue lisää {' '}
     <a
