@@ -31,7 +31,7 @@ export const oldnews3: React.ReactNode = (
       target="_blank"
       rel="noopener noreferrer"
     >
-      täältä.
+      täältä
     </a>
   </>
 );
