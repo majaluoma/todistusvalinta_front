@@ -23,11 +23,11 @@ export default function AdsBanner({ ads, className = "" }: Readonly<AdsBannerPro
         containScroll: false
       }}
     >
-      <CarouselContent >
+      <CarouselContent>
         {ads.map((ad) => {
           const parsedCustomAd = CustomAdSchema.safeParse(ad).data;
           return (
-            <CarouselItem className={`basis-full max-w-[40rem]  ${className}`} key={`ad_${ad.id}`}>
+            <CarouselItem className={`w-full max-w-[40rem] relative left-6 m-0 ${className}`} key={`ad_${ad.id}`}>
               {parsedCustomAd ? (
                 <CustomAd ad={parsedCustomAd}></CustomAd>
               ) : (
