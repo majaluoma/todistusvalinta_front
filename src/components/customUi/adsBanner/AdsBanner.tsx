@@ -14,7 +14,7 @@ import Fade from 'embla-carousel-fade';
  *  Registers interactions with the server
  * */
 export default function AdsBanner({ ads, className = "" }: Readonly<AdsBannerProps>) {
-  const autoplay = useRef(Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })); 
+  const autoplay = useRef(Autoplay({ delay: 6000, stopOnInteraction: true, stopOnMouseEnter: true })); 
   const fadeIn = useRef(Fade({})); 
   console.log(ads.length)
   return (

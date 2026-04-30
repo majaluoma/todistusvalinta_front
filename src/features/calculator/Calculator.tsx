@@ -68,7 +68,7 @@ export default function Calculator({
       } else {
         updateCookie(JSON.stringify(initialSessionCookie), { expires: 1 });
       }
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+      ref.current.scrollIntoView({ behavior: 'smooth'});
     };
   };
 
@@ -124,7 +124,7 @@ export default function Calculator({
         ) : (
           <ErrorBlock error={'Tapahtui virhe, koita myöhemmin uudestaan'} />
         )}{' '}
-        <div ref={ref} className="align-top flex flex-col gap-8 items-center">
+        <div ref={ref} className="align-top flex flex-col gap-8 items-center scroll-mt-36">
         {/* Isolate AdsBanner */}
           <div className="w-screen bg-background">
             <div className="flex justify-center gap-4 px-6 sm:px-12 md:px-6 lg:px-8 xl:px-16">
