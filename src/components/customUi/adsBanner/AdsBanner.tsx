@@ -14,13 +14,18 @@ import Fade from 'embla-carousel-fade';
  *  Registers interactions with the server
  * */
 export default function AdsBanner({ ads, className = "" }: Readonly<AdsBannerProps>) {
-  const autoplay = useRef(Autoplay({ delay: 6000, stopOnInteraction: true, stopOnMouseEnter: true })); 
+  const autoplay = useRef(Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: false })); 
   const fadeIn = useRef(Fade({})); 
   console.log(ads.length)
+  const randomStartIndex = ads.length > 0
+  ? Math.floor(Math.random() * ads.length)
+  : 0;
+
   return (
     <Carousel plugins={[fadeIn.current, autoplay.current]} opts={{
         align: 'center',
-        containScroll: false
+        containScroll: false,
+        startIndex: randomStartIndex,
       }}
     >
       <CarouselContent>
