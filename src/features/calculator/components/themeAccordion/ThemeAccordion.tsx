@@ -51,6 +51,7 @@ export default function ThemeAccordion() {
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const { accordionAds } = useAds();
   const [onlyPassed, setOnlyPassed] = useState(false);
+  const [searchValue, setSearchValue] = useState(null as string | null);
   const [isSpring, setIsSpring] = useState(true);
 
   useEffect(() => {
@@ -61,30 +62,35 @@ export default function ThemeAccordion() {
 
 
   useEffect(() => {
-    if (onlyPassed) {
-      setFilteredDegrees(filterPassed(degrees));
-    } else {
-      setFilteredDegrees(degrees);
-    }
-  }, [degrees, onlyPassed]);
+    let result = degrees;
 
-  const searchDegrees = (searchValue: string | null) => {
-    if (searchValue === null) {
-      setFilteredDegrees(degrees);
-      return;
-    }
-    const searchWords = searchValue.split(' ');
-    const filterByKeyword = (degree: DegreeObject) => {
-      return filterDegreeByNameAndSchool(degree, searchWords);
-    };
-    const mapFilteredThemes = (theme: ThemeObject) => {
-      return {
-        ...theme,
-        hakukohteet: theme.hakukohteet.filter(filterByKeyword),
+    if (onlyPassed) {
+      result  = filterPassed(degrees);
+    } 
+
+    if (searchValue !== null && searchValue !== '') {
+      const searchWords = searchValue.split(' ');
+      const filterByKeyword = (degree: DegreeObject) => {
+        return filterDegreeByNameAndSchool(degree, searchWords);
       };
-    };
-    setFilteredDegrees(degrees.map(mapFilteredThemes));
-  };
+      const mapFilteredThemes = (theme: ThemeObject) => {
+        return {
+          ...theme,
+          hakukohteet: theme.hakukohteet.filter(filterByKeyword),
+        };
+      };
+      result  = result.map(mapFilteredThemes);
+    }
+
+    setFilteredDegrees(result);
+
+  }, [degrees, onlyPassed, searchValue]);
+
+  const searchDegrees = (value: string | null) => {
+  setSearchValue(value ?? '');
+};
+
+
 
   const handleSeasonClick = async () => {
     const oppositeSeason = !isSpring;
