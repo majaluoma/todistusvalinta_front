@@ -127,7 +127,7 @@ export default function Calculator({
         <div ref={ref} className="align-top flex flex-col gap-8 items-center scroll-mt-36">
         {/* Isolate AdsBanner */}
           <div className="w-screen bg-background">
-            <div className="flex justify-center gap-4 px-6 sm:px-12 md:px-6 lg:px-8 xl:px-16">
+            <div className="flex justify-center w-max gap-4 relative">
               {children}
             </div>
           </div>
