@@ -15,10 +15,10 @@ export const BannerAdsVocational: AdsArray = [
 export const BannerAdsMatriculation: AdsArray = [
   {
     id: "banner_3_1",
-    kuva: 'viime hetken materiaalit 5-2026.png',
+    kuva: 'valintakoeanalyysit_2026.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      'valmennuskeskus.fi/viime-hetken-materiaalit-ja-koepaketit/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=viime_hetken_materiaalit',
+      'valmennuskeskus.fi/ilmaiset-palvelut/valintakoeanalyysit/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=valintakoeanalyysit_2026',
     mainospalvelu: 'custom',
   },
   {
