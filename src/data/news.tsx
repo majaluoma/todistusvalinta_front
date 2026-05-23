@@ -7,6 +7,12 @@ export const oldnews2: React.ReactNode = (
 
 export const mainNews: React.ReactNode = (
   <>
+    Kevään 2026 pisterajat päivitetään sivustolle kesäkuun alussa, palaa myöhemmin uudestaan
+  </>
+);
+
+export const oldnews4: React.ReactNode = (
+  <>
     Lopulliset kevään pisterajat tulevat viimeistään syyskuussa, lue {' '}
     <a
       href="/reform2026"
@@ -19,6 +25,7 @@ export const mainNews: React.ReactNode = (
     {' '} miksi
   </>
 );
+
 
 
 
