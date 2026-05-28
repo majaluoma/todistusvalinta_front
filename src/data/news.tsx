@@ -7,7 +7,7 @@ export const oldnews2: React.ReactNode = (
 
 export const mainNews: React.ReactNode = (
   <>
-    Kevään 2026 alustavat pisterajat julkaistaan sivustolla 29.5. mennessä.
+    Kevään 2026 pisterajat voivat vielä muuttua varasijamenettelyn vuoksi.
   </>
 );
 
