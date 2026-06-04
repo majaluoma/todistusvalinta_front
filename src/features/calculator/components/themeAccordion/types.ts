@@ -12,3 +12,14 @@ export type VolumeItemProps = {
 export type SearchbarProps = {
     searchFunction: (string: string | null) => void;
   };
+
+
+  export type AccordionFiltersProps = {
+    options: Filters;
+    callback : (filters : Filters) => void;
+  };
+
+  export type Filters = {
+    onlyUniversities: boolean;
+    onlyVocationalUnviersities: boolean;
+  };
