@@ -1,25 +1,32 @@
-import { DegreeObject, VolumeObject } from "@/types/apiTypes";
+import { DegreeObject, VolumeObject } from '@/types/apiTypes';
 
 export type DegreeItemProps = {
-    degree : DegreeObject;
-}
+  degree: DegreeObject;
+};
 
 export type VolumeItemProps = {
-    volume : VolumeObject;
-    degree : DegreeObject
-}
+  volume: VolumeObject;
+  degree: DegreeObject;
+};
 
 export type SearchbarProps = {
-    searchFunction: (string: string | null) => void;
-  };
+  searchFunction: (string: string | null) => void;
+};
 
+export type AccordionFiltersProps = {
+  filters: Filters;
+  defaultFilters: Filters;
+  callback: (filters: Filters) => void;
+};
 
-  export type AccordionFiltersProps = {
-    options: Filters;
-    callback : (filters : Filters) => void;
-  };
+export type Filters = {
+  universities: boolean;
+  vocationalUnviersities: boolean;
+  onlyPassed: boolean;
+};
 
-  export type Filters = {
-    onlyUniversities: boolean;
-    onlyVocationalUnviersities: boolean;
-  };
+export type FilterDisplayerProps = {
+  filters: Filters;
+  defaultFilters: Filters;
+  callback: (filters: Filters) => void;
+};

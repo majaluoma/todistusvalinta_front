@@ -15,13 +15,17 @@ import useAds from '@/hooks/useAds';
 import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
 import crossIcon from '@/assets/crossIcon.svg';
 import checkIcon from '@/assets/checkIcon.svg';
-import CheckboxWithHover from '@/components/customUi/CheckboxWithHover';
 import filterDegreeByNameAndSchool, {
   filterPassed,
+  filterUniversities,
+  filterVocationalUnviersities,
   passedAmountPerTheme,
 } from './lib/utils';
 import { Button } from '@/components/ui/button';
 import { getResult } from '../gradesForm/api/getResult';
+import { Filters } from './types';
+import AccordionFilters from './components/AccordionFilters';
+import FilterDisplayer from './components/FilterDisplayer';
 
 const degreesAndAdsOrdered = (
   degrees: DegreeObject[],
@@ -40,6 +44,12 @@ const degreesAndAdsOrdered = (
   return degreesAndAds;
 };
 
+const defaultFilters: Filters = {
+  universities: true,
+  vocationalUnviersities: true,
+  onlyPassed: false,
+};
+
 /** With provided degree list ThemeAccordion will show them all
  * sorted by themes. It will also show additional information to
  * user about all degrees in a specific theme.
@@ -50,7 +60,7 @@ export default function ThemeAccordion() {
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const { accordionAds } = useAds();
-  const [onlyPassed, setOnlyPassed] = useState(false);
+  const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [searchValue, setSearchValue] = useState(null as string | null);
   const [isSpring, setIsSpring] = useState(true);
 
@@ -60,13 +70,18 @@ export default function ThemeAccordion() {
     );
   }, [filteredDegrees]);
 
-
   useEffect(() => {
     let result = degrees;
 
-    if (onlyPassed) {
-      result  = filterPassed(degrees);
-    } 
+    if (filters.onlyPassed) {
+      result = filterPassed(result);
+    }
+    if (!filters.universities) {
+      result = filterUniversities(result);
+    }
+    if (!filters.vocationalUnviersities) {
+      result = filterVocationalUnviersities(result);
+    }
 
     if (searchValue !== null && searchValue !== '') {
       const searchWords = searchValue.split(' ');
@@ -79,41 +94,54 @@ export default function ThemeAccordion() {
           hakukohteet: theme.hakukohteet.filter(filterByKeyword),
         };
       };
-      result  = result.map(mapFilteredThemes);
+      result = result.map(mapFilteredThemes);
     }
 
     setFilteredDegrees(result);
-
-  }, [degrees, onlyPassed, searchValue]);
+  }, [
+    degrees,
+    filters.onlyPassed,
+    filters.universities,
+    filters.vocationalUnviersities,
+    searchValue,
+  ]);
 
   const searchDegrees = (value: string | null) => {
-  setSearchValue(value ?? '');
-};
-
-
+    setSearchValue(value ?? '');
+  };
 
   const handleSeasonClick = async () => {
     const oppositeSeason = !isSpring;
-    setIsSpring(oppositeSeason)
+    setIsSpring(oppositeSeason);
     if (resultParams) {
-      const result =  await getResult({...resultParams, isSpring: oppositeSeason})
-      setDegreesAndThemes(result , {...resultParams, isSpring: oppositeSeason})
-    } 
-  }
+      const result = await getResult({
+        ...resultParams,
+        isSpring: oppositeSeason,
+      });
+      setDegreesAndThemes(result, {
+        ...resultParams,
+        isSpring: oppositeSeason,
+      });
+    }
+  };
 
   return resultParams ? (
     <div className="w-full">
-      <div className='flex flex-row gap-2 items-center'>
+      <div className="flex flex-row gap-2 items-between">
         <h2 className="text-2xl font-bold flex flex-row">
           {isSpring ? 'Kevään ' : 'Syksyn '} yhteishaun tulokset{' '}
         </h2>
-        <Button variant={"ghost"} className="text-sm font-light text-gray-600 w-1/2 text-wrap m-0 p-0"
-        onClick={handleSeasonClick}>
+
+        <Button
+          variant={'ghost'}
+          className="text-sm font-light text-gray-600 w-1/2 text-wrap m-0 p-0 justify-end"
+          onClick={handleSeasonClick}
+        >
           {' '}
           näytä {!isSpring ? 'kevään ' : 'syksyn '} tulokset{' '}
         </Button>
       </div>
-      <div className="flex flex-row justify-between w-full pr-6 my-3 mb-7">
+      <div className="flex flex-row justify-between w-full pr-6 my-3 mb-2">
         <Searchbar searchFunction={searchDegrees} />
         <div className="flex flex-row mr-7">
           <NumberBall
@@ -121,7 +149,7 @@ export default function ThemeAccordion() {
             image={checkIcon}
             className="bg-primary text-secondary-foreground text-xl font-bold"
           />
-          {!onlyPassed && (
+          {!filters.onlyPassed && (
             <NumberBall
               text="x"
               image={crossIcon}
@@ -130,13 +158,21 @@ export default function ThemeAccordion() {
           )}
         </div>
       </div>
-      <CheckboxWithHover
-        label="Näytä vain paikat, joihin pääsisin"
-        value={onlyPassed}
-        onChange={setOnlyPassed}
-        tooltip="Näytä vain paikat joihin viime vuonna olisit päässyt"
-      />
-      {filteredDegrees.length > 0 ? (
+      <div className="ml-3 flex flex-row justify-start w-full pr-6">
+        <AccordionFilters
+          filters={filters}
+          callback={setFilters}
+          defaultFilters={defaultFilters}
+        />
+        <FilterDisplayer
+          filters={filters}
+          defaultFilters={defaultFilters}
+          callback={setFilters}
+        />
+      </div>
+      {filteredDegrees
+        .map((theme) => theme.hakukohteet.length)
+        .some((length) => length > 0) ? (
         <Accordion type="single" collapsible className="w-full mt-7">
           {filteredDegrees.map((theme, index) => {
             return (
@@ -154,7 +190,7 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      {!onlyPassed && (
+                      {!filters.onlyPassed && (
                         <NumberBall
                           text={
                             theme.hakukohteet.length -
@@ -181,7 +217,9 @@ export default function ThemeAccordion() {
           })}
         </Accordion>
       ) : (
-        <p className="mt-6">Hakukohteita ei löytynyt</p>
+        <p className="mt-6 text-muted-foreground">
+          Hakukohteita ei löytynyt, muuta hakuehtojasi
+        </p>
       )}
     </div>
   ) : (
