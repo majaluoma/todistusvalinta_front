@@ -34,7 +34,6 @@ export default function VolumeItem({
           <div className="flex flex-row ">
             <p className="text-sm mr-0.5 text-muted-foreground">
               {volume.vuosi} 
-              {volume.haku === "Kevään yhteishaku"? " kevät" : " syksy" }
               :{' '}
             </p>
             <p

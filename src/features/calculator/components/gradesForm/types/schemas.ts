@@ -13,7 +13,7 @@ export const formSchema = z.object({
         grade: z.string().min(1, 'Syötä arvosana').nonempty('Syötä arvosana'),
       }),
     )
-    .min(4, 'Lisää oppiaineita')
+    .min(3, 'Lisää oppiaineita')
     .refine(
       (grades) => {
         const subjects = grades

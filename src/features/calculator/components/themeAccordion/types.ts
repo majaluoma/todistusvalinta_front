@@ -23,6 +23,7 @@ export type Filters = {
   universities: boolean;
   vocationalUnviersities: boolean;
   onlyPassed: boolean;
+  isSpring: boolean;
 };
 
 export type FilterDisplayerProps = {

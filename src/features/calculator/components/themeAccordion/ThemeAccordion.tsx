@@ -13,7 +13,6 @@ import VirtualizedDegreeList from './components/VirtualizedDegreeList';
 import Searchbar from './components/SearchBar';
 import useAds from '@/hooks/useAds';
 import { Ad, CustomAd } from '@/components/customUi/adsBanner/types';
-import crossIcon from '@/assets/crossIcon.svg';
 import checkIcon from '@/assets/checkIcon.svg';
 import filterDegreeByNameAndSchool, {
   filterPassed,
@@ -21,11 +20,11 @@ import filterDegreeByNameAndSchool, {
   filterVocationalUnviersities,
   passedAmountPerTheme,
 } from './lib/utils';
-import { Button } from '@/components/ui/button';
 import { getResult } from '../gradesForm/api/getResult';
 import { Filters } from './types';
 import AccordionFilters from './components/AccordionFilters';
 import FilterDisplayer from './components/FilterDisplayer';
+import { ResultParams } from '../gradesForm/types/types';
 
 const degreesAndAdsOrdered = (
   degrees: DegreeObject[],
@@ -48,6 +47,7 @@ const defaultFilters: Filters = {
   universities: true,
   vocationalUnviersities: true,
   onlyPassed: false,
+  isSpring: true,
 };
 
 /** With provided degree list ThemeAccordion will show them all
@@ -62,7 +62,6 @@ export default function ThemeAccordion() {
   const { accordionAds } = useAds();
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [searchValue, setSearchValue] = useState(null as string | null);
-  const [isSpring, setIsSpring] = useState(true);
 
   useEffect(() => {
     setPassedTotal(
@@ -110,70 +109,59 @@ export default function ThemeAccordion() {
     setSearchValue(value ?? '');
   };
 
-  const handleSeasonClick = async () => {
-    const oppositeSeason = !isSpring;
-    setIsSpring(oppositeSeason);
-    if (resultParams) {
+  useEffect(() => {
+    const fetchAutumnResult = async (resultParams: ResultParams) => {
       const result = await getResult({
         ...resultParams,
-        isSpring: oppositeSeason,
+        isSpring: filters.isSpring,
       });
+
       setDegreesAndThemes(result, {
         ...resultParams,
-        isSpring: oppositeSeason,
+        isSpring: filters.isSpring,
       });
+    };
+    if (resultParams) {
+      fetchAutumnResult(resultParams);
     }
-  };
+  }, [filters.isSpring]);
 
   return resultParams ? (
     <div className="w-full">
       <div className="flex flex-row gap-2 items-between">
         <h2 className="text-2xl font-bold flex flex-row">
-          {isSpring ? 'Kevään ' : 'Syksyn '} yhteishaun tulokset{' '}
+          {degrees[0].hakukohteet[0].vuosikerrat[0].vuosi} yhteishaun tulokset{' '}
         </h2>
-
-        <Button
-          variant={'ghost'}
-          className="text-sm font-light text-gray-600 w-1/2 text-wrap m-0 p-0 justify-end"
-          onClick={handleSeasonClick}
-        >
-          {' '}
-          näytä {!isSpring ? 'kevään ' : 'syksyn '} tulokset{' '}
-        </Button>
       </div>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-2">
         <Searchbar searchFunction={searchDegrees} />
-        <div className="flex flex-row mr-7">
-          <NumberBall
-            text={'✓'}
-            image={checkIcon}
-            className="bg-primary text-secondary-foreground text-xl font-bold"
-          />
-          {!filters.onlyPassed && (
-            <NumberBall
-              text="x"
-              image={crossIcon}
-              className="border-2 bg-transparent border-black font-bold text-xl"
-            />
-          )}
-        </div>
-      </div>
-      <div className="ml-3 flex flex-row justify-start w-full pr-6">
         <AccordionFilters
           filters={filters}
           callback={setFilters}
           defaultFilters={defaultFilters}
         />
+      </div>
+      <div className="flex justify-between w-full">
         <FilterDisplayer
           filters={filters}
           defaultFilters={defaultFilters}
           callback={setFilters}
         />
       </div>
+        <div className="w-full justify-end flex flex-row mt-7">
+          <div className="flex flex-row mr-5 ">
+            <NumberBall
+              text={'✓'}
+              image={checkIcon}
+              className="bg-primary text-secondary-foreground text-xl font-bold"
+              />
+            hyväksytty
+          </div>
+              </div>
       {filteredDegrees
         .map((theme) => theme.hakukohteet.length)
         .some((length) => length > 0) ? (
-        <Accordion type="single" collapsible className="w-full mt-7">
+        <Accordion type="single" collapsible className="w-full">
           {filteredDegrees.map((theme, index) => {
             return (
               <AccordionItem
@@ -190,15 +178,12 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      {!filters.onlyPassed && (
+                      
                         <NumberBall
-                          text={
-                            theme.hakukohteet.length -
-                            (passedTotal.get(theme.aihe) ?? 0)
-                          }
-                          className="mr-3 bg-transparent m-auto "
+                          text={theme.hakukohteet.length}
+                          className={`mr-3 bg-transparent m-auto ${filters.onlyPassed === true && "invisible"}`}
                         />
-                      )}
+                      
                     </div>
                   </AccordionTrigger>
                 ) : (

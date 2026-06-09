@@ -13,7 +13,7 @@ export type HoverInfoProps = {
 };
 
 export type CheckboxWithHoverProps =  {
-    tooltip: string;
+    tooltip?: string;
     onChange: React.Dispatch<React.SetStateAction<boolean>>;
     value: boolean;
     label?: string
