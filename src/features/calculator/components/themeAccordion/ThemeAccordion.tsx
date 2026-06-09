@@ -150,7 +150,7 @@ export default function ThemeAccordion() {
         />
       </div>
       <div className="w-full justify-end flex flex-row mt-7">
-        <div className="flex flex-row mr-5 ">
+        <div className="flex flex-row mr-5 gap-1">
           <NumberBall
             text={'✓'}
             image={checkIcon}
