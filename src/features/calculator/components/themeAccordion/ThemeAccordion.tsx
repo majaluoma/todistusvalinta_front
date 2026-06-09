@@ -130,7 +130,8 @@ export default function ThemeAccordion() {
     <div className="w-full">
       <div className="flex flex-row gap-2 items-between">
         <h2 className="text-2xl font-bold flex flex-row">
-          {degrees[0].hakukohteet[0].vuosikerrat[0].vuosi} yhteishaun tulokset{' '}
+          {filters.isSpring ? 'Kevään' : 'Syksyn'}  {' '}
+          {degrees[0].hakukohteet[0].vuosikerrat[0].vuosi} yhteishaku
         </h2>
       </div>
       <div className="flex flex-row justify-between w-full pr-6 my-3 mb-2">
@@ -148,16 +149,16 @@ export default function ThemeAccordion() {
           callback={setFilters}
         />
       </div>
-        <div className="w-full justify-end flex flex-row mt-7">
-          <div className="flex flex-row mr-5 ">
-            <NumberBall
-              text={'✓'}
-              image={checkIcon}
-              className="bg-primary text-secondary-foreground text-xl font-bold"
-              />
-            hyväksytty
-          </div>
-              </div>
+      <div className="w-full justify-end flex flex-row mt-7">
+        <div className="flex flex-row mr-5 ">
+          <NumberBall
+            text={'✓'}
+            image={checkIcon}
+            className="bg-primary text-secondary-foreground text-xl font-bold"
+          />
+          hyväksytty
+        </div>
+      </div>
       {filteredDegrees
         .map((theme) => theme.hakukohteet.length)
         .some((length) => length > 0) ? (
@@ -178,12 +179,11 @@ export default function ThemeAccordion() {
                         text={passedTotal.get(theme.aihe)}
                         className="ml-auto mr-2 text-secondary-foreground m-auto bg-primary"
                       />
-                      
-                        <NumberBall
-                          text={theme.hakukohteet.length}
-                          className={`mr-3 bg-transparent m-auto ${filters.onlyPassed === true && "invisible"}`}
-                        />
-                      
+                      {!filters.onlyPassed && '/'}
+                      <NumberBall
+                        text={theme.hakukohteet.length}
+                        className={`mr-3 bg-transparent m-auto ${filters.onlyPassed === true && 'invisible'}`}
+                      />
                     </div>
                   </AccordionTrigger>
                 ) : (

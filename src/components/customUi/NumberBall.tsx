@@ -13,7 +13,7 @@ export default function NumberBall({
 }: Readonly<NumberBallProps>) {
   return (
     <span
-      className={`mx-2 text-base rounded-full w-7 h-7 text-center flex items-center justify-center 
+      className={`text-base rounded-full w-7 h-7 text-center flex items-center justify-center 
         ${text && text?.toString().length > 2 && 'text-sm'}
         ${className}`}
     >
