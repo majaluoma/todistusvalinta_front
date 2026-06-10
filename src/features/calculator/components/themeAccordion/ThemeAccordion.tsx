@@ -56,7 +56,7 @@ const defaultFilters: Filters = {
  *
  */
 export default function ThemeAccordion() {
-  const { degrees, resultParams, setDegreesAndThemes } = useResultContext();
+  const { degrees, resultParams, setDegreesAndThemes, year } = useResultContext();
   const [filteredDegrees, setFilteredDegrees] = useState<ThemeObject[]>([]);
   const [passedTotal, setPassedTotal] = useState(new Map<string, number>());
   const { accordionAds } = useAds();
@@ -114,7 +114,7 @@ export default function ThemeAccordion() {
       const result = await getResult({
         ...resultParams,
         isSpring: filters.isSpring,
-      });
+      }, (filters.isSpring? year : undefined));
 
       setDegreesAndThemes(result, {
         ...resultParams,
