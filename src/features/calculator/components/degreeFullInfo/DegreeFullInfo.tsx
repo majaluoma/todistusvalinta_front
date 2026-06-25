@@ -85,7 +85,7 @@ export default function DegreeFullInfo() {
             );
           })
         ) : (
-          <div className="h-full pb-20">
+          <div className="h-full pb-28">
             <SheetHeader>
               <SheetTitle className="text-xl mb-8 ml-4 text-wrap">
                 Ladataan tietoja
