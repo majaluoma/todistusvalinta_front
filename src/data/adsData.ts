@@ -20,15 +20,7 @@ export const BannerAdsMatriculation: AdsArray = [
     osoite:
       'valmennuskeskus.fi/ennakkovaraajan-etu/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=juhannuskampanja_2026',
     mainospalvelu: 'custom',
-  },
-  {
-    id: "banner_3_2",
-    kuva: 'HEO banneri_todistusvalinta-02.jpg',
-    kuvaus: 'HEO mainos',
-    osoite:
-      'heo.fi/',
-    mainospalvelu: 'custom',
-  },
+  }
 ];
 
 export const AccordionAds: AdsArray = [
