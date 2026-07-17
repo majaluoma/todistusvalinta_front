@@ -10,6 +10,14 @@ export const BannerAdsVocational: AdsArray = [
     id: "banner_2",
     mainospalvelu: 'adsense',
   },
+  {
+    id: "banner_2_2",
+    kuva: 'Urasuunta_mainos.png',
+    kuvaus: 'Urasuunta-palvelun mainos',
+    osoite:
+      'urasuunta.fi',
+    mainospalvelu: 'custom',
+  }
 ];
 
 export const BannerAdsMatriculation: AdsArray = [
@@ -19,6 +27,14 @@ export const BannerAdsMatriculation: AdsArray = [
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
       'valmennuskeskus.fi/ilmaiset-palvelut/valintakoeanalyysit/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=valintakoeanalyysit_2026',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "banner_3_3",
+    kuva: 'Urasuunta_mainos.png',
+    kuvaus: 'Urasuunta-palvelun mainos',
+    osoite:
+      'urasuunta.fi',
     mainospalvelu: 'custom',
   }
 ];
