@@ -28,7 +28,7 @@ export const BannerAdsMatriculation: AdsArray = [
     osoite:
       'valmennuskeskus.fi/ennakkovaraajan-etu/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=kesakampanja_2026',
     mainospalvelu: 'custom',
-  },
+  }/*,
   {
     id: "banner_3_3",
     kuva: 'Urasuunta_mainos.png',
@@ -36,7 +36,7 @@ export const BannerAdsMatriculation: AdsArray = [
     osoite:
       'urasuunta.fi',
     mainospalvelu: 'custom',
-  }
+  }*/
 ];
 
 export const AccordionAds: AdsArray = [
