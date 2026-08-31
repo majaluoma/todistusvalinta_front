@@ -23,7 +23,7 @@ export const BannerAdsVocational: AdsArray = [
 export const BannerAdsMatriculation: AdsArray = [
   {
     id: "banner_3_1",
-    kuva: 'yleismainos_syksy_2026.png',
+    kuva: 'syyskamppis.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
       'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=yleismainos_syksy_2026',
