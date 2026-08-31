@@ -26,7 +26,7 @@ export const BannerAdsMatriculation: AdsArray = [
     kuva: 'syyskamppis.png',
     kuvaus: 'Valmennuskeskuksen mainos',
     osoite:
-      'valmennuskeskus.fi/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=yleismainos_syksy_2026',
+      'valmennuskeskus.fi/ennakkovaraajan-etu/?utm_source=todistusvalinta&utm_medium=display&utm_campaign=syyskampanja_2026',
     mainospalvelu: 'custom',
   }/*,
   {
