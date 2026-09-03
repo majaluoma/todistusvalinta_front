@@ -6,7 +6,7 @@ export const oldnews2: React.ReactNode = (
 
 export const mainNews: React.ReactNode = (
   <>
-    Kevään 2026 lopulliset pisterajat on nyt julkaistu sivustolla.
+    Kevään 2026 yhteishaun lopulliset pisterajat on nyt julkaistu sivustolla.
   </>
 );
 
