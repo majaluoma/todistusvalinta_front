@@ -4,8 +4,13 @@ export const oldnews2: React.ReactNode = (
   </>
 );
 
-
 export const mainNews: React.ReactNode = (
+  <>
+    Kevään 2026 lopulliset pisterajat on nyt julkaistu sivustolla.
+  </>
+);
+
+export const oldNews5: React.ReactNode = (
   <>
     Kevään 2026 pisterajat voivat vielä muuttua varasijamenettelyn vuoksi.
   </>
