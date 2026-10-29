@@ -37,13 +37,13 @@ export const BannerAdsMatriculation: AdsArray = [
       'urasuunta.fi',
     mainospalvelu: 'custom',
   }*/,
-  {
+  /* {
     id: "banner_3_4",
     kuva: "Opin.fi_marras_2502x1256px_Nainen 3.png",
     kuvaus: "Opin.fi ja opintoseteli -mainos. Avoimia opintoja korkeakouluista yhdessä paikassa",
-    osoite:"opin.fi",
+    osoite:"opin.fi/fi",
     mainospalvelu:"custom"
-  }
+  }*/
 ];
 
 export const AccordionAds: AdsArray = [
@@ -127,12 +127,13 @@ export const AccordionAds: AdsArray = [
       'valmennuskeskus.fi/amk-tekniikan-alan-valmennuskurssi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=amk',
     mainospalvelu: 'custom',
   },
+  /*
   {
     id: "acc_934",
     kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
-    kuvaus: 'opin.fi',
+    kuvaus: 'opin.fi/fi',
     osoite:
       'opin.fi',
     mainospalvelu: 'custom',
-  }
+  }*/
 ];
