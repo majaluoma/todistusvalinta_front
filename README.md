@@ -74,6 +74,7 @@ Here is a list of all environment variables with some examples
 - `VITE_ADSENSE_CLIENT`=a-app-pub-3940256099942544
 - `VITE_ADSENSE_SLOT`=9214589741
 - `VITE_ENVIRONMENT`=development
+- `VITE_RECAPTCHA_SITE_KEY`=6LfLm1srAAAAAMMul_YnNPxGB39GwdtgMCvDA0fV
 
 Adsense keys work only from certain domains so they don't work from localhost.
 
