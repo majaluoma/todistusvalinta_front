@@ -37,13 +37,13 @@ export const BannerAdsMatriculation: AdsArray = [
       'urasuunta.fi',
     mainospalvelu: 'custom',
   }*/,
-  /* {
+  {
     id: "banner_3_4",
     kuva: "Opin.fi_marras_2502x1256px_Nainen 3.png",
     kuvaus: "Opin.fi ja opintoseteli -mainos. Avoimia opintoja korkeakouluista yhdessä paikassa",
     osoite:"opin.fi/fi",
     mainospalvelu:"custom"
-  }*/
+  }
 ];
 
 export const AccordionAds: AdsArray = [
@@ -127,13 +127,92 @@ export const AccordionAds: AdsArray = [
       'valmennuskeskus.fi/amk-tekniikan-alan-valmennuskurssi/?utm_source=todistusvalinta&utm_medium=banner&utm_campaign=amk',
     mainospalvelu: 'custom',
   },
-  /*
   {
-    id: "acc_934",
+    id: "acc_theme_1",
     kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
     kuvaus: 'opin.fi/fi',
     osoite:
       'opin.fi',
     mainospalvelu: 'custom',
-  }*/
+  },
+  {
+    id: "acc_theme_2",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_3",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_4",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_6",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_7",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_8",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_9",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_10",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_11",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  },
+  {
+    id: "acc_theme_12",
+    kuva: 'Opin.fi_marras_1020x280px_Mies 3.png',
+    kuvaus: 'opin.fi/fi',
+    osoite:
+      'opin.fi',
+    mainospalvelu: 'custom',
+  }
 ];

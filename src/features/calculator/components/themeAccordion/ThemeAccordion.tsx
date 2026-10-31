@@ -29,8 +29,13 @@ import { ResultParams } from '../gradesForm/types/types';
 const degreesAndAdsOrdered = (
   degrees: DegreeObject[],
   ads: (Ad | CustomAd)[],
+  theme : ThemeObject
 ) => {
   const degreesAndAds: (DegreeObject | CustomAd | Ad)[] = [];
+  const themeAd = ads.find((ad) => {
+      return parseInt(ad.id.split('_theme_')[1]) === theme.AiheID;
+    });
+  themeAd && degreesAndAds.push(themeAd);
   degrees.forEach((degree) => {
     degreesAndAds.push(degree);
     const ad = ads.find((ad) => {
@@ -194,6 +199,7 @@ export default function ThemeAccordion() {
                     degreesAndAds={degreesAndAdsOrdered(
                       theme.hakukohteet,
                       accordionAds,
+                      theme
                     )}
                   />
                 </AccordionContent>
